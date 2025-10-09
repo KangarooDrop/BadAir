@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://bg53a66fvc2no"]
+[gd_scene load_steps=8 format=4 uid="uid://bg53a66fvc2no"]
 
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_7g83o"]
+[ext_resource type="Script" uid="uid://b6pxcc5v4rxvv" path="res://scripts/World.gd" id="1_d1c63"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_d1c63"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="3_1lgw5"]
 
@@ -28,6 +29,7 @@ _surfaces = [{
 points = PackedVector3Array(4, 1, 4, 4, 0, 4, -4, 1, 4, -4, 0, 4, 4, 1, -4, 4, 0, -4, -4, 1, -4, -4, 0, -4)
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_d1c63")
 
 [node name="FuncGodotMap" type="Node3D" parent="."]
 script = ExtResource("1_7g83o")
