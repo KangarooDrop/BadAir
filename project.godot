@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="BadAir"
+run/main_scene="uid://bg53a66fvc2no"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
 
 [rendering]
 
