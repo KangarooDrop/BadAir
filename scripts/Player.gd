@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @onready var head : Node3D = $Head
 

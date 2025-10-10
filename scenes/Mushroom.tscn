@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bugfr2tjauw4b"]
+
+[ext_resource type="PackedScene" uid="uid://bp4t5unyuuarj" path="res://scenes/AnimatedSprite3DShader.tscn" id="1_4iinw"]
+[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/sprite_renderer.gdshader" id="2_cbtdp"]
+[ext_resource type="Texture2D" uid="uid://b1b0mnp4xvech" path="res://art/mushroom.png" id="3_hqq58"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ersor"]
+render_priority = 0
+shader = ExtResource("2_cbtdp")
+shader_parameter/tex = ExtResource("3_hqq58")
+shader_parameter/scale = 1.5625
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rahdm"]
+atlas = ExtResource("3_hqq58")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkf8m"]
+atlas = ExtResource("3_hqq58")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqb08"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rahdm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkf8m")
+}],
+"loop": true,
+"name": &"dance",
+"speed": 2.0
+}]
+
+[node name="Mushroom" type="Node3D"]
+
+[node name="AnimatedSprite3dShader" parent="." instance=ExtResource("1_4iinw")]
+material_override = SubResource("ShaderMaterial_ersor")
+sprite_frames = SubResource("SpriteFrames_pqb08")
+animation = &"dance"
+autoplay = "dance"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.5882353, 0.5882353, 1, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 4.0

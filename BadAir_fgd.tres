@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=3 format=3 uid="uid://bxkmjweujos71"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=5 format=3 uid="uid://bxkmjweujos71"]
 
 [ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_b16p7"]
 [ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_lhqqf"]
+[ext_resource type="Resource" uid="uid://de5bbvu7rursq" path="res://trenchbroom/entities/PlayerSpawn.tres" id="2_6su5s"]
+[ext_resource type="Resource" uid="uid://5501vrmnk2hn" path="res://trenchbroom/entities/Mushroom.tres" id="3_lywgn"]
 
 [resource]
 script = ExtResource("1_lhqqf")
 fgd_name = "BadAir"
 base_fgd_files = Array[Resource]([ExtResource("1_b16p7")])
+entity_definitions = Array[Resource]([ExtResource("2_6su5s"), ExtResource("3_lywgn")])
 metadata/_custom_type_script = "uid://drlmgulwbjwqu"

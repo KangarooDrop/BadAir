@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp4t5unyuuarj"]
+
+[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/sprite_renderer.gdshader" id="1_305l1"]
+[ext_resource type="Script" uid="uid://8qcbgcghyscm" path="res://scripts/AnimatedSprite3DShader.gd" id="1_k0lok"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q58de"]
+render_priority = 0
+shader = ExtResource("1_305l1")
+shader_parameter/scale = 1.5625
+
+[node name="AnimatedSprite3dShader" type="AnimatedSprite3D"]
+material_override = SubResource("ShaderMaterial_q58de")
+script = ExtResource("1_k0lok")
+
+[connection signal="frame_changed" from="." to="." method="onFrameChanged"]
