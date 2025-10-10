@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://b4efbnxbfvgg3"]
+
+[ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_ecgoa"]
+[ext_resource type="Script" uid="uid://0bpd5titxkuh" path="res://scripts/Trigger.gd" id="2_d3183"]
+
+[resource]
+script = ExtResource("1_ecgoa")
+build_visuals = false
+render_layers = 0
+collision_layer = 0
+collision_mask = 2
+script_class = ExtResource("2_d3183")
+classname = "triggers_Trigger"
+class_properties = {
+"single_use": false,
+"target": "",
+"targetname": ""
+}
+node_class = "Area3D"
+metadata/_custom_type_script = "uid://5cow84q03m6a"

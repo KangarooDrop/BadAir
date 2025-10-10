@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://be4pbv3t2e0wq"
+path="res://.godot/imported/SpawnTest.2.map-65a82eed089ef23652be85155c591b6c.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/autosave/SpawnTest.2.map"
+dest_files=["res://.godot/imported/SpawnTest.2.map-65a82eed089ef23652be85155c591b6c.tres"]
+
+[params]
+

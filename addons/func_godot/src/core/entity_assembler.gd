@@ -352,6 +352,16 @@ func apply_entity_properties(node: Node, data: _EntityData) -> void:
 	
 	if node.has_method("_func_godot_apply_properties"):
 		node.call("_func_godot_apply_properties", properties)
+	else:
+		var scr = node.get_script()
+		if scr != null and not scr.is_tool():
+			for prop in properties.keys():
+				if prop == "classname" or prop == "origin":
+					continue
+				if not prop in node:
+					printerr("ERROR: Entity does not have to provided property: ", prop)
+					continue
+				node[prop] = properties[prop]
 	
 	if node.has_method("_func_godot_build_complete"):
 		node.call_deferred("_func_godot_build_complete")
