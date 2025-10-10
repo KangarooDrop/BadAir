@@ -3,6 +3,11 @@ extends Node
 const GROUP_TARGET : String = "Target"
 const GROUP_PICKUP : String = "Pickup"
 
+const ITEM_NONE : int = 0
+const ITEM_BIRD : int = 1
+const ITEM_LIGHTER : int = 2
+const ITEM_MUSHROOM : int = 3
+
 const trackMover : PackedScene = preload("res://scenes/TrackMover.tscn")
 
 func initTarget(object : Node) -> void:
@@ -25,3 +30,6 @@ func findByType(parent : Node, type) -> Node:
 		if is_instance_of(c, type):
 			return c
 	return null
+
+func getWorld() -> World:
+	return get_tree().root.get_node("World")

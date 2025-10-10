@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp58n1nhdnsxb"
-path.s3tc="res://.godot/imported/hand_grab_empty.png-7f19bb04f9d9b85b43583a333323a3a0.s3tc.ctex"
+uid="uid://cyfy6y0ht3db6"
+path.s3tc="res://.godot/imported/hand_mushi_mushi.png-47cd48227f60a00f60846cda1cbedb9d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/hand_grab_empty.png"
-dest_files=["res://.godot/imported/hand_grab_empty.png-7f19bb04f9d9b85b43583a333323a3a0.s3tc.ctex"]
+source_file="res://art/hand_mushi_mushi.png"
+dest_files=["res://.godot/imported/hand_mushi_mushi.png-47cd48227f60a00f60846cda1cbedb9d.s3tc.ctex"]
 
 [params]
 
