@@ -1,8 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dit4rlfwrhecr"]
+[gd_scene load_steps=6 format=3 uid="uid://dit4rlfwrhecr"]
 
 [ext_resource type="Script" uid="uid://ciuj5m3wk4o34" path="res://scripts/PoisonGas.gd" id="1_fercs"]
+[ext_resource type="PackedScene" uid="uid://bhhjnkgsvm1y5" path="res://scenes/TrackMover.tscn" id="2_figkc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fercs"]
+resource_local_to_scene = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fercs"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.5176471)
+
+[sub_resource type="SphereMesh" id="SphereMesh_figkc"]
+resource_local_to_scene = true
 
 [node name="PoisonGas" type="Node3D"]
 script = ExtResource("1_fercs")
@@ -13,6 +22,13 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_fercs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_fercs")
+mesh = SubResource("SphereMesh_figkc")
+
+[node name="TrackMover" parent="." instance=ExtResource("2_figkc")]
 
 [connection signal="body_entered" from="Area3D" to="." method="onBodyEnter"]
 [connection signal="body_exited" from="Area3D" to="." method="onBodyExit"]

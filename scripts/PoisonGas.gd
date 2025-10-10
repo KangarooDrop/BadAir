@@ -6,9 +6,12 @@ extends Node
 @export var strength : int = 0
 
 @onready var col : CollisionShape3D = $Area3D/CollisionShape3D
+@onready var debugMesh : MeshInstance3D = $MeshInstance3D
 
 func _ready() -> void:
 	(col.shape as SphereShape3D).radius = radius
+	(debugMesh.mesh as SphereMesh).radius = radius
+	(debugMesh.mesh as SphereMesh).height = radius*2.0
 
 func onBodyEnter(body: Node3D) -> void:
 	if body.has_method("onEnterPoison"):

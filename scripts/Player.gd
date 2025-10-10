@@ -14,6 +14,9 @@ const UNCON_TRAC_AIR : float = 0.017
 
 const SENSITIVITY : float = PI/300.0
 
+const KILL_PLANE : float = -300.0
+const KILL_VEL : float = -20.0
+
 ####################################################################################################
 
 func getGasStrengthToDec(gasStrength : int) -> float:
@@ -32,6 +35,7 @@ const HEALTH_REGEN : float = HEALTH_MAX/3.0
 var health : float = HEALTH_MAX
 var canControl : bool = true
 var canExplode : bool = false
+var lastVelocity : Vector3 = Vector3.ZERO
 
 ####################################################################################################
 
@@ -153,7 +157,14 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity.y -= GRAV * delta
+	lastVelocity = velocity
 	move_and_slide()
+	
+	if velocity.y == 0.0 and lastVelocity.y < 0.0:
+		if lastVelocity.y <= KILL_VEL:
+			health = -999.0
+	if position.y < KILL_PLANE:
+		health = -999.0
 
 ####################################################################################################
 
