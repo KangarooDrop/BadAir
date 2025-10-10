@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckeimr4x37x4"
-path.s3tc="res://.godot/imported/metal2.png-45a0ba7a6197110c1f8c28bb2c45098e.s3tc.ctex"
+uid="uid://2os35dvq1vro"
+path.s3tc="res://.godot/imported/splatter.png-59aab028d24611842141c6d2ce250c6e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/world/metal2.png"
-dest_files=["res://.godot/imported/metal2.png-45a0ba7a6197110c1f8c28bb2c45098e.s3tc.ctex"]
+source_file="res://textures/world/splatter.png"
+dest_files=["res://.godot/imported/splatter.png-59aab028d24611842141c6d2ce250c6e.s3tc.ctex"]
 
 [params]
 
