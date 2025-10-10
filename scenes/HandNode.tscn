@@ -1,21 +1,121 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqjf73acq8rjo"]
+[gd_scene load_steps=20 format=3 uid="uid://cqjf73acq8rjo"]
 
 [ext_resource type="Texture2D" uid="uid://wmobc41a2so" path="res://art/hand_still1.png" id="1_entil"]
 [ext_resource type="Script" uid="uid://33f8ps6tkday" path="res://scripts/HandNode.gd" id="1_f4mcy"]
+[ext_resource type="Texture2D" uid="uid://bp58n1nhdnsxb" path="res://art/hand_grab_empty.png" id="2_ptei0"]
+[ext_resource type="Texture2D" uid="uid://ixxrsgjnyblc" path="res://art/bird.png" id="3_3g3jw"]
+[ext_resource type="Texture2D" uid="uid://i467dtcep1pd" path="res://art/lighter.png" id="5_khu0g"]
+[ext_resource type="Texture2D" uid="uid://dwbdjfqa63kuk" path="res://art/hand_throw_empty.png" id="6_0l4qp"]
+[ext_resource type="Texture2D" uid="uid://cyfy6y0ht3db6" path="res://art/hand_mushi_mushi.png" id="6_3g3jw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktsgm"]
+atlas = ExtResource("2_ptei0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0d21"]
+atlas = ExtResource("2_ptei0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhru2"]
+atlas = ExtResource("2_ptei0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seeir"]
+atlas = ExtResource("3_3g3jw")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3li8b"]
 atlas = ExtResource("1_entil")
 region = Rect2(0, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e4ty"]
+atlas = ExtResource("5_khu0g")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khu0g"]
+atlas = ExtResource("6_3g3jw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_meagg"]
+atlas = ExtResource("6_0l4qp")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxtvi"]
+atlas = ExtResource("6_0l4qp")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrk0r"]
+atlas = ExtResource("6_0l4qp")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf1gd"]
+atlas = ExtResource("6_0l4qp")
+region = Rect2(192, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_mdl7e"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktsgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0d21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhru2")
+}],
+"loop": false,
+"name": &"grab",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seeir")
+}],
+"loop": true,
+"name": &"idle_bird",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3li8b")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle_empty",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3e4ty")
+}],
+"loop": true,
+"name": &"idle_lighter",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khu0g")
+}],
+"loop": true,
+"name": &"idle_mushroom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_meagg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxtvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrk0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf1gd")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 8.0
 }]
 
 [node name="HandNode" type="Node3D"]
@@ -27,6 +127,7 @@ offset = Vector2(32, 32)
 shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mdl7e")
+animation = &"throw"
 
 [node name="LighterLight" type="OmniLight3D" parent="AnimatedSprite3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0.49243796, 0.71234703, 0.033575296)

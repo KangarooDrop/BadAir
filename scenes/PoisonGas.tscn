@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dit4rlfwrhecr"]
+
+[ext_resource type="Script" uid="uid://ciuj5m3wk4o34" path="res://scripts/PoisonGas.gd" id="1_fercs"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fercs"]
+
+[node name="PoisonGas" type="Node3D"]
+script = ExtResource("1_fercs")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_fercs")
+
+[connection signal="body_entered" from="Area3D" to="." method="onBodyEnter"]
+[connection signal="body_exited" from="Area3D" to="." method="onBodyExit"]

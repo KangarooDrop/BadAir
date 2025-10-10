@@ -7,16 +7,27 @@ extends Node
 @onready var particles : GPUParticles3D = $GPUParticles3D
 @onready var col : CollisionShape3D = $Area3D/CollisionShape3D
 
-static func getPartsPerUnit(radius : float) -> int:
-	return int(64 * radius)
+static func getPartsPerUnit(testRadius : float) -> int:
+	return int(64 * testRadius)
 
 func _ready() -> void:
 	(particles.process_material as ParticleProcessMaterial).emission_sphere_radius = radius
 	particles.amount = getPartsPerUnit(radius)
 	(col.shape as SphereShape3D).radius = radius
 
+var touching : Array = []
 func onBodyEnter(body: Node3D) -> void:
-	print(body.name)
+	if "canExplode" in body:
+		touching.append(body)
+
+func _process(delta: float) -> void:
+	for body in touching:
+		if body.canExplode:
+			explode()
+			body.onExplode()
+
+func explode() -> void:
+	pass
 
 func onBodyExit(body: Node3D) -> void:
-	pass
+	touching.erase(body)
