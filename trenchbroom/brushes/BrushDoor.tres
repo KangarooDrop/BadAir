@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://pr1s0r8xjogh"]
+
+[ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_w01pc"]
+[ext_resource type="Script" uid="uid://dxofmcldrvnaa" path="res://scripts/BrushDoor.gd" id="2_cpypa"]
+
+[resource]
+script = ExtResource("1_w01pc")
+collision_mask = 0
+script_class = ExtResource("2_cpypa")
+classname = "Doors_BrushDoor"
+description = "Movable Brush Entity"
+class_properties = {
+"move_translation": Vector3(0, 0, 0),
+"speed": 1.0,
+"stay_open": true,
+"targetname": "",
+"wait": 0.0
+}
+node_class = "StaticBody3D"
+metadata/_custom_type_script = "uid://5cow84q03m6a"

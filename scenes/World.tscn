@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg53a66fvc2no"]
+[gd_scene load_steps=6 format=3 uid="uid://bg53a66fvc2no"]
 
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_7g83o"]
 [ext_resource type="Script" uid="uid://b6pxcc5v4rxvv" path="res://scripts/World.gd" id="1_d1c63"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_d1c63"]
 [ext_resource type="PackedScene" uid="uid://1n23rgtxea8g" path="res://scenes/Player.tscn" id="2_hlk0d"]
 
+[sub_resource type="Environment" id="Environment_b3faq"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_d1c63")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b3faq")
 
 [node name="Player" parent="." instance=ExtResource("2_hlk0d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 0)
