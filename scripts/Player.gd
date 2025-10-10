@@ -16,7 +16,6 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if event is InputEventMouseMotion:
-		print(event.relative)
 		head.rotation.y += -event.relative.x * SENSITIVITY
 		head.rotation.x += -event.relative.y * SENSITIVITY
 		head.rotation.x = clampf(head.rotation.x, -PI/2.0, PI/2.0)
