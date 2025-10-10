@@ -11,15 +11,8 @@ var used : bool = false
 func _ready() -> void:
 	body_entered.connect(self.onBodyEnter)
 	body_exited.connect(self.onBodyExit)
-	initTarget()
-
-func initTarget() -> void:
-	await get_tree().process_frame
-	var triggerHandlers : Array = get_tree().get_nodes_in_group("TriggerHandler")
-	for th in triggerHandlers:
-		if th.targetname == target:
-			targetEntity = th
-			break
+	add_to_group(Util.GROUP_TARGET)
+	Util.initTarget(self)
 
 func onBodyEnter(body):
 	if single_use and used:

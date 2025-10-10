@@ -13,7 +13,7 @@ var waitTimer : float = 0.0
 var closing : bool = false
 
 func _ready() -> void:
-	add_to_group("TriggerHandler")
+	add_to_group(Util.GROUP_TARGET)
 
 func onTriggerEnter(body, trigger) -> void:
 	opening = true
@@ -23,8 +23,6 @@ func onTriggerExit(body, trigger) -> void:
 	canClose = true
 
 func _physics_process(delta: float) -> void:
-	#get_coll
-	
 	var mv : Vector3 = Vector3.ZERO
 	if opening:
 		var dp : Vector3 = (originalPosition + move_translation - global_position)
