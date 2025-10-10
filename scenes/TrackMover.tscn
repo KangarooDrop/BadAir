@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhhjnkgsvm1y5"]
+
+[ext_resource type="Script" uid="uid://col647qg4aqwk" path="res://scripts/TrackMover.gd" id="1_gxtft"]
+
+[node name="TrackMover" type="Node3D"]
+script = ExtResource("1_gxtft")

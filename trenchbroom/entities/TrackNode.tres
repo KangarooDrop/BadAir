@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cygkbd7ol7pwx"]
+
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_1ev4x"]
+[ext_resource type="PackedScene" uid="uid://detw7vhe1fa2v" path="res://scenes/TrackNode.tscn" id="1_f2bsw"]
+
+[resource]
+script = ExtResource("1_1ev4x")
+scene_file = ExtResource("1_f2bsw")
+classname = "TrackNode"
+class_properties = {
+"target": "",
+"targetname": "",
+"wait": 0.0
+}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 0.49803922),
+"size": AABB(-32, -32, -32, 32, 32, 32)
+}
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

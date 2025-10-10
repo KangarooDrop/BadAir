@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=7 format=3 uid="uid://bxkmjweujos71"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=10 format=3 uid="uid://bxkmjweujos71"]
 
 [ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_b16p7"]
 [ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_lhqqf"]
@@ -6,10 +6,13 @@
 [ext_resource type="Resource" uid="uid://5501vrmnk2hn" path="res://trenchbroom/entities/Mushroom.tres" id="3_lywgn"]
 [ext_resource type="Resource" uid="uid://b4efbnxbfvgg3" path="res://trenchbroom/brushes/Trigger.tres" id="4_5bcow"]
 [ext_resource type="Resource" uid="uid://pr1s0r8xjogh" path="res://trenchbroom/brushes/BrushDoor.tres" id="5_iou0a"]
+[ext_resource type="Resource" uid="uid://dhglkmmr74n45" path="res://trenchbroom/entities/ExplosiveGas.tres" id="6_tl6hm"]
+[ext_resource type="Resource" uid="uid://cygkbd7ol7pwx" path="res://trenchbroom/entities/TrackNode.tres" id="7_sr330"]
+[ext_resource type="Resource" uid="uid://b2hmpml4gaa71" path="res://trenchbroom/brushes/MovingPlatform.tres" id="8_sg12h"]
 
 [resource]
 script = ExtResource("1_lhqqf")
 fgd_name = "BadAir"
 base_fgd_files = Array[Resource]([ExtResource("1_b16p7")])
-entity_definitions = Array[Resource]([ExtResource("2_6su5s"), ExtResource("3_lywgn"), ExtResource("4_5bcow"), ExtResource("5_iou0a")])
+entity_definitions = Array[Resource]([ExtResource("2_6su5s"), ExtResource("3_lywgn"), ExtResource("4_5bcow"), ExtResource("5_iou0a"), ExtResource("6_tl6hm"), ExtResource("7_sr330"), ExtResource("8_sg12h")])
 metadata/_custom_type_script = "uid://drlmgulwbjwqu"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dhglkmmr74n45"]
+
+[ext_resource type="PackedScene" uid="uid://5fiigf2hisno" path="res://scenes/ExplosiveGas.tscn" id="1_k4asa"]
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_wrpgv"]
+
+[resource]
+script = ExtResource("1_wrpgv")
+scene_file = ExtResource("1_k4asa")
+classname = "ExplosiveGas"
+class_properties = {
+"radius": 3.0,
+"speed": 1.0,
+"target": ""
+}
+meta_properties = {
+"color": Color(1, 0, 0, 1),
+"size": AABB(-32, -32, -32, 32, 32, 32)
+}
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

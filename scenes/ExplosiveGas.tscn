@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://5fiigf2hisno"]
+
+[ext_resource type="Texture2D" uid="uid://b0ia8vwmk51q3" path="res://art/smoke.png" id="1_2elwj"]
+[ext_resource type="Script" uid="uid://dtq2ohflqwg6v" path="res://scripts/ExplosiveGas.gd" id="1_pi8ew"]
+[ext_resource type="PackedScene" uid="uid://bhhjnkgsvm1y5" path="res://scenes/TrackMover.tscn" id="3_uvita"]
+
+[sub_resource type="Gradient" id="Gradient_2elwj"]
+offsets = PackedFloat32Array(0, 0.39714625, 0.56956005, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o03vx"]
+gradient = SubResource("Gradient_2elwj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o03vx"]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_o03vx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pi8ew"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_2elwj")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_uvita"]
+material = SubResource("StandardMaterial3D_pi8ew")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pi8ew"]
+resource_local_to_scene = true
+radius = 1.0
+
+[node name="ExplosiveGas" type="Node3D"]
+script = ExtResource("1_pi8ew")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 64
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_o03vx")
+draw_pass_1 = SubResource("QuadMesh_uvita")
+
+[node name="TrackMover" parent="." instance=ExtResource("3_uvita")]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_pi8ew")
+
+[connection signal="body_entered" from="Area3D" to="." method="onBodyEnter"]
+[connection signal="body_exited" from="Area3D" to="." method="onBodyExit"]

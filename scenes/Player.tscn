@@ -35,6 +35,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.263, -0.193, 0)
 [node name="HandNodeRight" parent="Head/Camera3D/HandHolder" instance=ExtResource("2_qu4a1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263, -0.193, 0)
 
+[node name="AnimatedSprite3D" parent="Head/Camera3D/HandHolder/HandNodeRight" index="0"]
+offset = Vector2(-32, 32)
+flip_h = true
+
+[node name="LighterLight" parent="Head/Camera3D/HandHolder/HandNodeRight/AnimatedSprite3D" index="0"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.49243796, 0.71234703, 0.033575296)
+
 [node name="HUD" type="CanvasLayer" parent="Head/Camera3D"]
 
 [node name="ScreenRect" type="Control" parent="Head/Camera3D/HUD"]
@@ -105,3 +112,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 visible = false
 texture_filter = 0
 texture = ExtResource("4_mdl7e")
+
+[editable path="Head/Camera3D/HandHolder/HandNodeRight"]
