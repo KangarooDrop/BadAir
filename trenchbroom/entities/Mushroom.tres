@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://5501vrmnk2hn"]
+
+[ext_resource type="PackedScene" uid="uid://bugfr2tjauw4b" path="res://scenes/Mushroom.tscn" id="1_bu7mm"]
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_sw0k0"]
+
+[resource]
+script = ExtResource("1_sw0k0")
+scene_file = ExtResource("1_bu7mm")
+classname = "Mushroom"
+meta_properties = {
+"color": Color(0.5882353, 0.5882353, 1, 1),
+"size": AABB(-32, -32, -32, 32, 32, 32)
+}
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"
