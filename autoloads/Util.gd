@@ -1,6 +1,7 @@
 extends Node
 
 const GROUP_TARGET : String = "Target"
+const GROUP_PICKUP : String = "Pickup"
 
 func initTarget(object : Node) -> void:
 	var target : String = object.target

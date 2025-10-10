@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bp4t5unyuuarj"]
 
-[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/sprite_renderer.gdshader" id="1_305l1"]
-[ext_resource type="Script" uid="uid://8qcbgcghyscm" path="res://scripts/AnimatedSprite3DShader.gd" id="1_k0lok"]
+[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/animated_spirte_3d_backlit.gdshader" id="1_305l1"]
+[ext_resource type="Script" uid="uid://8qcbgcghyscm" path="res://scripts/AnimatedSprite3DBacklit.gd" id="1_k0lok"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q58de"]
 render_priority = 0

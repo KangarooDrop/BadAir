@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqjf73acq8rjo"]
+
+[ext_resource type="Texture2D" uid="uid://wmobc41a2so" path="res://art/hand_still1.png" id="1_entil"]
+[ext_resource type="Script" uid="uid://33f8ps6tkday" path="res://scripts/HandNode.gd" id="1_f4mcy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3li8b"]
+atlas = ExtResource("1_entil")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mdl7e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3li8b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HandNode" type="Node3D"]
+script = ExtResource("1_f4mcy")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+offset = Vector2(32, 32)
+shaded = true
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_mdl7e")
+
+[node name="LighterLight" type="OmniLight3D" parent="AnimatedSprite3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0.49243796, 0.71234703, 0.033575296)
+visible = false
+light_energy = 0.5
+shadow_enabled = true

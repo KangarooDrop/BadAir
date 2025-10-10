@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Player
 
-@onready var head : Node3D = $Head
+####################################################################################################
 
 const SPEED : float = 5.0
 const GRAV : float = 9.8
@@ -14,7 +14,18 @@ const UNCON_TRAC_AIR : float = 0.017
 
 const SENSITIVITY : float = PI/300.0
 
+####################################################################################################
+
 var canControl : bool = true
+
+####################################################################################################
+
+@onready var head : Node3D = $Head
+@onready var raycast : RayCast3D = $Head/RayCast3D
+@onready var handLeft : HandNode = $Head/Camera3D/HandHolder/HandNodeLeft
+@onready var handRight : HandNode = $Head/Camera3D/HandHolder/HandNodeRight
+
+####################################################################################################
 
 func _input(event: InputEvent) -> void:
 	if not canControl:
@@ -28,10 +39,19 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if canControl:
+		#Grabbing
+		if Input.is_action_just_pressed("mouse_left"):
+			var col : Node = raycast.get_collider()
+			if col != null and col.is_in_group(Util.GROUP_PICKUP):
+				print("Found a pickup: ", col.name)
+				pass
+		
+		#Jumping
 		if is_on_floor():
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = JUMP_FORCE
 		
+		#WASD Movement
 		var inputDir : Vector2 = Input.get_vector("left", "right", "forward", "backward").rotated(-head.rotation.y)
 		var moveDir : Vector3 = Vector3(inputDir.x, 0.0, inputDir.y).normalized()
 		

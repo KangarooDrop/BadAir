@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wmobc41a2so"
-path.s3tc="res://.godot/imported/hand_still1.png-707a3958af39a008d8523e11982a31d8.s3tc.ctex"
+uid="uid://cj7axrpxip1f5"
+path.s3tc="res://.godot/imported/crosshair.png-d2516414ccb54dfe0d44ca1a9896b976.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/hand_still1.png"
-dest_files=["res://.godot/imported/hand_still1.png-707a3958af39a008d8523e11982a31d8.s3tc.ctex"]
+source_file="res://art/crosshair.png"
+dest_files=["res://.godot/imported/crosshair.png-d2516414ccb54dfe0d44ca1a9896b976.s3tc.ctex"]
 
 [params]
 
