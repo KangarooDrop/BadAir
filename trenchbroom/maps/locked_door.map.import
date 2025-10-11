@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://b85j0vxmw3x7j"
+path="res://.godot/imported/locked_door.map-865dcc22557a0a2f7be024d21e212a16.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/locked_door.map"
+dest_files=["res://.godot/imported/locked_door.map-865dcc22557a0a2f7be024d21e212a16.tres"]
+
+[params]
+

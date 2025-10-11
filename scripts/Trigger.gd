@@ -27,7 +27,7 @@ func onBodyEnter(body):
 		printerr("Error: Trigger '", targetname, "' -> '", target, "' could not be found.")
 
 func onBodyExit(body):
-	if single_use and hasExited:
+	if single_use and hasExited or not hasEntered:
 		return
 	if is_instance_valid(targetEntity):
 		hasExited = targetEntity.onTriggerExit(body, self)

@@ -122,6 +122,20 @@ func _input(event: InputEvent) -> void:
 			currentHand.throwHolding()
 			"""
 
+func checkAndRemoveItem(itemID : int) -> bool:
+	for hand in [handLeft, handRight]:
+		if hand.heldItem.id == itemID:
+			swapToBaseItem(hand)
+			return true
+	return false
+
+func getHandToBaseItem(hand : HandNode) -> Item:
+	return Util.itemLighter if hand == handLeft else Util.itemBird
+
+func swapToBaseItem(hand : HandNode) -> void:
+	var baseItem : Item = getHandToBaseItem(hand)
+	hand.swapHolding(baseItem)
+
 func _physics_process(delta: float) -> void:
 	if canControl:
 		#Grabbing
@@ -129,7 +143,7 @@ func _physics_process(delta: float) -> void:
 			var currentHand : HandNode = handLeft if Input.is_action_just_pressed("mouse_left") else handRight
 			if not currentHand.canChange():
 				return
-			var baseID : int = Util.itemLighter.id if currentHand == handLeft else Util.itemBird.id
+			var baseID : int = getHandToBaseItem(currentHand).id
 			
 			if currentHand.heldItem.id == Util.itemEmpty.id or currentHand.heldItem.id == baseID:
 				var col : Node = raycast.get_collider()
@@ -157,10 +171,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				handToThrowTime[currentHand] = 0.0
 				currentHand.throwHolding()
-				if currentHand == handLeft:
-					currentHand.setHeld(Util.itemLighter)
-				else:
-					currentHand.setHeld(Util.itemBird)
+				swapToBaseItem(currentHand)
 		
 		#Jumping
 		if is_on_floor():

@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dgv8ye7iliov4"
+path="res://.godot/imported/ref_models.map-1544db4b3d0c2812f1bd4437d94420fd.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/ref_models.map"
+dest_files=["res://.godot/imported/ref_models.map-1544db4b3d0c2812f1bd4437d94420fd.tres"]
+
+[params]
+

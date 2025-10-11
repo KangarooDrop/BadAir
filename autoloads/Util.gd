@@ -2,6 +2,7 @@ extends Node
 
 const GROUP_TARGET : String = "Target"
 const GROUP_PICKUP : String = "Pickup"
+const GROUP_INTERACT : String = "Interact"
 
 const thrownItem : PackedScene = preload("res://scenes/ThrownItem.tscn")
 const trackMover : PackedScene = preload("res://scenes/TrackMover.tscn")

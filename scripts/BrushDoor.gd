@@ -5,6 +5,7 @@ extends StaticBody3D
 @export var speed : float = 1.0
 @export var stay_open : bool = true
 @export var wait : float = 0.0
+@export var finish_close_first : bool = false
 
 @onready var originalPosition : Vector3 = global_position
 var opening : bool = false
@@ -47,6 +48,8 @@ func addLastVelocity(body) -> void:
 		body.velocity += lastVelocity
 
 func onTriggerEnter(body : Node3D, trigger : Trigger) -> bool:
+	if finish_close_first and closing:
+		return false
 	opening = true
 	canClose = false
 	return true
