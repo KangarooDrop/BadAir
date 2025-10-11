@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://bpirx2f04cr8g" path="res://trenchbroom/entities/PoisonGas.tres" id="9_cehe8"]
 [ext_resource type="Resource" uid="uid://tyrt3oxy4wmf" path="res://trenchbroom/entities/LighterGrounded.tres" id="10_1l064"]
 [ext_resource type="Resource" uid="uid://k4jukcn2n7e2" path="res://trenchbroom/entities/BirdCage.tres" id="11_cudks"]
-[ext_resource type="Resource" uid="uid://cemcubxrshtie" path="res://trenchbroom/entities/LockedDoor.tres" id="12_cn2ck"]
+[ext_resource type="Resource" path="res://trenchbroom/entities/LockedDoor.tres" id="12_cn2ck"]
 
 [resource]
 script = ExtResource("1_lhqqf")
