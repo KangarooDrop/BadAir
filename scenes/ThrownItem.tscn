@@ -38,6 +38,7 @@ material_override = SubResource("ShaderMaterial_3gc7d")
 texture = ExtResource("4_uvnxn")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6123374, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

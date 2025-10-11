@@ -46,12 +46,14 @@ func addLastVelocity(body) -> void:
 	if "velocity" in body:
 		body.velocity += lastVelocity
 
-func onTriggerEnter(body, trigger) -> void:
+func onTriggerEnter(body : Node3D, trigger : Trigger) -> bool:
 	opening = true
 	canClose = false
+	return true
 
-func onTriggerExit(body, trigger) -> void:
+func onTriggerExit(body : Node3D, trigger : Trigger) -> bool:
 	canClose = true
+	return true
 
 func _physics_process(delta: float) -> void:
 	var mv : Vector3 = Vector3.ZERO

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=11 format=3 uid="uid://bxkmjweujos71"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=13 format=3 uid="uid://bxkmjweujos71"]
 
 [ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_b16p7"]
 [ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_lhqqf"]
@@ -10,10 +10,12 @@
 [ext_resource type="Resource" uid="uid://cygkbd7ol7pwx" path="res://trenchbroom/entities/TrackNode.tres" id="7_sr330"]
 [ext_resource type="Resource" uid="uid://b2hmpml4gaa71" path="res://trenchbroom/brushes/MovingPlatform.tres" id="8_sg12h"]
 [ext_resource type="Resource" uid="uid://bpirx2f04cr8g" path="res://trenchbroom/entities/PoisonGas.tres" id="9_cehe8"]
+[ext_resource type="Resource" uid="uid://tyrt3oxy4wmf" path="res://trenchbroom/entities/LighterGrounded.tres" id="10_1l064"]
+[ext_resource type="Resource" uid="uid://k4jukcn2n7e2" path="res://trenchbroom/entities/BirdCage.tres" id="11_fganv"]
 
 [resource]
 script = ExtResource("1_lhqqf")
 fgd_name = "BadAir"
 base_fgd_files = Array[Resource]([ExtResource("1_b16p7")])
-entity_definitions = Array[Resource]([ExtResource("2_6su5s"), ExtResource("3_lywgn"), ExtResource("4_5bcow"), ExtResource("5_iou0a"), ExtResource("6_tl6hm"), ExtResource("7_sr330"), ExtResource("8_sg12h"), ExtResource("9_cehe8")])
+entity_definitions = Array[Resource]([ExtResource("2_6su5s"), ExtResource("3_lywgn"), ExtResource("4_5bcow"), ExtResource("5_iou0a"), ExtResource("6_tl6hm"), ExtResource("7_sr330"), ExtResource("8_sg12h"), ExtResource("9_cehe8"), ExtResource("10_1l064"), ExtResource("11_fganv")])
 metadata/_custom_type_script = "uid://drlmgulwbjwqu"

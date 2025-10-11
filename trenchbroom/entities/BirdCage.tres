@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://k4jukcn2n7e2"]
+
+[ext_resource type="PackedScene" uid="uid://dlachb7bj2ch8" path="res://scenes/BirdCage.tscn" id="1_akgj5"]
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_pybke"]
+
+[resource]
+script = ExtResource("2_pybke")
+scene_file = ExtResource("1_akgj5")
+classname = "BirdCage"
+meta_properties = {
+"color": Color(0.7735097, 0.5808555, 0.4344382, 1),
+"size": AABB(-32, -32, -32, 32, 32, 32)
+}
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

@@ -20,12 +20,13 @@ func setItem(newItem : Item) -> void:
 	(sprite.material_override as ShaderMaterial).set_shader_parameter("tex", sprite.texture)
 	
 	if newItem.isLit:
-		light.light_energy = newItem.lightEnergy
+		light.light_energy = newItem.getLightEnergy()
 		light.omni_range = newItem.lightRange
 		light.light_color = newItem.lightColor
 
 func _process(delta: float) -> void:
 	item._process(delta)
+	light.light_energy = item.getLightEnergy()
 
 func onExpire():
 	if item.animName == "mushroom":

@@ -757,3 +757,28 @@
 "origin" "1120 -1184 32"
 "target" "GasTrack1_0"
 }
+// entity 33
+{
+"classname" "triggers_Trigger"
+"targetname" "TriggerLevelExplode"
+"single_use" "1"
+// brush 0
+{
+( -128 384 832 ) ( -128 192 832 ) ( -128 192 640 ) world/wire_frame [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -128 192 832 ) ( 64 192 832 ) ( 64 192 640 ) world/wire_frame [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 64 192 640 ) ( 64 384 640 ) ( -128 384 640 ) world/wire_frame [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -128 384 832 ) ( 64 384 832 ) ( 64 192 832 ) world/wire_frame [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 64 384 640 ) ( 64 384 832 ) ( -128 384 832 ) world/wire_frame [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 64 192 832 ) ( 64 384 832 ) ( 64 384 640 ) world/wire_frame [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 34
+{
+"classname" "LighterGrounded"
+"origin" "224 96 32"
+}
+// entity 35
+{
+"classname" "BirdCage"
+"origin" "224 -32 32"
+}

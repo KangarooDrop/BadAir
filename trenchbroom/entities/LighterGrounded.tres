@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://tyrt3oxy4wmf"]
+
+[ext_resource type="PackedScene" uid="uid://ubiauan4uckl" path="res://scenes/LighterGrounded.tscn" id="1_35f46"]
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_f3tfl"]
+
+[resource]
+script = ExtResource("1_f3tfl")
+scene_file = ExtResource("1_35f46")
+classname = "LighterGrounded"
+meta_properties = {
+"color": Color(0.5882353, 0.5882353, 0.5882353, 1),
+"size": AABB(-32, -32, -32, 32, 32, 32)
+}
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

@@ -136,7 +136,6 @@ func _physics_process(delta: float) -> void:
 				var pickup : Item = null
 				if col != null and col.is_in_group(Util.GROUP_PICKUP):
 					pickup = col.item
-					col.queue_free()
 				if pickup == null:
 					if currentHand.heldItem.id == Util.itemEmpty.id:
 						currentHand.grabHolding()
@@ -148,9 +147,13 @@ func _physics_process(delta: float) -> void:
 						currentHand.anim.play("squeeze_bird")
 						print("SQUAK!")
 				else:
-					currentHand.swapHolding(pickup)
-					if baseID == Util.itemLighter.id:
-						canExplode = false
+					var canPickUp : bool = not((pickup == Util.itemLighter and currentHand == handRight) or \
+											(pickup == Util.itemBird and currentHand == handLeft))
+					if canPickUp:
+						col.queue_free()
+						currentHand.swapHolding(pickup)
+						if baseID == Util.itemLighter.id:
+							canExplode = false
 			else:
 				handToThrowTime[currentHand] = 0.0
 				currentHand.throwHolding()

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlachb7bj2ch8"]
+
+[ext_resource type="Script" uid="uid://bsufpt5tt76p6" path="res://scripts/BirdCage.gd" id="1_vf56m"]
+[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/spirte_3d_backlit.gdshader" id="2_psdsm"]
+[ext_resource type="Texture2D" uid="uid://b04ipihps5788" path="res://art/world/bird_caged.png" id="3_8ex6n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_52vp2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wx2u"]
+render_priority = 0
+shader = ExtResource("2_psdsm")
+shader_parameter/tex = ExtResource("3_8ex6n")
+shader_parameter/scale = 1.5625
+
+[node name="BirdCage" type="Area3D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_vf56m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_52vp2")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+material_override = SubResource("ShaderMaterial_4wx2u")
+texture = ExtResource("3_8ex6n")

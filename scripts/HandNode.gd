@@ -47,7 +47,7 @@ func setLit(val : bool) -> void:
 	if heldItem.id == Util.itemLighter.id:
 		anim.play("idle_" + heldItem.animName + ("_lit" if val else ""))
 	if heldItem.isLit and val:
-		light.light_energy = heldItem.lightEnergy
+		light.light_energy = heldItem.getLightEnergy()
 		light.omni_range = heldItem.lightRange
 		light.light_color = heldItem.lightColor
 
@@ -111,6 +111,8 @@ func _process(delta: float) -> void:
 	
 	if canChange():
 		heldItem._process(delta)
+		if heldItem.isLit and heldItem.lifetime != -1:
+			light.light_energy = heldItem.getLightEnergy()
 
 func onAnimFinished() -> void:
 	if anim.animation == "squeeze_bird":

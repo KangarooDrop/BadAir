@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://ubiauan4uckl"]
+
+[ext_resource type="Script" uid="uid://3qokgubpugy6" path="res://scripts/LighterGrounded.gd" id="1_thrh1"]
+[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/spirte_3d_backlit.gdshader" id="2_thrh1"]
+[ext_resource type="Texture2D" uid="uid://jidu05ufg53l" path="res://art/world/still_lighter.png" id="3_qi417"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xuqib"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u1d7w"]
+render_priority = 0
+shader = ExtResource("2_thrh1")
+shader_parameter/tex = ExtResource("3_qi417")
+shader_parameter/scale = 1.5625
+
+[node name="LighterGrounded" type="Area3D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_thrh1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_xuqib")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+material_override = SubResource("ShaderMaterial_u1d7w")
+texture = ExtResource("3_qi417")

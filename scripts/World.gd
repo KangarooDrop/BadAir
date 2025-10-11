@@ -14,3 +14,15 @@ func _ready() -> void:
 
 func reset() -> void:
 	get_tree().reload_current_scene()
+
+#######################################
+#TEMP CODE WHILE NO LEVEL SCENE IS LOADED#
+func getLevel() -> Node3D:
+	return self
+
+func onTriggerEnter(body : Node3D, trigger : Trigger):
+	print("Level wide trigger called for ", trigger.target)
+	return true
+
+func onTriggerExit(body : Node3D, trigger : Trigger) -> bool:
+	return true

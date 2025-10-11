@@ -1,4 +1,5 @@
 extends Area3D
+class_name Trigger
 
 #Used for generic World level triggers
 @export var target : String = ""
@@ -6,7 +7,8 @@ extends Area3D
 @export var single_use : bool = false
 
 var targetEntity = null
-var used : bool = false
+var hasEntered : bool = false
+var hasExited : bool = false
 
 func _ready() -> void:
 	body_entered.connect(self.onBodyEnter)
@@ -15,12 +17,21 @@ func _ready() -> void:
 	Util.initTarget(self)
 
 func onBodyEnter(body):
-	if single_use and used:
+	if single_use and hasEntered:
 		return
 	if is_instance_valid(targetEntity):
-		targetEntity.onTriggerEnter(body, self)
-		used = true
+		hasEntered = targetEntity.onTriggerEnter(body, self)
+	elif target == "":
+		hasEntered = Util.getWorld().getLevel().onTriggerEnter(body, self)
+	else:
+		printerr("Error: Trigger '", targetname, "' -> '", target, "' could not be found.")
 
 func onBodyExit(body):
+	if single_use and hasExited:
+		return
 	if is_instance_valid(targetEntity):
-		targetEntity.onTriggerExit(body, self)
+		hasExited = targetEntity.onTriggerExit(body, self)
+	elif target == "":
+		hasExited = Util.getWorld().getLevel().onTriggerEnter(body, self)
+	else:
+		printerr("Error: Trigger '", targetname, "' -> '", target, "' could not be found.")
