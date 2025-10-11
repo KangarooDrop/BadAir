@@ -46,6 +46,7 @@ flip_h = true
 
 [node name="LighterLight" parent="Head/Camera3D/HandHolder/HandNodeRight/AnimatedSprite3D" index="0"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.49243796, 0.71234703, 0.033575296)
+light_color = Color(1, 1, 0.7058824, 1)
 
 [node name="HUD" type="CanvasLayer" parent="Head/Camera3D"]
 
