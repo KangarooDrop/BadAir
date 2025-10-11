@@ -106,6 +106,39 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_mdl7e")
 
+[node name="Label" type="Label" parent="Head/Camera3D/HUD/ScreenRect/Center/Scaler"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -11.375
+offset_top = -15.25
+offset_right = 79.625
+offset_bottom = 33.75
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+text = "Press [LMB]
+to Pick Up"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Head/Camera3D/HUD/ScreenRect/Center/Scaler"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -11.375
+offset_top = 3.0
+offset_right = 79.625
+offset_bottom = 52.0
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+text = "Press [RMB]
+to Pick Up"
+horizontal_alignment = 1
+
 [node name="Vignette" type="ColorRect" parent="Head/Camera3D/HUD/ScreenRect"]
 material = SubResource("ShaderMaterial_70d11")
 layout_mode = 1

@@ -11,6 +11,7 @@ func _ready() -> void:
 		return
 	var spawnNode : Node3D = spawnPoints[0]
 	player.global_position = spawnNode.global_position
+	player.head.rotation.y = spawnNode.rotation.y
 
 func reset() -> void:
 	get_tree().reload_current_scene()

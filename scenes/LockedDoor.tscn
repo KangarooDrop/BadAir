@@ -85,6 +85,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.096, 0.203)
 mesh = SubResource("ArrayMesh_t0exp")
 skeleton = NodePath("")
 
+[node name="Lock2" type="MeshInstance3D" parent="RotOffset"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.096, -0.203)
+mesh = SubResource("ArrayMesh_t0exp")
+skeleton = NodePath("")
+
 [node name="Handle" type="MeshInstance3D" parent="RotOffset"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.125, 0)
 mesh = SubResource("ArrayMesh_jeyh0")

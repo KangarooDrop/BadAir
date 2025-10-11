@@ -8,6 +8,9 @@ script = ExtResource("1_dafmh")
 scene_file = ExtResource("1_ennqd")
 classname = "PlayerSpawn"
 description = "Spawn Location for the Player"
+class_properties = {
+"angle": 0
+}
 meta_properties = {
 "color": Color(1, 0.5882353, 0.5882353, 1),
 "size": AABB(-32, -32, -64, 32, 32, 64)

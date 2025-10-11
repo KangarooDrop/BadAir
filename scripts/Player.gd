@@ -48,6 +48,8 @@ const THROW_MAX_VEL : float = 15.0
 @onready var handLeft : HandNode = $Head/Camera3D/HandHolder/HandNodeLeft
 @onready var handRight : HandNode = $Head/Camera3D/HandHolder/HandNodeRight
 @onready var vignette : ColorRect = $Head/Camera3D/HUD/ScreenRect/Vignette
+@onready var lighterPickupLabel : Label = $Head/Camera3D/HUD/ScreenRect/Center/Scaler/Label
+@onready var birdPickupLabel : Label = $Head/Camera3D/HUD/ScreenRect/Center/Scaler/Label2
 
 ####################################################################################################
 
@@ -86,16 +88,22 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
 		if event.keycode == KEY_1:
 			handLeft.swapHolding(Util.itemEmpty)
+			canExplode = false
 		if event.keycode == KEY_2:
 			handLeft.swapHolding(Util.itemBird)
+			canExplode = false
 		if event.keycode == KEY_3:
 			handLeft.swapHolding(Util.itemLighter)
+			canExplode = false
 		if event.keycode == KEY_4:
 			handLeft.swapHolding(Util.itemMushroom.duplicate())
+			canExplode = false
 		if event.keycode == KEY_5:
 			handLeft.swapHolding(Util.itemKey.duplicate())
+			canExplode = false
 		if event.keycode == KEY_6:
 			handLeft.swapHolding(Util.itemRat.duplicate())
+			canExplode = false
 	
 			"""
 	elif event is InputEventMouseButton and event.is_pressed():
@@ -142,7 +150,26 @@ func swapToBaseItem(hand : HandNode) -> void:
 	var baseItem : Item = getHandToBaseItem(hand)
 	hand.swapHolding(baseItem)
 
+func setBaseItem(hand : HandNode) -> void:
+	var baseItem : Item = getHandToBaseItem(hand)
+	hand.setHeld(baseItem)
+	
+func checkPickupLabels() -> void:
+	var showLighterLabel : bool = false
+	var showBirdLabel : bool = false
+	if handLeft.heldItem.id == Util.itemEmpty.id or handRight.heldItem.id == Util.itemEmpty.id:
+		var col : Node = raycast.get_collider()
+		if col != null and col.is_in_group(Util.GROUP_PICKUP):
+			if handLeft.heldItem.id == Util.itemEmpty.id and col.item.id == Util.itemLighter.id:
+				showLighterLabel = true
+			if handRight.heldItem.id == Util.itemEmpty.id and col.item.id == Util.itemBird.id:
+				showBirdLabel = true
+	lighterPickupLabel.visible = showLighterLabel
+	birdPickupLabel.visible = showBirdLabel
+
 func _physics_process(delta: float) -> void:
+	checkPickupLabels()
+	
 	if canControl:
 		#Grabbing
 		if Input.is_action_just_pressed("mouse_left") or Input.is_action_just_pressed("mouse_right"):
@@ -177,7 +204,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				handToThrowTime[currentHand] = 0.0
 				currentHand.throwHolding()
-				swapToBaseItem(currentHand)
+				setBaseItem(currentHand)
 		
 		#Jumping
 		if is_on_floor():
