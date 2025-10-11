@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwbdjfqa63kuk"
-path.s3tc="res://.godot/imported/hand_throw_empty.png-967414ca03a475cce4841a5d9476792c.s3tc.ctex"
+uid="uid://b00bfi16owbge"
+path.s3tc="res://.godot/imported/hand_mushroom.png-73c16d64b5b616c4888fe5a8234cfb3f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/hand_throw_empty.png"
-dest_files=["res://.godot/imported/hand_throw_empty.png-967414ca03a475cce4841a5d9476792c.s3tc.ctex"]
+source_file="res://art/hands/hand_mushroom.png"
+dest_files=["res://.godot/imported/hand_mushroom.png-73c16d64b5b616c4888fe5a8234cfb3f.s3tc.ctex"]
 
 [params]
 

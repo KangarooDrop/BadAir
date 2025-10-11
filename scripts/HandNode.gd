@@ -8,7 +8,7 @@ func flipHandFunc() -> void:
 	light.position.x = -light.position.x
 
 signal on_swap_end()
-signal on_throw_end()
+signal on_throw_end(thrownItem)
 signal on_grab_end()
 
 var holding : int = Util.ITEM_NONE
@@ -20,12 +20,13 @@ const SWAP_MAX_TIME : float = 1.0
 const SWAP_OFFSET : Vector2 = Vector2(0, -0.25)
 
 var throwing : bool = false
+var thrownItem : int = Util.ITEM_NONE
 var throwTimer : float = 0.0
-var THROW_MAX_TIME : float = 0.5
+const THROW_MAX_TIME : float = 0.5
 
 var grabbing : bool = false
 var grabTimer : float = 0.0
-var GRAB_MAX_TIME : float = 0.5
+const GRAB_MAX_TIME : float = 0.5
 
 @onready var anim : AnimatedSprite3D = $AnimatedSprite3D
 @onready var light : OmniLight3D = $AnimatedSprite3D/LighterLight
@@ -37,6 +38,18 @@ func _ready() -> void:
 func canChange() -> bool:
 	return not swapping and not throwing and not grabbing
 
+func setLit(val : bool) -> void:
+	light.visible = val
+	if holding == Util.ITEM_LIGHTER:
+		anim.play("idle_" + getHoldingToAnimName(holding) + ("_lit" if val else ""))
+		light.light_energy = Util.ENERGY_LIGHTER
+		light.omni_range = Util.RANGE_LIGHTER
+		light.light_color = Util.COLOR_LIGHTER
+	elif holding == Util.ITEM_MUSHROOM:
+		light.light_energy = Util.ENERGY_MUSHROOM
+		light.omni_range = Util.RANGE_MUSHROOM
+		light.light_color = Util.COLOR_MUSHROOM
+
 func swapHolding(newHolding : int) -> void:
 	holding = newHolding
 	swapping = true
@@ -46,23 +59,28 @@ func swapHolding(newHolding : int) -> void:
 func throwHolding() -> void:
 	throwing = true
 	throwTimer = 0.0
-	anim.play("throw")
+	anim.play("throw_" + getHoldingToAnimName(holding))
+	thrownItem = holding
 
 func grabHolding() -> void:
 	grabbing = true
 	grabTimer = 0.0
 	anim.play("grab")
 
-static func getHoldingToAnim(itemHeld) -> String:
+static func getHoldingToAnimName(itemHeld) -> String:
 	match itemHeld:
 		Util.ITEM_BIRD:
-			return "idle_bird"
+			return "bird"
 		Util.ITEM_LIGHTER:
-			return "idle_lighter"
+			return "lighter"
 		Util.ITEM_MUSHROOM:
-			return "idle_mushroom"
+			return "mushroom"
+		Util.ITEM_KEY:
+			return "key"
+		Util.ITEM_RAT:
+			return "rat"
 		_:
-			return "idle_empty"
+			return "empty"
 
 func _process(delta: float) -> void:
 	if swapping:
@@ -72,8 +90,9 @@ func _process(delta: float) -> void:
 		anim.position.x = lerp(0.0, SWAP_OFFSET.x, v)
 		anim.position.y = lerp(0.0, SWAP_OFFSET.y, v)
 		if t > 0.5 and not changedAnim:
-			anim.play(getHoldingToAnim(holding))
+			anim.play("idle_" + getHoldingToAnimName(holding))
 			changedAnim = true
+			setLit(holding == Util.ITEM_MUSHROOM)
 		if t >= 1.0:
 			anim.position.x = 0.0
 			anim.position.y = 0.0
@@ -84,7 +103,7 @@ func _process(delta: float) -> void:
 		throwTimer += delta
 		if throwTimer >= THROW_MAX_TIME:
 			throwing = false
-			on_throw_end.emit()
+			on_throw_end.emit(thrownItem)
 			swapHolding(holding)
 			swapTimer = SWAP_MAX_TIME
 	
@@ -95,3 +114,7 @@ func _process(delta: float) -> void:
 			on_grab_end.emit()
 			swapHolding(holding)
 			swapTimer = SWAP_MAX_TIME
+
+func onAnimFinished() -> void:
+	if anim.animation == "squeeze_bird":
+		anim.play("idle_bird")

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wmobc41a2so"
-path.s3tc="res://.godot/imported/hand_still1.png-707a3958af39a008d8523e11982a31d8.s3tc.ctex"
+uid="uid://c30qcqpp6mwvi"
+path.s3tc="res://.godot/imported/debug_track.png-05067886f4d9938b3fbd9798f39209e1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/hand_still1.png"
-dest_files=["res://.godot/imported/hand_still1.png-707a3958af39a008d8523e11982a31d8.s3tc.ctex"]
+source_file="res://art/debug/debug_track.png"
+dest_files=["res://.godot/imported/debug_track.png-05067886f4d9938b3fbd9798f39209e1.s3tc.ctex"]
 
 [params]
 

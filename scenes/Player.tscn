@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b1dns6fbwoqm3" path="res://scripts/Player.gd" id="1_p0vlq"]
 [ext_resource type="PackedScene" uid="uid://cqjf73acq8rjo" path="res://scenes/HandNode.tscn" id="2_qu4a1"]
-[ext_resource type="Texture2D" uid="uid://cr2cp8178nr72" path="res://art/hover_icons.png" id="3_3li8b"]
-[ext_resource type="Texture2D" uid="uid://cj7axrpxip1f5" path="res://art/crosshair.png" id="4_mdl7e"]
+[ext_resource type="Texture2D" uid="uid://cr2cp8178nr72" path="res://art/ui/hover_icons.png" id="3_3li8b"]
+[ext_resource type="Texture2D" uid="uid://cj7axrpxip1f5" path="res://art/ui/crosshair.png" id="4_mdl7e"]
 [ext_resource type="Shader" uid="uid://dnk8ob25jra7g" path="res://shaders/vignette.gdshader" id="5_qu4a1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p0vlq"]

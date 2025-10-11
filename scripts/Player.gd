@@ -36,6 +36,10 @@ var health : float = HEALTH_MAX
 var canControl : bool = true
 var canExplode : bool = false
 var lastVelocity : Vector3 = Vector3.ZERO
+var handToThrowTime : Dictionary = {}
+
+const THROW_MAX_TIME : float = 0.5
+const THROW_MAX_VEL : float = 15.0
 
 ####################################################################################################
 
@@ -51,8 +55,14 @@ func _ready() -> void:
 	handLeft.on_throw_end.connect(self.onHandThrowEnd.bind(handLeft))
 	handRight.on_throw_end.connect(self.onHandThrowEnd.bind(handRight))
 
-func onHandThrowEnd(handNode):
-	pass
+func onHandThrowEnd(itemID, handNode):
+	var thrownItem : ThrownItem = Util.thrownItem.instantiate()
+	get_parent().add_child(thrownItem)
+	thrownItem.global_position = handNode.global_position
+	thrownItem.setItem(itemID)
+	var throwVel : Vector3 = head.global_basis * Vector3.FORWARD * handToThrowTime[handNode]/THROW_MAX_TIME * THROW_MAX_VEL
+	thrownItem.linear_velocity = throwVel
+	handToThrowTime.erase(handNode)
 
 func _input(event: InputEvent) -> void:
 	if not canControl:
@@ -73,6 +83,10 @@ func _input(event: InputEvent) -> void:
 			handLeft.swapHolding(Util.ITEM_LIGHTER)
 		if event.keycode == KEY_4:
 			handLeft.swapHolding(Util.ITEM_MUSHROOM)
+		if event.keycode == KEY_5:
+			handLeft.swapHolding(Util.ITEM_KEY)
+		if event.keycode == KEY_6:
+			handLeft.swapHolding(Util.ITEM_RAT)
 	
 			"""
 	elif event is InputEventMouseButton and event.is_pressed():
@@ -112,18 +126,23 @@ func _physics_process(delta: float) -> void:
 				var col : Node = raycast.get_collider()
 				var pickupType : int = Util.ITEM_NONE
 				if col != null and col.is_in_group(Util.GROUP_PICKUP):
-					pickupType = Util.ITEM_MUSHROOM
+					pickupType = col.itemID
+					col.queue_free()
 				if pickupType == Util.ITEM_NONE:
 					if currentHand.holding == Util.ITEM_NONE:
 						currentHand.grabHolding()
 					elif baseItem == Util.ITEM_LIGHTER:
-						currentHand.light.visible = not currentHand.light.visible
+						currentHand.setLit(not currentHand.light.visible)
 						canExplode = currentHand.light.visible
 					else:
+						currentHand.anim.play("squeeze_bird")
 						print("SQUAK!")
 				else:
 					currentHand.swapHolding(pickupType)
+					if baseItem == Util.ITEM_LIGHTER:
+						canExplode = false
 			else:
+				handToThrowTime[currentHand] = 0.0
 				currentHand.throwHolding()
 				currentHand.holding = baseItem
 		
@@ -185,6 +204,15 @@ func _process(delta: float) -> void:
 		health -= getGasStrengthToDec(strength) * delta
 	elif health < HEALTH_MAX:
 		health = min(health + HEALTH_REGEN * delta, HEALTH_MAX)
+	
+	if Input.is_action_pressed("mouse_left") and handToThrowTime.has(handLeft):
+		handToThrowTime[handLeft] += delta
+	if Input.is_action_pressed("mouse_right") and handToThrowTime.has(handRight):
+		handToThrowTime[handRight] += delta
+	if Input.is_action_just_released("mouse_left") and handToThrowTime.has(handLeft):
+		handLeft.throwTimer = HandNode.THROW_MAX_TIME
+	if Input.is_action_just_released("mouse_right") and handToThrowTime.has(handRight):
+		handRight.throwTimer = HandNode.THROW_MAX_TIME
 
 func onExplode() -> void:
 	health = -999.0

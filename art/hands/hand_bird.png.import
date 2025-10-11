@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj7axrpxip1f5"
-path.s3tc="res://.godot/imported/crosshair.png-d2516414ccb54dfe0d44ca1a9896b976.s3tc.ctex"
+uid="uid://ct725xrj4k4m7"
+path.s3tc="res://.godot/imported/hand_bird.png-5e0011b0a716a9b2380c09f43b57fd7e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/crosshair.png"
-dest_files=["res://.godot/imported/crosshair.png-d2516414ccb54dfe0d44ca1a9896b976.s3tc.ctex"]
+source_file="res://art/hands/hand_bird.png"
+dest_files=["res://.godot/imported/hand_bird.png-5e0011b0a716a9b2380c09f43b57fd7e.s3tc.ctex"]
 
 [params]
 

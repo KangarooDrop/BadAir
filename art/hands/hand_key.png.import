@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1b0mnp4xvech"
-path.s3tc="res://.godot/imported/mushroom.png-0d63d6f399e9f68274776e793e76fdbe.s3tc.ctex"
+uid="uid://dkwn5bslgvmu3"
+path.s3tc="res://.godot/imported/hand_key.png-03404509c138d224371c421aff1749c3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/mushroom.png"
-dest_files=["res://.godot/imported/mushroom.png-0d63d6f399e9f68274776e793e76fdbe.s3tc.ctex"]
+source_file="res://art/hands/hand_key.png"
+dest_files=["res://.godot/imported/hand_key.png-03404509c138d224371c421aff1749c3.s3tc.ctex"]
 
 [params]
 

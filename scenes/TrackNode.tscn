@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://detw7vhe1fa2v"]
 
-[ext_resource type="Texture2D" uid="uid://c30qcqpp6mwvi" path="res://art/debug_track.png" id="1_2i31o"]
+[ext_resource type="Texture2D" uid="uid://c30qcqpp6mwvi" path="res://art/debug/debug_track.png" id="1_2i31o"]
 [ext_resource type="Script" uid="uid://5jiikycpms38" path="res://scripts/TrackNode.gd" id="1_d6pxk"]
 
 [node name="TrackNode" type="Node3D"]

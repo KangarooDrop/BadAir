@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://5fiigf2hisno"]
 
-[ext_resource type="Texture2D" uid="uid://b0ia8vwmk51q3" path="res://art/smoke.png" id="1_2elwj"]
+[ext_resource type="Texture2D" uid="uid://b0ia8vwmk51q3" path="res://art/world/smoke.png" id="1_2elwj"]
 [ext_resource type="Script" uid="uid://dtq2ohflqwg6v" path="res://scripts/ExplosiveGas.gd" id="1_pi8ew"]
 [ext_resource type="PackedScene" uid="uid://bhhjnkgsvm1y5" path="res://scenes/TrackMover.tscn" id="3_uvita"]
 
