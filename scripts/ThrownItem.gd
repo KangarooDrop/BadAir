@@ -1,32 +1,32 @@
 extends RigidBody3D
 class_name ThrownItem
 
-const MUSHROOM_TEX = preload("res://art/world/mushroom_picked.png")
-const RAT_TEX = preload("res://art/world/rat.png")
-const KEY_TEX = preload("res://art/world/key.png")
-const FALLBACK_TEX = preload("res://art/hands/bird.png")
-
 @onready var sprite : Sprite3D = $Sprite3D
 @onready var light : OmniLight3D = $OmniLight3D
 
-var itemID : int = Util.ITEM_NONE
+var item : Item = null
 
 func _ready() -> void:
 	add_to_group(Util.GROUP_PICKUP)
 
-func setItem(item : int) -> void:
-	itemID = item
-	light.visible = false
-	match item:
-		Util.ITEM_MUSHROOM:
-			sprite.texture = MUSHROOM_TEX
-			light.light_energy = Util.ENERGY_MUSHROOM
-			light.omni_range = Util.RANGE_MUSHROOM
-			light.light_color = Util.COLOR_MUSHROOM
-			light.visible = true
-		Util.ITEM_RAT:
-			sprite.texture = RAT_TEX
-		Util.ITEM_KEY:
-			sprite.texture = KEY_TEX
-		_:
-			sprite.texture = FALLBACK_TEX
+func setItem(newItem : Item) -> void:
+	if item != null:
+		item.on_expire.disconnect(self.onExpire)
+	item = newItem
+	item.on_expire.connect(self.onExpire)
+	
+	light.visible = newItem.isLit
+	sprite.texture = newItem.groundTexture
+	(sprite.material_override as ShaderMaterial).set_shader_parameter("tex", sprite.texture)
+	
+	if newItem.isLit:
+		light.light_energy = newItem.lightEnergy
+		light.omni_range = newItem.lightRange
+		light.light_color = newItem.lightColor
+
+func _process(delta: float) -> void:
+	item._process(delta)
+
+func onExpire():
+	if item.animName == "mushroom":
+		queue_free()

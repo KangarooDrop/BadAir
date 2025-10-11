@@ -53,16 +53,25 @@ const THROW_MAX_VEL : float = 15.0
 
 func _ready() -> void:
 	handLeft.on_throw_end.connect(self.onHandThrowEnd.bind(handLeft))
+	handLeft.on_expire.connect(self.onHandExpire.bind(handLeft))
 	handRight.on_throw_end.connect(self.onHandThrowEnd.bind(handRight))
+	handRight.on_expire.connect(self.onHandExpire.bind(handRight))
 
-func onHandThrowEnd(itemID, handNode):
+func onHandThrowEnd(item, handNode : HandNode):
 	var thrownItem : ThrownItem = Util.thrownItem.instantiate()
 	get_parent().add_child(thrownItem)
 	thrownItem.global_position = handNode.global_position
-	thrownItem.setItem(itemID)
+	thrownItem.setItem(item)
 	var throwVel : Vector3 = head.global_basis * Vector3.FORWARD * handToThrowTime[handNode]/THROW_MAX_TIME * THROW_MAX_VEL
 	thrownItem.linear_velocity = throwVel
 	handToThrowTime.erase(handNode)
+
+func onHandExpire(handNode : HandNode) -> void:
+	if handNode.heldItem.id == Util.itemMushroom.id:
+		if handNode == handLeft:
+			handNode.swapHolding(Util.itemLighter)
+		else:
+			handNode.swapHolding(Util.itemBird)
 
 func _input(event: InputEvent) -> void:
 	if not canControl:
@@ -76,17 +85,17 @@ func _input(event: InputEvent) -> void:
 	
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
 		if event.keycode == KEY_1:
-			handLeft.swapHolding(Util.ITEM_NONE)
+			handLeft.swapHolding(Util.itemEmpty)
 		if event.keycode == KEY_2:
-			handLeft.swapHolding(Util.ITEM_BIRD)
+			handLeft.swapHolding(Util.itemBird)
 		if event.keycode == KEY_3:
-			handLeft.swapHolding(Util.ITEM_LIGHTER)
+			handLeft.swapHolding(Util.itemLighter)
 		if event.keycode == KEY_4:
-			handLeft.swapHolding(Util.ITEM_MUSHROOM)
+			handLeft.swapHolding(Util.itemMushroom.duplicate())
 		if event.keycode == KEY_5:
-			handLeft.swapHolding(Util.ITEM_KEY)
+			handLeft.swapHolding(Util.itemKey.duplicate())
 		if event.keycode == KEY_6:
-			handLeft.swapHolding(Util.ITEM_RAT)
+			handLeft.swapHolding(Util.itemRat.duplicate())
 	
 			"""
 	elif event is InputEventMouseButton and event.is_pressed():
@@ -120,31 +129,35 @@ func _physics_process(delta: float) -> void:
 			var currentHand : HandNode = handLeft if Input.is_action_just_pressed("mouse_left") else handRight
 			if not currentHand.canChange():
 				return
-			var baseItem : int = Util.ITEM_LIGHTER if currentHand == handLeft else Util.ITEM_BIRD
+			var baseID : int = Util.itemLighter.id if currentHand == handLeft else Util.itemBird.id
 			
-			if currentHand.holding == Util.ITEM_NONE or currentHand.holding == baseItem:
+			if currentHand.heldItem.id == Util.itemEmpty.id or currentHand.heldItem.id == baseID:
 				var col : Node = raycast.get_collider()
-				var pickupType : int = Util.ITEM_NONE
+				var pickup : Item = null
 				if col != null and col.is_in_group(Util.GROUP_PICKUP):
-					pickupType = col.itemID
+					pickup = col.item
 					col.queue_free()
-				if pickupType == Util.ITEM_NONE:
-					if currentHand.holding == Util.ITEM_NONE:
+				if pickup == null:
+					if currentHand.heldItem.id == Util.itemEmpty.id:
 						currentHand.grabHolding()
-					elif baseItem == Util.ITEM_LIGHTER:
+						
+					elif baseID == Util.itemLighter.id:
 						currentHand.setLit(not currentHand.light.visible)
 						canExplode = currentHand.light.visible
 					else:
 						currentHand.anim.play("squeeze_bird")
 						print("SQUAK!")
 				else:
-					currentHand.swapHolding(pickupType)
-					if baseItem == Util.ITEM_LIGHTER:
+					currentHand.swapHolding(pickup)
+					if baseID == Util.itemLighter.id:
 						canExplode = false
 			else:
 				handToThrowTime[currentHand] = 0.0
 				currentHand.throwHolding()
-				currentHand.holding = baseItem
+				if currentHand == handLeft:
+					currentHand.setHeld(Util.itemLighter)
+				else:
+					currentHand.setHeld(Util.itemBird)
 		
 		#Jumping
 		if is_on_floor():

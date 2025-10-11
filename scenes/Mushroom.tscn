@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bugfr2tjauw4b"]
+[gd_scene load_steps=12 format=3 uid="uid://bugfr2tjauw4b"]
 
 [ext_resource type="PackedScene" uid="uid://bp4t5unyuuarj" path="res://scenes/AnimatedSprite3DBacklit.tscn" id="1_4iinw"]
 [ext_resource type="Script" uid="uid://qnggf20xqqoh" path="res://scripts/Mushroom.gd" id="1_cbtdp"]
-[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/animated_spirte_3d_backlit.gdshader" id="2_cbtdp"]
+[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/spirte_3d_backlit.gdshader" id="2_cbtdp"]
 [ext_resource type="Texture2D" uid="uid://b1b0mnp4xvech" path="res://art/world/mushroom.png" id="3_hqq58"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4iinw"]
@@ -21,6 +21,14 @@ region = Rect2(0, 0, 64, 64)
 atlas = ExtResource("3_hqq58")
 region = Rect2(64, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbtdp"]
+atlas = ExtResource("3_hqq58")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqq58"]
+atlas = ExtResource("3_hqq58")
+region = Rect2(192, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_pqb08"]
 animations = [{
 "frames": [{
@@ -29,6 +37,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nkf8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbtdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqq58")
 }],
 "loop": true,
 "name": &"dance",

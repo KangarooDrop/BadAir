@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://37ox1gn3qrlx"]
+
+[ext_resource type="Texture2D" uid="uid://cuyynjhwx4pbx" path="res://art/world/mushroom_picked.png" id="1_hee4b"]
+[ext_resource type="Script" uid="uid://bsvj5pm528noq" path="res://scripts/items/Item.gd" id="2_pyrt6"]
+
+[resource]
+script = ExtResource("2_pyrt6")
+id = 3
+animName = "mushroom"
+groundTexture = ExtResource("1_hee4b")
+canThrow = true
+lifetime = 10.0
+isLit = true
+lightEnergy = 0.25
+lightRange = 10.0
+lightColor = Color(0.49803922, 0.49803922, 1, 1)
+metadata/_custom_type_script = "uid://bsvj5pm528noq"

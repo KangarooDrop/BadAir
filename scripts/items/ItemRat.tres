@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dqtmkiq8opvju"]
+
+[ext_resource type="Texture2D" uid="uid://b3egt7cbpj11l" path="res://art/world/rat.png" id="1_38e84"]
+[ext_resource type="Script" uid="uid://bsvj5pm528noq" path="res://scripts/items/Item.gd" id="2_whhop"]
+
+[resource]
+script = ExtResource("2_whhop")
+id = 5
+animName = "rat"
+groundTexture = ExtResource("1_38e84")
+canThrow = true
+metadata/_custom_type_script = "uid://bsvj5pm528noq"

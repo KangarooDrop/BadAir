@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cj51rgjntovpt"]
+
+[ext_resource type="Texture2D" uid="uid://jidu05ufg53l" path="res://art/world/still_lighter.png" id="1_txbqe"]
+[ext_resource type="Script" uid="uid://bsvj5pm528noq" path="res://scripts/items/Item.gd" id="1_uwpl7"]
+
+[resource]
+script = ExtResource("1_uwpl7")
+id = 2
+animName = "lighter"
+groundTexture = ExtResource("1_txbqe")
+isLit = true
+lightEnergy = 0.5
+lightColor = Color(1, 1, 0.49803922, 1)
+metadata/_custom_type_script = "uid://bsvj5pm528noq"

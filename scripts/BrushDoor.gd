@@ -28,6 +28,7 @@ func initMoveArea() -> void:
 		area.set_collision_layer_value(1, false)
 		area.set_collision_mask_value(1, false)
 		area.set_collision_mask_value(2, true)
+		area.set_collision_mask_value(3, true)
 		area.add_child(newCol)
 		add_child(area)
 		area.position.y = grabOffset

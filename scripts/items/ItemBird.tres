@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://crruc2qaobnni"]
+
+[ext_resource type="Script" uid="uid://bsvj5pm528noq" path="res://scripts/items/Item.gd" id="1_3hbjn"]
+[ext_resource type="Texture2D" uid="uid://ixxrsgjnyblc" path="res://art/hands/bird.png" id="1_js1el"]
+
+[resource]
+script = ExtResource("1_3hbjn")
+id = 1
+animName = "bird"
+metadata/_custom_type_script = "uid://bsvj5pm528noq"

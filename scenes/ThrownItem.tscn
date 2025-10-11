@@ -1,17 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://ku7vawf2en3l"]
+[gd_scene load_steps=9 format=3 uid="uid://ku7vawf2en3l"]
 
-[ext_resource type="Texture2D" uid="uid://be0wsv3k2c20l" path="res://art/world/key.png" id="1_3t1ik"]
 [ext_resource type="Script" uid="uid://ce6l70rvs5y10" path="res://scripts/ThrownItem.gd" id="1_ihhgf"]
+[ext_resource type="Texture2D" uid="uid://ckeimr4x37x4" path="res://textures/world/metal2.png" id="2_ihhgf"]
+[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/spirte_3d_backlit.gdshader" id="3_te3xo"]
+[ext_resource type="Texture2D" uid="uid://cuyynjhwx4pbx" path="res://art/world/mushroom_picked.png" id="4_uvnxn"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ihhgf"]
-height = 1.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_kj143"]
+radius = 0.35
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3gc7d"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_te3xo")
+shader_parameter/tex = ExtResource("2_ihhgf")
+shader_parameter/scale = 1.5625
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihhgf"]
 transparency = 1
 albedo_color = Color(1, 1, 1, 0.43137255)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_ihhgf"]
-height = 1.0
+[sub_resource type="SphereMesh" id="SphereMesh_te3xo"]
 
 [node name="ThrownItem" type="RigidBody3D"]
 collision_layer = 4
@@ -21,18 +29,17 @@ axis_lock_angular_z = true
 script = ExtResource("1_ihhgf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_ihhgf")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.075, 0)
+shape = SubResource("SphereShape3D_kj143")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1.563, 0, 0, 0, 1.563, 0, 0, 0, 1.563, 0, 0, 0)
-billboard = 2
-shaded = true
-texture_filter = 0
-texture = ExtResource("1_3t1ik")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+material_override = SubResource("ShaderMaterial_3gc7d")
+texture = ExtResource("4_uvnxn")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
 material_override = SubResource("StandardMaterial3D_ihhgf")
-mesh = SubResource("CylinderMesh_ihhgf")
+mesh = SubResource("SphereMesh_te3xo")

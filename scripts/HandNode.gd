@@ -10,8 +10,9 @@ func flipHandFunc() -> void:
 signal on_swap_end()
 signal on_throw_end(thrownItem)
 signal on_grab_end()
+signal on_expire()
 
-var holding : int = Util.ITEM_NONE
+var heldItem : Item = null
 
 var swapping : bool = false
 var changedAnim : bool = false
@@ -20,7 +21,7 @@ const SWAP_MAX_TIME : float = 1.0
 const SWAP_OFFSET : Vector2 = Vector2(0, -0.25)
 
 var throwing : bool = false
-var thrownItem : int = Util.ITEM_NONE
+var thrownItem : Item = null
 var throwTimer : float = 0.0
 const THROW_MAX_TIME : float = 0.5
 
@@ -32,26 +33,34 @@ const GRAB_MAX_TIME : float = 0.5
 @onready var light : OmniLight3D = $AnimatedSprite3D/LighterLight
 
 func _ready() -> void:
-	swapHolding(Util.ITEM_NONE)
+	swapHolding(Util.itemEmpty)
 	swapTimer = SWAP_MAX_TIME/2.0
 
 func canChange() -> bool:
 	return not swapping and not throwing and not grabbing
 
+func onExpire() -> void:
+	on_expire.emit()
+
 func setLit(val : bool) -> void:
 	light.visible = val
-	if holding == Util.ITEM_LIGHTER:
-		anim.play("idle_" + getHoldingToAnimName(holding) + ("_lit" if val else ""))
-		light.light_energy = Util.ENERGY_LIGHTER
-		light.omni_range = Util.RANGE_LIGHTER
-		light.light_color = Util.COLOR_LIGHTER
-	elif holding == Util.ITEM_MUSHROOM:
-		light.light_energy = Util.ENERGY_MUSHROOM
-		light.omni_range = Util.RANGE_MUSHROOM
-		light.light_color = Util.COLOR_MUSHROOM
+	if heldItem.id == Util.itemLighter.id:
+		anim.play("idle_" + heldItem.animName + ("_lit" if val else ""))
+	if heldItem.isLit and val:
+		light.light_energy = heldItem.lightEnergy
+		light.omni_range = heldItem.lightRange
+		light.light_color = heldItem.lightColor
 
-func swapHolding(newHolding : int) -> void:
-	holding = newHolding
+func setHeld(newItem : Item) -> void:
+	if heldItem != null:
+		heldItem.on_expire.disconnect(self.onExpire)
+	
+	heldItem = newItem
+	
+	newItem.on_expire.connect(self.onExpire)
+
+func swapHolding(newItem : Item) -> void:
+	setHeld(newItem)
 	swapping = true
 	swapTimer = 0.0
 	changedAnim = false
@@ -59,28 +68,13 @@ func swapHolding(newHolding : int) -> void:
 func throwHolding() -> void:
 	throwing = true
 	throwTimer = 0.0
-	anim.play("throw_" + getHoldingToAnimName(holding))
-	thrownItem = holding
+	anim.play("throw_" + heldItem.animName)
+	thrownItem = heldItem
 
 func grabHolding() -> void:
 	grabbing = true
 	grabTimer = 0.0
 	anim.play("grab")
-
-static func getHoldingToAnimName(itemHeld) -> String:
-	match itemHeld:
-		Util.ITEM_BIRD:
-			return "bird"
-		Util.ITEM_LIGHTER:
-			return "lighter"
-		Util.ITEM_MUSHROOM:
-			return "mushroom"
-		Util.ITEM_KEY:
-			return "key"
-		Util.ITEM_RAT:
-			return "rat"
-		_:
-			return "empty"
 
 func _process(delta: float) -> void:
 	if swapping:
@@ -90,9 +84,9 @@ func _process(delta: float) -> void:
 		anim.position.x = lerp(0.0, SWAP_OFFSET.x, v)
 		anim.position.y = lerp(0.0, SWAP_OFFSET.y, v)
 		if t > 0.5 and not changedAnim:
-			anim.play("idle_" + getHoldingToAnimName(holding))
+			anim.play("idle_" + heldItem.animName)
 			changedAnim = true
-			setLit(holding == Util.ITEM_MUSHROOM)
+			setLit(heldItem.isLit and not heldItem.id == Util.itemLighter.id)
 		if t >= 1.0:
 			anim.position.x = 0.0
 			anim.position.y = 0.0
@@ -104,16 +98,19 @@ func _process(delta: float) -> void:
 		if throwTimer >= THROW_MAX_TIME:
 			throwing = false
 			on_throw_end.emit(thrownItem)
-			swapHolding(holding)
-			swapTimer = SWAP_MAX_TIME
+			swapHolding(heldItem)
+			swapTimer = SWAP_MAX_TIME/2.0
 	
 	if grabbing:
 		grabTimer += delta
 		if grabTimer >= GRAB_MAX_TIME:
 			grabbing = false
 			on_grab_end.emit()
-			swapHolding(holding)
+			swapHolding(heldItem)
 			swapTimer = SWAP_MAX_TIME
+	
+	if canChange():
+		heldItem._process(delta)
 
 func onAnimFinished() -> void:
 	if anim.animation == "squeeze_bird":
