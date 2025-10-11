@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7kqglpwomn6v"
-path.s3tc="res://.godot/imported/lantern.png-af7e885bba820f2cfc3c9ca5004b4161.s3tc.ctex"
+uid="uid://bek2vo7pi03r3"
+path.s3tc="res://.godot/imported/torch_off.png-0d2c9b90ba8890af1c75915ca5bb3d31.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/lantern.png"
-dest_files=["res://.godot/imported/lantern.png-af7e885bba820f2cfc3c9ca5004b4161.s3tc.ctex"]
+source_file="res://art/torch_off.png"
+dest_files=["res://.godot/imported/torch_off.png-0d2c9b90ba8890af1c75915ca5bb3d31.s3tc.ctex"]
 
 [params]
 

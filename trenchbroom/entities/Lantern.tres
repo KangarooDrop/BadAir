@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dyhcg2ndjvnk2"]
+
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_5m8ic"]
+[ext_resource type="PackedScene" uid="uid://boej4cinmodov" path="res://scenes/Lantern.tscn" id="1_acxcp"]
+
+[resource]
+script = ExtResource("1_5m8ic")
+scene_file = ExtResource("1_acxcp")
+classname = "Lantern"
+class_properties = {
+"is_lit": true
+}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-24, -24, -32, 24, 24, 32)
+}
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

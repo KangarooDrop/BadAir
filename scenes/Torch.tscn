@@ -1,0 +1,88 @@
+[gd_scene load_steps=15 format=3 uid="uid://dglltwj1qbt10"]
+
+[ext_resource type="PackedScene" uid="uid://bp4t5unyuuarj" path="res://scenes/AnimatedSprite3DBacklit.tscn" id="1_8mhhh"]
+[ext_resource type="Script" uid="uid://dsxpyeiyjun4o" path="res://scripts/Torch.gd" id="1_bma1w"]
+[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/spirte_3d_backlit.gdshader" id="2_bma1w"]
+[ext_resource type="Texture2D" uid="uid://j5ow77nl6t05" path="res://art/torch.png" id="4_g2t0v"]
+[ext_resource type="Texture2D" uid="uid://bek2vo7pi03r3" path="res://art/torch_off.png" id="5_a07ml"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k33h7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_bma1w")
+shader_parameter/tex = ExtResource("5_a07ml")
+shader_parameter/scale = 1.5625
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uy34"]
+atlas = ExtResource("4_g2t0v")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qdpy"]
+atlas = ExtResource("4_g2t0v")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mjnq"]
+atlas = ExtResource("4_g2t0v")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeorh"]
+atlas = ExtResource("4_g2t0v")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fefs"]
+atlas = ExtResource("4_g2t0v")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1oij"]
+atlas = ExtResource("4_g2t0v")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujwnd"]
+atlas = ExtResource("5_a07ml")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8mhhh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uy34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qdpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mjnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeorh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fefs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1oij")
+}],
+"loop": true,
+"name": &"lit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujwnd")
+}],
+"loop": true,
+"name": &"unlit",
+"speed": 5.0
+}]
+
+[node name="Torch" type="Node3D"]
+script = ExtResource("1_bma1w")
+
+[node name="AnimatedSprite3dShader" parent="." instance=ExtResource("1_8mhhh")]
+material_override = SubResource("ShaderMaterial_k33h7")
+sprite_frames = SubResource("SpriteFrames_8mhhh")
+animation = &"unlit"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0.7058824, 1)
+light_energy = 0.5
