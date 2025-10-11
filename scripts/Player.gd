@@ -129,6 +129,12 @@ func checkAndRemoveItem(itemID : int) -> bool:
 			return true
 	return false
 
+func checkForItem(itemID : int) -> bool:
+	for hand in [handLeft, handRight]:
+		if hand.heldItem.id == itemID:
+			return true
+	return false
+
 func getHandToBaseItem(hand : HandNode) -> Item:
 	return Util.itemLighter if hand == handLeft else Util.itemBird
 
@@ -159,7 +165,7 @@ func _physics_process(delta: float) -> void:
 						canExplode = currentHand.light.visible
 					else:
 						currentHand.anim.play("squeeze_bird")
-						print("SQUAK!")
+						makeBirdCall()
 				else:
 					var canPickUp : bool = not((pickup == Util.itemLighter and currentHand == handRight) or \
 											(pickup == Util.itemBird and currentHand == handLeft))
@@ -244,8 +250,27 @@ func _process(delta: float) -> void:
 func onExplode() -> void:
 	health = -999.0
 
+func makeBirdCall():
+	if not checkForItem(Util.itemBird.id):
+		return
+	var numSquaks : int = currentPoisonStrength + 1
+	var string : String = "Bird Check: "
+	for i in range(numSquaks):
+		string += "SQUAK! "
+	string += "[" + str(numSquaks) + "]"
+	print(string)
+
 var poisonGasses : Array = []
+var currentPoisonStrength : int = -1
 func onEnterPoison(poisonGas) -> void:
 	poisonGasses.append(poisonGas)
+	if poisonGas.strength > currentPoisonStrength:
+		currentPoisonStrength = poisonGas.strength
+		makeBirdCall()
 func onExitPoison(poisonGas) -> void:
 	poisonGasses.erase(poisonGas)
+	var newPoisonStrength : int = -1
+	for pg in poisonGasses:
+		if pg.strength > newPoisonStrength:
+			newPoisonStrength = pg.strength
+	currentPoisonStrength = newPoisonStrength
