@@ -5,6 +5,7 @@ extends StaticBody3D
 
 var grabOffset : float = 0.2
 var lastVelocity : Vector3 = Vector3.ZERO
+@onready var lastPosition : Vector3 = global_position
 var touching : Array = []
 
 func _ready() -> void:
@@ -26,6 +27,10 @@ func initMoveArea() -> void:
 		area.position.y = grabOffset
 		area.body_entered.connect(self.onBodyEnter)
 		area.body_exited.connect(self.onBodyExit)
+
+func _physics_process(delta: float) -> void:
+	lastVelocity = (global_position - lastPosition) / delta
+	lastPosition = global_position
 
 func onBodyEnter(body) -> void:
 	touching.append(body)

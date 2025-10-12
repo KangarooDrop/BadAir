@@ -1,25 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bg53a66fvc2no"]
+[gd_scene load_steps=4 format=3 uid="uid://bg53a66fvc2no"]
 
-[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_7g83o"]
 [ext_resource type="Script" uid="uid://b6pxcc5v4rxvv" path="res://scripts/World.gd" id="1_d1c63"]
 [ext_resource type="PackedScene" uid="uid://bsy45qy3bbqjd" path="res://scenes/GameEnvironment.tscn" id="2_1lgw5"]
-[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_d1c63"]
-[ext_resource type="PackedScene" uid="uid://1n23rgtxea8g" path="res://scenes/Player.tscn" id="2_hlk0d"]
 [ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="6_hlk0d"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_d1c63")
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("2_1lgw5")]
-
-[node name="Player" parent="." instance=ExtResource("2_hlk0d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21888828, 2.4512491, 4.269409)
-
-[node name="FuncGodotMap" type="Node3D" parent="."]
-script = ExtResource("1_7g83o")
-local_map_file = "uid://bv35o7ic2kp2w"
-map_settings = ExtResource("2_d1c63")
-metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2

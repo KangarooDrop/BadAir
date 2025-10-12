@@ -41,6 +41,9 @@ const THROW_MAX_TIME : float = 0.5
 const THROW_MAX_VEL : float = 15.0
 const DROP_MAX_VEL : float = 5.0
 
+var unlockedLighter : bool = Util.levelIndex > 0
+var unlockedBird : bool = Util.levelIndex > 0
+
 ####################################################################################################
 
 @onready var head : Node3D = $Head
@@ -62,14 +65,25 @@ func _ready() -> void:
 	handLeft.on_expire.connect(self.onHandExpire.bind(handLeft))
 	handRight.on_throw_end.connect(self.onHandThrowEnd.bind(handRight))
 	handRight.on_expire.connect(self.onHandExpire.bind(handRight))
+	
+	if unlockedLighter:
+		handLeft.setHeld(Util.itemLighter)
+	if unlockedBird:
+		handRight.setHeld(Util.itemBird)
+
+func onLevelEnd() -> void:
+	if not unlockedLighter:
+		unlockedLighter = true
+		if handLeft.heldItem.id == Util.itemEmpty.id:
+			handLeft.swapHolding(Util.itemLighter)
+	if not unlockedBird:
+		unlockedBird = true
+		if handRight.heldItem.id == Util.itemEmpty.id:
+			handRight.swapHolding(Util.itemBird)
 
 func onHandThrowEnd(item, handNode : HandNode):
-	var thrownItem : ThrownItem = Util.thrownItem.instantiate()
-	get_parent().add_child(thrownItem)
-	thrownItem.global_position = handNode.global_position
-	thrownItem.setItem(item)
 	var throwVel : Vector3 = head.global_basis * Vector3.FORWARD * handToThrowTime[handNode]/THROW_MAX_TIME * THROW_MAX_VEL
-	thrownItem.linear_velocity = throwVel
+	Util.getWorld().getLevel().createThrownItem(handNode.global_position, throwVel, item)
 	handToThrowTime.erase(handNode)
 
 func onHandExpire(handNode : HandNode) -> void:
@@ -80,7 +94,7 @@ func onHandExpire(handNode : HandNode) -> void:
 		handNode.swapTimer = HandNode.SWAP_MAX_TIME/2.0
 		var dv2 : Vector2 = Vector2.UP.rotated(-head.rotation.y)
 		var dropVel : Vector3 = Vector3(dv2.x, 1.0, dv2.y).normalized() * DROP_MAX_VEL
-		Util.getWorld().createRat(global_position, dropVel)
+		Util.getWorld().getLevel().createRat(global_position, dropVel)
 
 func _input(event: InputEvent) -> void:
 	if not canControl:
@@ -151,7 +165,12 @@ func checkForItem(itemID : int) -> bool:
 	return false
 
 func getHandToBaseItem(hand : HandNode) -> Item:
-	return Util.itemLighter if hand == handLeft else Util.itemBird
+	if hand == handLeft and unlockedLighter:
+		return Util.itemLighter
+	elif hand == handRight and unlockedBird:
+		return Util.itemBird
+	else:
+		return Util.itemEmpty
 
 func swapToBaseItem(hand : HandNode) -> void:
 	var baseItem : Item = getHandToBaseItem(hand)
@@ -214,6 +233,10 @@ func _physics_process(delta: float) -> void:
 					if canPickUp:
 						col.queue_free()
 						currentHand.swapHolding(pickup)
+						if pickup.id == Util.itemLighter.id:
+							unlockedLighter = true
+						elif pickup.id == Util.itemBird.id:
+							unlockedBird = true
 						if baseID == Util.itemLighter.id:
 							canExplode = false
 			else:

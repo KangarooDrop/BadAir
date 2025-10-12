@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://fjg3atx3lj85"]
+[gd_scene load_steps=3 format=3 uid="uid://fjg3atx3lj85"]
 
 [ext_resource type="Script" uid="uid://bhkogwgkmc2wy" path="res://scripts/PlayerSpawn.gd" id="1_8w8il"]
+[ext_resource type="Texture2D" uid="uid://cl5uxsoivaet4" path="res://art/debug/debug_player_spawn.png" id="2_m6icb"]
 
 [node name="PlayerSpawn" type="Node3D" groups=["PlayerSpawn"]]
 script = ExtResource("1_8w8il")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_m6icb")
