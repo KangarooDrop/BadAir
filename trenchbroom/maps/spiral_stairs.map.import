@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://doxj3vnqltj60"
+path="res://.godot/imported/spiral_stairs.map-8493aff4ad1ea69f3b09b565208bbbe0.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/spiral_stairs.map"
+dest_files=["res://.godot/imported/spiral_stairs.map-8493aff4ad1ea69f3b09b565208bbbe0.tres"]
+
+[params]
+

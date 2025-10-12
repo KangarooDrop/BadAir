@@ -9,4 +9,5 @@ id = 5
 animName = "rat"
 groundTexture = ExtResource("1_38e84")
 canThrow = true
+lifetime = 4.0
 metadata/_custom_type_script = "uid://bsvj5pm528noq"

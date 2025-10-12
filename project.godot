@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="BadAir"
-run/main_scene="uid://bg53a66fvc2no"
+run/main_scene="uid://dfvk4qus52i0q"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Util="*res://autoloads/Util.gd"
+Credits="*res://autoloads/Credits.tscn"
+Settings="*res://autoloads/Settings.tscn"
 
 [display]
 
@@ -91,3 +93,4 @@ mouse_right={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

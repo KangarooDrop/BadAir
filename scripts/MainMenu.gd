@@ -1,0 +1,56 @@
+extends Node3D
+
+const CAM_HEIGHT : float = 3.9
+const CAM_OFFSET : float = -0.5
+const CAM_ROT_X : float = -PI * 1.0/4.0
+const CAM_ROT_Y : float = PI
+const CAM_TURN_PERIOD : float = 30.0
+
+var hasPanned : bool = false
+
+var camTimer : float = 0.0
+
+@onready var rotator : Node3D = $CamRot
+@onready var cam : Camera3D = $CamRot/Camera3D
+
+func _ready() -> void:
+	cam.position.y = CAM_HEIGHT
+	cam.position.z = CAM_OFFSET
+	
+	cam.rotation.x = CAM_ROT_X
+	cam.rotation.y = CAM_ROT_Y
+	
+	Util.showMouse()
+
+func _process(delta: float) -> void:
+	camTimer += delta
+	if camTimer >= CAM_TURN_PERIOD:
+		camTimer -= CAM_TURN_PERIOD
+		hasPanned = true
+	
+	var t: float = camTimer / CAM_TURN_PERIOD
+	if not hasPanned:
+		var easeVal : float = -(cos(PI * t) - 1) / 2;
+		cam.rotation.x = lerp(-PI*3.0/8.0, CAM_ROT_X, easeVal)
+	
+	var newRotation : float = t * 2.0 * PI
+	rotator.rotation.y = newRotation
+	#cam.position.z = sin(camTimer / 3.0 * 2.0 * PI) * CAM_OFFSET
+	
+	if Input.is_action_just_pressed("escape"):
+		if Settings.visible:
+			Settings.hide()
+		elif Credits.visible:
+			Credits.hide()
+
+func onPlayPressed() -> void:
+	get_tree().change_scene_to_file(Util.worldScenePath)
+
+func onSettingsPressed() -> void:
+	Settings.show()
+
+func onCreditsPressed() -> void:
+	Credits.show()
+
+func onQuitPressed() -> void:
+	get_tree().quit()

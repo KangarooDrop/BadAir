@@ -7,6 +7,7 @@ class_name Trigger
 @export var single_use : bool = false
 
 var targetEntity = null
+var targetSet : bool = false
 var hasEntered : bool = false
 var hasExited : bool = false
 
@@ -17,6 +18,8 @@ func _ready() -> void:
 	Util.initTarget(self)
 
 func onBodyEnter(body):
+	if not targetSet:
+		return
 	if single_use and hasEntered:
 		return
 	if is_instance_valid(targetEntity):
@@ -27,11 +30,13 @@ func onBodyEnter(body):
 		printerr("Error: Trigger '", targetname, "' -> '", target, "' could not be found.")
 
 func onBodyExit(body):
+	if not targetSet:
+		return
 	if single_use and hasExited or not hasEntered:
 		return
 	if is_instance_valid(targetEntity):
 		hasExited = targetEntity.onTriggerExit(body, self)
 	elif target == "":
-		hasExited = Util.getWorld().getLevel().onTriggerEnter(body, self)
+		hasExited = Util.getWorld().getLevel().onTriggerExit(body, self)
 	else:
 		printerr("Error: Trigger '", targetname, "' -> '", target, "' could not be found.")

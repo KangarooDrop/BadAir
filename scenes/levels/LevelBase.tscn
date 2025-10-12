@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2d4yk3oe4ap2"]
+
+[ext_resource type="Script" uid="uid://0wrfmb82w6vy" path="res://scripts/Level.gd" id="1_elnrp"]
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_dr2ln"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="3_e7klb"]
+
+[node name="LevelBase" type="Node3D"]
+script = ExtResource("1_elnrp")
+
+[node name="FuncGodotMap" type="Node3D" parent="."]
+script = ExtResource("2_dr2ln")
+map_settings = ExtResource("3_e7klb")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"

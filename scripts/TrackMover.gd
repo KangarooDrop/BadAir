@@ -5,6 +5,7 @@ var target : String = ""
 var speed : float = 1.0
 
 var targetEntity = null
+var targetSet : bool = false
 var delay : float = 0.0
 var lastVelocity : Vector3 = Vector3.ZERO
 

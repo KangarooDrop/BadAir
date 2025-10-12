@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://c5roteer1y3dj"]
+
+[ext_resource type="PackedScene" uid="uid://dglltwj1qbt10" path="res://scenes/Torch.tscn" id="1_si160"]
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_sxj74"]
+
+[resource]
+script = ExtResource("1_sxj74")
+scene_file = ExtResource("1_si160")
+classname = "Torch"
+class_properties = {
+"is_lit": false
+}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -32, 8, 8, 32)
+}
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

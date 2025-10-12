@@ -1,0 +1,178 @@
+[gd_scene load_steps=11 format=3 uid="uid://1n23rgtxea8g"]
+
+[ext_resource type="Script" uid="uid://b1dns6fbwoqm3" path="res://scripts/Player.gd" id="1_p0vlq"]
+[ext_resource type="PackedScene" uid="uid://cqjf73acq8rjo" path="res://scenes/HandNode.tscn" id="2_qu4a1"]
+[ext_resource type="Texture2D" uid="uid://cr2cp8178nr72" path="res://art/ui/hover_icons.png" id="3_3li8b"]
+[ext_resource type="Texture2D" uid="uid://cahdw6bmmi3h7" path="res://art/ui/icons2.png" id="4_70d11"]
+[ext_resource type="Texture2D" uid="uid://cj7axrpxip1f5" path="res://art/ui/crosshair.png" id="4_mdl7e"]
+[ext_resource type="Shader" uid="uid://dnk8ob25jra7g" path="res://shaders/vignette.gdshader" id="5_qu4a1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p0vlq"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdl7e"]
+atlas = ExtResource("3_3li8b")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cw2d6"]
+atlas = ExtResource("4_70d11")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_70d11"]
+shader = ExtResource("5_qu4a1")
+shader_parameter/t = 0.0
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 2
+script = ExtResource("1_p0vlq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_p0vlq")
+debug_color = Color(0, 11.708403, 13.469126, 1)
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="HandHolder" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
+
+[node name="HandNodeLeft" parent="Head/Camera3D/HandHolder" instance=ExtResource("2_qu4a1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.263, -0.193, 0)
+
+[node name="HandNodeRight" parent="Head/Camera3D/HandHolder" instance=ExtResource("2_qu4a1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263, -0.193, 0)
+
+[node name="AnimatedSprite3D" parent="Head/Camera3D/HandHolder/HandNodeRight" index="0"]
+offset = Vector2(-32, 32)
+flip_h = true
+
+[node name="LighterLight" parent="Head/Camera3D/HandHolder/HandNodeRight/AnimatedSprite3D" index="0"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.49243796, 0.71234703, 0.033575296)
+light_color = Color(1, 1, 0.7058824, 1)
+
+[node name="HUD" type="CanvasLayer" parent="Head/Camera3D"]
+
+[node name="ScreenRect" type="Control" parent="Head/Camera3D/HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -480.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="Center" type="Control" parent="Head/Camera3D/HUD/ScreenRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scaler" type="Node2D" parent="Head/Camera3D/HUD/ScreenRect/Center"]
+
+[node name="TextureRect" type="TextureRect" parent="Head/Camera3D/HUD/ScreenRect/Center/Scaler"]
+visible = false
+modulate = Color(1, 1, 1, 0.3137255)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_mdl7e")
+
+[node name="Icon" type="TextureRect" parent="Head/Camera3D/HUD/ScreenRect/Center/Scaler"]
+modulate = Color(1, 1, 1, 0.3137255)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_cw2d6")
+
+[node name="Label" type="Label" parent="Head/Camera3D/HUD/ScreenRect/Center/Scaler"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -11.375
+offset_top = -15.25
+offset_right = 79.625
+offset_bottom = 33.75
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+text = "Press [LMB]
+to Pick Up"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Head/Camera3D/HUD/ScreenRect/Center/Scaler"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -11.375
+offset_top = 3.0
+offset_right = 79.625
+offset_bottom = 52.0
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+text = "Press [RMB]
+to Pick Up"
+horizontal_alignment = 1
+
+[node name="Vignette" type="ColorRect" parent="Head/Camera3D/HUD/ScreenRect"]
+material = SubResource("ShaderMaterial_70d11")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RayCast3D" type="RayCast3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+target_position = Vector3(0, 0, -2)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="Sprite3D" type="Sprite3D" parent="Head/RayCast3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+visible = false
+texture_filter = 0
+texture = ExtResource("4_mdl7e")
+
+[node name="RayCastStep" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.587, 0)
+target_position = Vector3(0, 0, -1)
+
+[node name="RayCastGround" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.837, 0)
+target_position = Vector3(0, 0, -1)
+
+[editable path="Head/Camera3D/HandHolder/HandNodeRight"]

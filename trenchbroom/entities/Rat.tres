@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://bgvle5ltgepan"]
+
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_ky8i0"]
+[ext_resource type="PackedScene" uid="uid://b46nxchhygyyy" path="res://scenes/Rat.tscn" id="1_yqi2x"]
+
+[resource]
+script = ExtResource("1_ky8i0")
+scene_file = ExtResource("1_yqi2x")
+classname = "Rat"
+meta_properties = {
+"color": Color(0.3621331, 0.21098754, 0.13063166, 1),
+"size": AABB(-32, -32, -32, 32, 32, 32)
+}
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

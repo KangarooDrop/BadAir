@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cu3ssr7trdt3l"
+path="res://.godot/imported/DummyLevel0.map-911ce7da82a2c2b12a015b6dc5e8f693.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/DummyLevel0.map"
+dest_files=["res://.godot/imported/DummyLevel0.map-911ce7da82a2c2b12a015b6dc5e8f693.tres"]
+
+[params]
+

@@ -15,6 +15,8 @@ func setItem(newItem : Item) -> void:
 	item = newItem
 	item.on_expire.connect(self.onExpire)
 	
+	if item.id == Util.itemRat.id:
+		item.currentLife = item.lifetime
 	light.visible = newItem.isLit
 	sprite.texture = newItem.groundTexture
 	(sprite.material_override as ShaderMaterial).set_shader_parameter("tex", sprite.texture)
@@ -29,5 +31,9 @@ func _process(delta: float) -> void:
 	light.light_energy = item.getLightEnergy()
 
 func onExpire():
-	if item.animName == "mushroom":
+	if item.id == Util.itemMushroom.id:
+		queue_free()
+	elif item.id == Util.itemRat.id:
+		item.currentLife = item.lifetime
+		Util.getWorld().getLevel().createRat(global_position + Vector3.UP * 0.1, Vector3.UP * 4.0, item)
 		queue_free()

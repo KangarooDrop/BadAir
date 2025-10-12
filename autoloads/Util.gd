@@ -1,23 +1,51 @@
 extends Node
 
+const mouseModeHidden = Input.MOUSE_MODE_CAPTURED
+const mouseModeShown = Input.MOUSE_MODE_VISIBLE
+
+const mainMenuScenePath : String = "res://scenes/MainMenu.tscn"
+const worldScenePath : String = "res://scenes/World.tscn"
+
 const GROUP_TARGET : String = "Target"
 const GROUP_PICKUP : String = "Pickup"
 const GROUP_INTERACT : String = "Interact"
 
-const thrownItem : PackedScene = preload("res://scenes/ThrownItem.tscn")
-const trackMover : PackedScene = preload("res://scenes/TrackMover.tscn")
+var playerScene : PackedScene = load("res://scenes/Player.tscn")
+var thrownItem : PackedScene = load("res://scenes/ThrownItem.tscn")
+var trackMover : PackedScene = load("res://scenes/TrackMover.tscn")
+var ratPacked : PackedScene = load("res://scenes/Rat.tscn")
 
-var itemEmpty : Item = preload("res://scripts/items/ItemEmpty.tres")
-var itemLighter : Item = preload("res://scripts/items/ItemLighter.tres")
-var itemBird : Item = preload("res://scripts/items/ItemBird.tres")
-var itemKey : Item = preload("res://scripts/items/ItemKey.tres")
-var itemRat : Item = preload("res://scripts/items/ItemRat.tres")
-var itemMushroom : Item = preload("res://scripts/items/ItemMushroom.tres")
+var itemEmpty : Item = load("res://scripts/items/ItemEmpty.tres")
+var itemLighter : Item = load("res://scripts/items/ItemLighter.tres")
+var itemBird : Item = load("res://scripts/items/ItemBird.tres")
+var itemKey : Item = load("res://scripts/items/ItemKey.tres")
+var itemRat : Item = load("res://scripts/items/ItemRat.tres")
+var itemMushroom : Item = load("res://scripts/items/ItemMushroom.tres")
+
+var levelIndex : int = 0
+const levelPaths : Array = \
+[
+	"res://scenes/levels/LevelDummy.tscn",
+	"res://scenes/levels/LevelDummy2.tscn",
+	"res://scenes/levels/LevelTest.tscn",
+	
+]
+
+func getGasStrengthToDec(gasStrength : int) -> float:
+	match gasStrength:
+		0:
+			return 100.0/30.0
+		1:
+			return 100.0/10.0
+		2:
+			return 100.0/3.0
+	return 0.0
 
 func initTarget(object : Node) -> void:
 	var target : String = object.target
 	await get_tree().process_frame
 	object.targetEntity = findTaret(target)
+	object.targetSet = true
 
 func findTaret(targetname : String) -> Node:
 	if targetname.is_empty():
@@ -36,4 +64,22 @@ func findByType(parent : Node, type) -> Node:
 	return null
 
 func getWorld() -> World:
-	return get_tree().root.get_node("World")
+	return get_tree().root.get_node_or_null("World")
+
+func getCameraRotIndex(globalDir : Vector2) -> int:
+	var players : Array = get_tree().get_nodes_in_group("Player")
+	if players.size() == 0:
+		return 0
+	var player : Node3D = players[0]
+	var camRot : float = 0.0 - player.head.rotation.y
+	var gr : float = globalDir.angle()
+	var diff : float = angle_difference(camRot, gr)
+	return (int(fmod(diff + PI*2.0*2.0 - PI/4.0, PI*2.0) / (PI/2.0)))
+
+func hideMouse() -> void:
+	if Input.get_mouse_mode() != mouseModeHidden:
+		Input.set_mouse_mode(mouseModeHidden)
+
+func showMouse() -> void:
+	if Input.get_mouse_mode() != mouseModeShown:
+		Input.set_mouse_mode(mouseModeShown)
