@@ -1,5 +1,11 @@
 extends Node
 
+const mouseModeHidden = Input.MOUSE_MODE_CAPTURED
+const mouseModeShown = Input.MOUSE_MODE_VISIBLE
+
+const mainMenuScenePath : String = "res://scenes/MainMenu.tscn"
+const worldScenePath : String = "res://scenes/World.tscn"
+
 const GROUP_TARGET : String = "Target"
 const GROUP_PICKUP : String = "Pickup"
 const GROUP_INTERACT : String = "Interact"
@@ -47,7 +53,7 @@ func findByType(parent : Node, type) -> Node:
 	return null
 
 func getWorld() -> World:
-	return get_tree().root.get_node("World")
+	return get_tree().root.get_node_or_null("World")
 
 func getCameraRotIndex(globalDir : Vector2) -> int:
 	var players : Array = get_tree().get_nodes_in_group("Player")
@@ -58,3 +64,11 @@ func getCameraRotIndex(globalDir : Vector2) -> int:
 	var gr : float = globalDir.angle()
 	var diff : float = angle_difference(camRot, gr)
 	return (int(fmod(diff + PI*2.0*2.0 - PI/4.0, PI*2.0) / (PI/2.0)))
+
+func hideMouse() -> void:
+	if Input.get_mouse_mode() != mouseModeHidden:
+		Input.set_mouse_mode(mouseModeHidden)
+
+func showMouse() -> void:
+	if Input.get_mouse_mode() != mouseModeShown:
+		Input.set_mouse_mode(mouseModeShown)

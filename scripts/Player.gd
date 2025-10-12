@@ -46,6 +46,7 @@ const DROP_MAX_VEL : float = 5.0
 @onready var handLeft : HandNode = $Head/Camera3D/HandHolder/HandNodeLeft
 @onready var handRight : HandNode = $Head/Camera3D/HandHolder/HandNodeRight
 @onready var vignette : ColorRect = $Head/Camera3D/HUD/ScreenRect/Vignette
+@onready var crosshairIcon : TextureRect = $Head/Camera3D/HUD/ScreenRect/Center/Scaler/Icon
 @onready var lighterPickupLabel : Label = $Head/Camera3D/HUD/ScreenRect/Center/Scaler/Label
 @onready var birdPickupLabel : Label = $Head/Camera3D/HUD/ScreenRect/Center/Scaler/Label2
 
@@ -159,20 +160,28 @@ func setBaseItem(hand : HandNode) -> void:
 	hand.setHeld(baseItem)
 	
 func checkPickupLabels() -> void:
+	var iconIndex : int = 0
 	var showLighterLabel : bool = false
 	var showBirdLabel : bool = false
-	if handLeft.heldItem.id == Util.itemEmpty.id or handRight.heldItem.id == Util.itemEmpty.id:
-		var col : Node = raycast.get_collider()
-		if col != null and col.is_in_group(Util.GROUP_PICKUP):
+	var col : Node = raycast.get_collider()
+	if col != null and col.is_in_group(Util.GROUP_PICKUP):
+		if handLeft.heldItem.id == Util.itemEmpty.id or handRight.heldItem.id == Util.itemEmpty.id:
 			if handLeft.heldItem.id == Util.itemEmpty.id and col.item.id == Util.itemLighter.id:
 				showLighterLabel = true
 			if handRight.heldItem.id == Util.itemEmpty.id and col.item.id == Util.itemBird.id:
 				showBirdLabel = true
+		iconIndex = 1
+	
+	(crosshairIcon.texture as AtlasTexture).region.position.x = iconIndex * 8.0
 	lighterPickupLabel.visible = showLighterLabel
 	birdPickupLabel.visible = showBirdLabel
+	
 
 func _physics_process(delta: float) -> void:
 	checkPickupLabels()
+	
+	var tracLerpVal : float = UNCON_TRAC_GROUND if is_on_floor() else UNCON_TRAC_AIR
+	var moveDir : Vector3 = Vector3.ZERO
 	
 	if canControl:
 		#Grabbing
@@ -218,22 +227,10 @@ func _physics_process(delta: float) -> void:
 		#WASD Movement
 		var inputDir : Vector2 = Input.get_vector("left", "right", "forward", "backward")
 		var iDirRot = inputDir.rotated(-head.rotation.y)
-		var moveDir : Vector3 = Vector3(iDirRot.x, 0.0, iDirRot.y).normalized()
+		moveDir = Vector3(iDirRot.x, 0.0, iDirRot.y).normalized()
 		
-		var tracLerpVal : float = 0.0
-		if inputDir.is_zero_approx():
-			if not is_on_floor():
-				tracLerpVal = UNCON_TRAC_AIR
-			else:
-				tracLerpVal = UNCON_TRAC_GROUND
-		else:
-			if not is_on_floor():
-				tracLerpVal = CON_TRAC_AIR
-			else:
-				tracLerpVal = CON_TRAC_GROUND
-		
-		velocity.x = lerp(velocity.x, moveDir.x * SPEED, tracLerpVal)
-		velocity.z = lerp(velocity.z, moveDir.z * SPEED, tracLerpVal)
+		if not inputDir.is_zero_approx():
+			tracLerpVal = CON_TRAC_GROUND if is_on_floor() else CON_TRAC_AIR
 	
 		var climbingThisFrame : bool = false
 		if not inputDir.is_zero_approx():
@@ -245,6 +242,9 @@ func _physics_process(delta: float) -> void:
 		if not climbingThisFrame and climbingLastFrame:
 			velocity.y = 0.0
 		climbingLastFrame = climbingThisFrame
+	
+	velocity.x = lerp(velocity.x, moveDir.x * SPEED, tracLerpVal)
+	velocity.z = lerp(velocity.z, moveDir.z * SPEED, tracLerpVal)
 	
 	if not is_on_floor():
 		velocity.y -= grav * delta

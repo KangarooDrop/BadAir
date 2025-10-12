@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://vnhfuyngu2pn"]
+
+[ext_resource type="Texture2D" uid="uid://bv2cwvspfohka" path="res://textures/BadAir/art/fence.png" id="1_iovyl"]
+
+[resource]
+albedo_texture = ExtResource("1_iovyl")
+metallic_specular = 0.0
+texture_filter = 2

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d00le0165sk17" path="res://art/world/rat_sheet.png" id="4_mhhyr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1r2ik"]
+radius = 0.4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4kca7"]
 resource_local_to_scene = true

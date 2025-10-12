@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfvk4qus52i0q"]
+
+[ext_resource type="Script" uid="uid://cg7rox51rfkw6" path="res://scripts/MainMenu.gd" id="1_826wr"]
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_l72w3"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_826wr"]
+[ext_resource type="PackedScene" uid="uid://bsy45qy3bbqjd" path="res://scenes/GameEnvironment.tscn" id="2_ucygd"]
+[ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="17_8vx4p"]
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_826wr")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("2_ucygd")]
+
+[node name="FuncGodotMap" type="Node3D" parent="."]
+script = ExtResource("1_l72w3")
+local_map_file = "uid://3kk63v4va43a"
+map_settings = ExtResource("2_826wr")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="CamRot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CamRot"]
+transform = Transform3D(-1, -6.181724e-08, 6.181724e-08, 0, 0.7071068, 0.7071068, -8.742278e-08, 0.7071068, -0.7071068, 0, 3.7782226, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScreenBounds" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonHolder" type="Control" parent="CanvasLayer/ScreenBounds"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 96.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ScreenBounds/ButtonHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.5
+offset_top = -89.0
+offset_right = 91.5
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_8vx4p")
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_8vx4p")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="CreditsButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_8vx4p")
+theme_override_font_sizes/font_size = 32
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_8vx4p")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/PlayButton" to="." method="onPlayPressed"]
+[connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/SettingsButton" to="." method="onSettingsPressed"]
+[connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/CreditsButton" to="." method="onCreditsPressed"]
+[connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/QuitButton" to="." method="onQuitPressed"]

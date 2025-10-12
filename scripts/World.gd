@@ -2,8 +2,13 @@ extends Node3D
 class_name World
 
 @onready var player : Player = $Player
+@onready var pauseScreen : CanvasLayer = $CanvasLayer
 
 func _ready() -> void:
+	pauseScreen.hide()
+	Util.hideMouse()
+	
+	#Level code
 	if not is_instance_valid(player):
 		return
 	var spawnPoints : Array = get_tree().get_nodes_in_group("PlayerSpawn")
@@ -15,6 +20,21 @@ func _ready() -> void:
 
 func reset() -> void:
 	get_tree().reload_current_scene()
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("escape"):
+		if Settings.visible:
+			Settings.hide()
+		elif Credits.visible:
+			Credits.hide()
+		else:
+			if pauseScreen.visible:
+				pauseScreen.hide()
+				Util.hideMouse()
+			else:
+				pauseScreen.show()
+				Util.showMouse()
+			player.canControl = not pauseScreen.visible
 
 #######################################
 #TEMP CODE WHILE NO LEVEL SCENE IS LOADED#
@@ -35,3 +55,14 @@ func onTriggerEnter(body : Node3D, trigger : Trigger):
 
 func onTriggerExit(body : Node3D, trigger : Trigger) -> bool:
 	return true
+
+
+func onResumePressed() -> void:
+	pauseScreen.hide()
+	player.canControl = true
+
+func onSettingsPressed() -> void:
+	Settings.show()
+
+func onMainMenuPressed() -> void:
+	get_tree().change_scene_to_file(Util.mainMenuScenePath)

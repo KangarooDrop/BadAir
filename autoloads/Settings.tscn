@@ -1,0 +1,218 @@
+[gd_scene load_steps=6 format=3 uid="uid://bud8gt1jeba3c"]
+
+[ext_resource type="Script" uid="uid://ben5j4ry83iwp" path="res://autoloads/Settings.gd" id="1_k133r"]
+[ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="2_4jsmj"]
+[ext_resource type="Shader" uid="uid://bwefevylbufc0" path="res://shaders/fader.gdshader" id="2_62qcs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_45jbo"]
+shader = ExtResource("2_62qcs")
+shader_parameter/texSize = Vector2(640, 480)
+shader_parameter/pixSize = 16.0
+shader_parameter/posterization = 8
+shader_parameter/offset = Vector2(0, -64)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62qcs"]
+
+[node name="Settings" type="CanvasLayer"]
+layer = 3
+script = ExtResource("1_k133r")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_45jbo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ButtonHolder" type="Control" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/ButtonHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -36.0
+offset_right = 136.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelsVBox" type="VBoxContainer" parent="ColorRect/ButtonHolder/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="BrightnessHolder" type="Control" parent="ColorRect/ButtonHolder/HBoxContainer/LabelsVBox"]
+layout_mode = 2
+
+[node name="BrightnessLabel" type="Label" parent="ColorRect/ButtonHolder/HBoxContainer/LabelsVBox/BrightnessHolder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_4jsmj")
+theme_override_font_sizes/font_size = 16
+text = "Brightness: 100%"
+
+[node name="SensHolder" type="Control" parent="ColorRect/ButtonHolder/HBoxContainer/LabelsVBox"]
+layout_mode = 2
+
+[node name="SensLabel" type="Label" parent="ColorRect/ButtonHolder/HBoxContainer/LabelsVBox/SensHolder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_4jsmj")
+theme_override_font_sizes/font_size = 16
+text = "Mouse Sensitivity: 100%"
+
+[node name="VolumeHolder" type="Control" parent="ColorRect/ButtonHolder/HBoxContainer/LabelsVBox"]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="ColorRect/ButtonHolder/HBoxContainer/LabelsVBox/VolumeHolder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_4jsmj")
+theme_override_font_sizes/font_size = 16
+text = "Volume: 100%"
+
+[node name="AudioAccessHolder" type="Control" parent="ColorRect/ButtonHolder/HBoxContainer/LabelsVBox"]
+layout_mode = 2
+
+[node name="AudioAccessLabel" type="Label" parent="ColorRect/ButtonHolder/HBoxContainer/LabelsVBox/AudioAccessHolder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_4jsmj")
+theme_override_font_sizes/font_size = 16
+text = "Audio Accessibility: Off"
+
+[node name="OptionsVBox" type="VBoxContainer" parent="ColorRect/ButtonHolder/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="BrightnessHolder" type="Control" parent="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox"]
+layout_mode = 2
+
+[node name="BrightnessSlider" type="HSlider" parent="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/BrightnessHolder"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -8.0
+offset_right = 64.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.05
+
+[node name="SensHolder" type="Control" parent="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox"]
+layout_mode = 2
+
+[node name="SensSlider" type="HSlider" parent="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/SensHolder"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -8.0
+offset_right = 64.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.05
+
+[node name="VolumeHolder" type="Control" parent="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox"]
+layout_mode = 2
+
+[node name="VolumeSlider" type="HSlider" parent="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/VolumeHolder"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -8.0
+offset_right = 64.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.05
+
+[node name="AudioAccessHolder" type="Control" parent="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox"]
+layout_mode = 2
+
+[node name="AudioAccessButton" type="CheckButton" parent="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/AudioAccessHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -12.0
+offset_right = 22.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_62qcs")
+
+[node name="CloseButton" type="Button" parent="ColorRect/ButtonHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = 108.0
+offset_right = 41.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_4jsmj")
+theme_override_font_sizes/font_size = 32
+text = "Close"
+
+[connection signal="value_changed" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/BrightnessHolder/BrightnessSlider" to="." method="onBrightnessChange"]
+[connection signal="value_changed" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/SensHolder/SensSlider" to="." method="onSensChange"]
+[connection signal="value_changed" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/VolumeHolder/VolumeSlider" to="." method="onVolumeChange"]
+[connection signal="toggled" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/AudioAccessHolder/AudioAccessButton" to="." method="onAudioAccessChange"]
+[connection signal="pressed" from="ColorRect/ButtonHolder/CloseButton" to="." method="onClosePressed"]

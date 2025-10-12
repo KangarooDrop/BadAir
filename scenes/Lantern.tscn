@@ -85,4 +85,3 @@ animation = &"unlit"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(1, 1, 0.7058824, 1)
-light_energy = 0.5

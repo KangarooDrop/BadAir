@@ -15,6 +15,8 @@ func setItem(newItem : Item) -> void:
 	item = newItem
 	item.on_expire.connect(self.onExpire)
 	
+	if item.id == Util.itemRat.id:
+		item.currentLife = item.lifetime
 	light.visible = newItem.isLit
 	sprite.texture = newItem.groundTexture
 	(sprite.material_override as ShaderMaterial).set_shader_parameter("tex", sprite.texture)
