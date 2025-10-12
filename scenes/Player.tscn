@@ -18,7 +18,7 @@ region = Rect2(32, 0, 16, 16)
 shader = ExtResource("5_qu4a1")
 shader_parameter/t = 0.0
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_p0vlq")
 

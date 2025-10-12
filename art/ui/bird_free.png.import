@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boh6ts0qaiy37"
-path="res://.godot/imported/bug_butt.png-333d0a1a1097fa8eb812d8dadb182c6a.ctex"
+uid="uid://bwm8dwiyv1mvh"
+path="res://.godot/imported/bird_free.png-0379b0637a6eeedafe66de34b604ebf8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/bug_butt.png"
-dest_files=["res://.godot/imported/bug_butt.png-333d0a1a1097fa8eb812d8dadb182c6a.ctex"]
+source_file="res://art/ui/bird_free.png"
+dest_files=["res://.godot/imported/bird_free.png-0379b0637a6eeedafe66de34b604ebf8.ctex"]
 
 [params]
 

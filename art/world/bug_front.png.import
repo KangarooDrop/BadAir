@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wxi023mv1boy"
-path="res://.godot/imported/rat_butt.png-ed5616c994799015e3863c823e68d841.ctex"
+uid="uid://dddyr1rrprkgv"
+path="res://.godot/imported/bug_front.png-55dd9a3a0d29eb6b219bd0e58fb336e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/rat_butt.png"
-dest_files=["res://.godot/imported/rat_butt.png-ed5616c994799015e3863c823e68d841.ctex"]
+source_file="res://art/world/bug_front.png"
+dest_files=["res://.godot/imported/bug_front.png-55dd9a3a0d29eb6b219bd0e58fb336e2.ctex"]
 
 [params]
 

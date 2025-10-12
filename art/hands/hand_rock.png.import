@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1bfm3ijfsmoa"
-path="res://.godot/imported/hand_rock.png-6af90ca74d77de7a1af29d6369d3770c.ctex"
+path="res://.godot/imported/hand_rock.png-76e0236fb10465f8aec1de5ea9a57ed0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/hand_rock.png"
-dest_files=["res://.godot/imported/hand_rock.png-6af90ca74d77de7a1af29d6369d3770c.ctex"]
+source_file="res://art/hands/hand_rock.png"
+dest_files=["res://.godot/imported/hand_rock.png-76e0236fb10465f8aec1de5ea9a57ed0.ctex"]
 
 [params]
 

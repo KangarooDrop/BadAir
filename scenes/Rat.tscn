@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://b46nxchhygyyy"]
+
+[ext_resource type="Script" uid="uid://bjpxqnhercpio" path="res://scripts/Rat.gd" id="1_n5u6b"]
+[ext_resource type="PackedScene" uid="uid://bp4t5unyuuarj" path="res://scenes/AnimatedSprite3DBacklit.tscn" id="2_xrh22"]
+[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/spirte_3d_backlit.gdshader" id="3_8pgqh"]
+[ext_resource type="Texture2D" uid="uid://d00le0165sk17" path="res://art/world/rat_sheet.png" id="4_mhhyr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1r2ik"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kca7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_8pgqh")
+shader_parameter/tex = ExtResource("4_mhhyr")
+shader_parameter/scale = 1.5625
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic1sl"]
+atlas = ExtResource("4_mhhyr")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkek0"]
+atlas = ExtResource("4_mhhyr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx6qx"]
+atlas = ExtResource("4_mhhyr")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2fjl"]
+atlas = ExtResource("4_mhhyr")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4pjnh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic1sl")
+}],
+"loop": true,
+"name": &"back",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkek0")
+}],
+"loop": true,
+"name": &"front",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx6qx")
+}],
+"loop": true,
+"name": &"left",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2fjl")
+}],
+"loop": true,
+"name": &"right",
+"speed": 1.0
+}]
+
+[node name="Rat" type="CharacterBody3D"]
+collision_layer = 4
+script = ExtResource("1_n5u6b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1r2ik")
+
+[node name="AnimatedSprite3dShader" parent="." instance=ExtResource("2_xrh22")]
+material_override = SubResource("ShaderMaterial_4kca7")
+sprite_frames = SubResource("SpriteFrames_4pjnh")
+animation = &"back"
+autoplay = "back"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccc1veee1fifh"
-path="res://.godot/imported/rat_nest.png-57b184001a9f24c285342e5f8e4d56be.ctex"
+uid="uid://cu7hajv0rpl11"
+path="res://.godot/imported/rock_still.png-e0d672f6162569824bfb4b0c39f3356f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/rat_nest.png"
-dest_files=["res://.godot/imported/rat_nest.png-57b184001a9f24c285342e5f8e4d56be.ctex"]
+source_file="res://art/world/rock_still.png"
+dest_files=["res://.godot/imported/rock_still.png-e0d672f6162569824bfb4b0c39f3356f.ctex"]
 
 [params]
 

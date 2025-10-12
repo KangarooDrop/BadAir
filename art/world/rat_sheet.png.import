@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bek2vo7pi03r3"
-path.s3tc="res://.godot/imported/torch_off.png-0d2c9b90ba8890af1c75915ca5bb3d31.s3tc.ctex"
+uid="uid://d00le0165sk17"
+path.s3tc="res://.godot/imported/rat_sheet.png-7473c31867d43724f45ab409170cb546.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/torch_off.png"
-dest_files=["res://.godot/imported/torch_off.png-0d2c9b90ba8890af1c75915ca5bb3d31.s3tc.ctex"]
+source_file="res://art/world/rat_sheet.png"
+dest_files=["res://.godot/imported/rat_sheet.png-7473c31867d43724f45ab409170cb546.s3tc.ctex"]
 
 [params]
 

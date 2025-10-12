@@ -4,7 +4,6 @@ class_name Player
 ####################################################################################################
 
 const SPEED : float = 5.0
-const GRAV : float = 9.8
 const JUMP_FORCE : float = 4.2
 
 const STEP_DIST : float = 32.0/64.0
@@ -23,15 +22,7 @@ const KILL_VEL : float = -20.0
 
 ####################################################################################################
 
-func getGasStrengthToDec(gasStrength : int) -> float:
-	match gasStrength:
-		0:
-			return HEALTH_MAX/30.0
-		1:
-			return HEALTH_MAX/10.0
-		2:
-			return HEALTH_MAX/3.0
-	return 0.0
+var grav : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 const HEALTH_MAX : float = 100.0
 const HEALTH_TO_VISUAL : float = 20.0
@@ -46,6 +37,7 @@ var climbingLastFrame : bool = false
 
 const THROW_MAX_TIME : float = 0.5
 const THROW_MAX_VEL : float = 15.0
+const DROP_MAX_VEL : float = 5.0
 
 ####################################################################################################
 
@@ -79,10 +71,13 @@ func onHandThrowEnd(item, handNode : HandNode):
 
 func onHandExpire(handNode : HandNode) -> void:
 	if handNode.heldItem.id == Util.itemMushroom.id:
-		if handNode == handLeft:
-			handNode.swapHolding(Util.itemLighter)
-		else:
-			handNode.swapHolding(Util.itemBird)
+		swapToBaseItem(handNode)
+	elif handNode.heldItem.id == Util.itemRat.id:
+		swapToBaseItem(handNode)
+		handNode.swapTimer = HandNode.SWAP_MAX_TIME/2.0
+		var dv2 : Vector2 = Vector2.UP.rotated(-head.rotation.y)
+		var dropVel : Vector3 = Vector3(dv2.x, 1.0, dv2.y).normalized() * DROP_MAX_VEL
+		Util.getWorld().createRat(global_position, dropVel)
 
 func _input(event: InputEvent) -> void:
 	if not canControl:
@@ -239,24 +234,20 @@ func _physics_process(delta: float) -> void:
 		
 		velocity.x = lerp(velocity.x, moveDir.x * SPEED, tracLerpVal)
 		velocity.z = lerp(velocity.z, moveDir.z * SPEED, tracLerpVal)
-		
-		if false:
-			velocity.x = moveDir.x * SPEED
-			velocity.z = moveDir.z * SPEED
 	
 		var climbingThisFrame : bool = false
 		if not inputDir.is_zero_approx():
 			raycastGround.target_position = moveDir * GROUND_DIST
 			raycastStep.target_position = moveDir * STEP_DIST
 			if raycastGround.get_collider() && not raycastStep.get_collider():
-				velocity.y = GRAV* delta + CLIMB_VEL
+				velocity.y = grav * delta + CLIMB_VEL
 				climbingThisFrame = true
 		if not climbingThisFrame and climbingLastFrame:
 			velocity.y = 0.0
 		climbingLastFrame = climbingThisFrame
 	
 	if not is_on_floor():
-		velocity.y -= GRAV * delta
+		velocity.y -= grav * delta
 	lastVelocity = velocity
 	move_and_slide()
 	
@@ -282,7 +273,7 @@ func _process(delta: float) -> void:
 		var strength : int = 0
 		for pg in poisonGasses:
 			strength = max(strength, pg.strength)
-		health -= getGasStrengthToDec(strength) * delta
+		health -= Util.getGasStrengthToDec(strength) * delta
 	elif health < HEALTH_MAX:
 		health = min(health + HEALTH_REGEN * delta, HEALTH_MAX)
 	

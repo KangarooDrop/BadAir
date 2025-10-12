@@ -21,6 +21,14 @@ func reset() -> void:
 func getLevel() -> Node3D:
 	return self
 
+func createRat(ratGlobalPos : Vector3, ratVel : Vector3, ratItem : Item = null) -> Object:
+	var rat = Util.ratPacked.instantiate()
+	rat.item = ratItem
+	add_child(rat)
+	rat.global_position = ratGlobalPos
+	rat.velocity = ratVel
+	return rat
+
 func onTriggerEnter(body : Node3D, trigger : Trigger):
 	print("Level wide trigger called for ", trigger.target)
 	return true

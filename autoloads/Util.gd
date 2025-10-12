@@ -6,6 +6,7 @@ const GROUP_INTERACT : String = "Interact"
 
 const thrownItem : PackedScene = preload("res://scenes/ThrownItem.tscn")
 const trackMover : PackedScene = preload("res://scenes/TrackMover.tscn")
+const ratPacked : PackedScene = preload("res://scenes/Rat.tscn")
 
 var itemEmpty : Item = preload("res://scripts/items/ItemEmpty.tres")
 var itemLighter : Item = preload("res://scripts/items/ItemLighter.tres")
@@ -13,6 +14,16 @@ var itemBird : Item = preload("res://scripts/items/ItemBird.tres")
 var itemKey : Item = preload("res://scripts/items/ItemKey.tres")
 var itemRat : Item = preload("res://scripts/items/ItemRat.tres")
 var itemMushroom : Item = preload("res://scripts/items/ItemMushroom.tres")
+
+func getGasStrengthToDec(gasStrength : int) -> float:
+	match gasStrength:
+		0:
+			return 100.0/30.0
+		1:
+			return 100.0/10.0
+		2:
+			return 100.0/3.0
+	return 0.0
 
 func initTarget(object : Node) -> void:
 	var target : String = object.target
@@ -37,3 +48,13 @@ func findByType(parent : Node, type) -> Node:
 
 func getWorld() -> World:
 	return get_tree().root.get_node("World")
+
+func getCameraRotIndex(globalDir : Vector2) -> int:
+	var players : Array = get_tree().get_nodes_in_group("Player")
+	if players.size() == 0:
+		return 0
+	var player : Node3D = players[0]
+	var camRot : float = 0.0 - player.head.rotation.y
+	var gr : float = globalDir.angle()
+	var diff : float = angle_difference(camRot, gr)
+	return (int(fmod(diff + PI*2.0*2.0 - PI/4.0, PI*2.0) / (PI/2.0)))
