@@ -892,33 +892,28 @@
 }
 // entity 34
 {
-"classname" "LockedDoor"
-"origin" "32 224 64"
-}
-// entity 35
-{
 "classname" "Lantern"
 "origin" "32 -296 32"
 "is_lit" "0"
 }
-// entity 36
+// entity 35
 {
 "classname" "Lantern"
 "origin" "-96 -296 32"
 "is_lit" "0"
 }
-// entity 37
+// entity 36
 {
 "classname" "Torch"
 "origin" "-160 -312 160"
 "is_lit" "1"
 }
-// entity 38
+// entity 37
 {
 "classname" "Torch"
 "origin" "96 -312 160"
 }
-// entity 39
+// entity 38
 {
 "classname" "Rat"
 "origin" "-32 32 32"

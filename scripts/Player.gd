@@ -25,10 +25,12 @@ const KILL_VEL : float = -20.0
 var grav : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 const HEALTH_MAX : float = 100.0
+const TIME_TO_DEATH : float = 2.0
 const HEALTH_TO_VISUAL : float = 20.0
 const HEALTH_REGEN : float = HEALTH_MAX/3.0
 var health : float = HEALTH_MAX
 var canControl : bool = true
+var dying : bool = false
 var canExplode : bool = false
 var lastVelocity : Vector3 = Vector3.ZERO
 var handToThrowTime : Dictionary = {}
@@ -260,22 +262,44 @@ func _physics_process(delta: float) -> void:
 ####################################################################################################
 
 func _process(delta: float) -> void:
-	var vigVal : float = max(0.0, (HEALTH_TO_VISUAL-health)/HEALTH_TO_VISUAL)
-	(vignette.material as ShaderMaterial).set_shader_parameter("t", vigVal)
+	#var vigVal : float = max(0.0, (HEALTH_TO_VISUAL-health)/HEALTH_TO_VISUAL)
+	#(vignette.material as ShaderMaterial).set_shader_parameter("t", vigVal)
+	
+	if dying:
+		canControl = false
+		return
 	
 	if health <= 0.0:
 		canControl = false
+		dying = true
+		vignette.material.set_shader_parameter("t", 1.0)
+		
 		await get_tree().create_timer(1.0).timeout
 		Util.getWorld().reset()
 		return
 	
+	var healthChange : float = 0.0
 	if poisonGasses.size() > 0:
 		var strength : int = 0
 		for pg in poisonGasses:
 			strength = max(strength, pg.strength)
-		health -= Util.getGasStrengthToDec(strength) * delta
+		healthChange = -Util.getGasStrengthToDec(strength)
+		#health -= Util.getGasStrengthToDec(strength) * delta
 	elif health < HEALTH_MAX:
-		health = min(health + HEALTH_REGEN * delta, HEALTH_MAX)
+		healthChange = HEALTH_REGEN
+		#health = min(health + HEALTH_REGEN * delta, HEALTH_MAX)
+	
+	if healthChange != 0.0:
+		health = min(HEALTH_MAX, max(0.0, health + healthChange * delta))
+	
+	vignette.material.set_shader_parameter("t", 0.0)
+	if healthChange != 0.0:
+		var timeLeft : float = TIME_TO_DEATH - (health + healthChange * TIME_TO_DEATH)/healthChange
+		var timeVal : float = max(0.0, 1.0 - timeLeft/TIME_TO_DEATH)
+		if timeVal > 1.0:
+			timeVal = 0.0
+		var hpVal : float = max(0.0, (HEALTH_TO_VISUAL-health)/HEALTH_TO_VISUAL)
+		vignette.material.set_shader_parameter("t", max(timeVal, hpVal))
 	
 	if Input.is_action_pressed("mouse_left") and handToThrowTime.has(handLeft):
 		handToThrowTime[handLeft] += delta
