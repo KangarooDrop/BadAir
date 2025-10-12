@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bbcw6gyyvl2s6"]
+
+[ext_resource type="Texture2D" uid="uid://cshhpcokle1ow" path="res://textures/world/rivets_v.png" id="1_ugex8"]
+
+[resource]
+albedo_texture = ExtResource("1_ugex8")
+metallic_specular = 0.0
+texture_filter = 2

@@ -7,6 +7,10 @@ const SPEED : float = 5.0
 const GRAV : float = 9.8
 const JUMP_FORCE : float = 4.2
 
+const STEP_DIST : float = 32.0/64.0
+const GROUND_DIST : float = 32.0/64.0
+const CLIMB_VEL : float = 16.0/64.0 * 8.0
+
 const CON_TRAC_GROUND : float = 0.5
 const CON_TRAC_AIR : float = 0.125
 const UNCON_TRAC_GROUND : float = 0.125
@@ -38,6 +42,8 @@ var canExplode : bool = false
 var lastVelocity : Vector3 = Vector3.ZERO
 var handToThrowTime : Dictionary = {}
 
+var climbingLastFrame : bool = false
+
 const THROW_MAX_TIME : float = 0.5
 const THROW_MAX_VEL : float = 15.0
 
@@ -50,6 +56,9 @@ const THROW_MAX_VEL : float = 15.0
 @onready var vignette : ColorRect = $Head/Camera3D/HUD/ScreenRect/Vignette
 @onready var lighterPickupLabel : Label = $Head/Camera3D/HUD/ScreenRect/Center/Scaler/Label
 @onready var birdPickupLabel : Label = $Head/Camera3D/HUD/ScreenRect/Center/Scaler/Label2
+
+@onready var raycastGround : RayCast3D = $RayCastGround
+@onready var raycastStep : RayCast3D = $RayCastStep
 
 ####################################################################################################
 
@@ -212,8 +221,9 @@ func _physics_process(delta: float) -> void:
 				velocity.y = JUMP_FORCE
 		
 		#WASD Movement
-		var inputDir : Vector2 = Input.get_vector("left", "right", "forward", "backward").rotated(-head.rotation.y)
-		var moveDir : Vector3 = Vector3(inputDir.x, 0.0, inputDir.y).normalized()
+		var inputDir : Vector2 = Input.get_vector("left", "right", "forward", "backward")
+		var iDirRot = inputDir.rotated(-head.rotation.y)
+		var moveDir : Vector3 = Vector3(iDirRot.x, 0.0, iDirRot.y).normalized()
 		
 		var tracLerpVal : float = 0.0
 		if inputDir.is_zero_approx():
@@ -233,6 +243,17 @@ func _physics_process(delta: float) -> void:
 		if false:
 			velocity.x = moveDir.x * SPEED
 			velocity.z = moveDir.z * SPEED
+	
+		var climbingThisFrame : bool = false
+		if not inputDir.is_zero_approx():
+			raycastGround.target_position = moveDir * GROUND_DIST
+			raycastStep.target_position = moveDir * STEP_DIST
+			if raycastGround.get_collider() && not raycastStep.get_collider():
+				velocity.y = GRAV* delta + CLIMB_VEL
+				climbingThisFrame = true
+		if not climbingThisFrame and climbingLastFrame:
+			velocity.y = 0.0
+		climbingLastFrame = climbingThisFrame
 	
 	if not is_on_floor():
 		velocity.y -= GRAV * delta

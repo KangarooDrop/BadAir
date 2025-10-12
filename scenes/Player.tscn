@@ -162,4 +162,12 @@ visible = false
 texture_filter = 0
 texture = ExtResource("4_mdl7e")
 
+[node name="RayCastStep" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.587, 0)
+target_position = Vector3(0, 0, -1)
+
+[node name="RayCastGround" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.837, 0)
+target_position = Vector3(0, 0, -1)
+
 [editable path="Head/Camera3D/HandHolder/HandNodeRight"]
