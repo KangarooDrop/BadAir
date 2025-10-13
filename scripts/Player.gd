@@ -15,7 +15,8 @@ const CON_TRAC_AIR : float = 0.125
 const UNCON_TRAC_GROUND : float = 0.125
 const UNCON_TRAC_AIR : float = 0.017
 
-const SENSITIVITY : float = PI/300.0
+const SENS_MIN : float = PI * 0.5/480.0
+const SENS_MAX : float = PI * 1.5/480.0
 
 const KILL_PLANE : float = -300.0
 const KILL_VEL : float = -20.0
@@ -58,6 +59,8 @@ var unlockedBird : bool = Util.levelIndex > 0
 @onready var raycastGround : RayCast3D = $RayCastGround
 @onready var raycastStep : RayCast3D = $RayCastStep
 
+@onready var audioAccessHolder : Control = $Head/Camera3D/HUD/ScreenRect/AccessibilityHolder
+
 ####################################################################################################
 
 func _ready() -> void:
@@ -70,6 +73,9 @@ func _ready() -> void:
 		handLeft.setHeld(Util.itemLighter)
 	if unlockedBird:
 		handRight.setHeld(Util.itemBird)
+	
+	audioAccessHolder.visible = Settings.settingsVals[Settings.audioAccessKey]
+	Settings.settingsChange.connect(self.onSettingsChange)
 
 func onLevelEnd() -> void:
 	if not unlockedLighter:
@@ -102,8 +108,9 @@ func _input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseMotion:
 		var dp : Vector2 = -event.relative
-		head.rotation.y += dp.x * SENSITIVITY
-		head.rotation.x += dp.y * SENSITIVITY
+		var sensitivity : float = lerp(SENS_MIN, SENS_MAX, Settings.settingsVals[Settings.sensKey])
+		head.rotation.y += dp.x * sensitivity
+		head.rotation.x += dp.y * sensitivity
 		head.rotation.x = clampf(head.rotation.x, -PI/2.0, PI/2.0)
 	
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
@@ -226,7 +233,7 @@ func _physics_process(delta: float) -> void:
 						canExplode = currentHand.light.visible
 					else:
 						currentHand.anim.play("squeeze_bird")
-						makeBirdCall()
+						call_deferred("makeBirdCall")
 				else:
 					var canPickUp : bool = not((pickup == Util.itemLighter and currentHand == handRight) or \
 											(pickup == Util.itemBird and currentHand == handLeft))
@@ -284,10 +291,11 @@ func _physics_process(delta: float) -> void:
 
 ####################################################################################################
 
+func onSettingsChange(settingsKey : String) -> void:
+	if settingsKey == Settings.audioAccessKey:
+		audioAccessHolder.visible = Settings.settingsVals[Settings.audioAccessKey]
+
 func _process(delta: float) -> void:
-	#var vigVal : float = max(0.0, (HEALTH_TO_VISUAL-health)/HEALTH_TO_VISUAL)
-	#(vignette.material as ShaderMaterial).set_shader_parameter("t", vigVal)
-	
 	if dying:
 		canControl = false
 		return
@@ -336,15 +344,21 @@ func _process(delta: float) -> void:
 func onExplode() -> void:
 	health = -999.0
 
+var squawking : bool = false
 func makeBirdCall():
 	if not checkForItem(Util.itemBird.id):
 		return
+	if squawking:
+		return
+	
+	squawking = true
 	var numSquaks : int = currentPoisonStrength + 1
-	var string : String = "Bird Check: "
 	for i in range(numSquaks):
-		string += "SQUAK! "
-	string += "[" + str(numSquaks) + "]"
-	print(string)
+		if audioAccessHolder.visible:
+			var squakNode = Util.audioAccScene.instantiate()
+			audioAccessHolder.add_child(squakNode)
+		await get_tree().create_timer(0.15).timeout
+	squawking = false
 
 var poisonGasses : Array = []
 var currentPoisonStrength : int = -1
@@ -353,6 +367,9 @@ func onEnterPoison(poisonGas) -> void:
 	if poisonGas.strength > currentPoisonStrength:
 		currentPoisonStrength = poisonGas.strength
 		makeBirdCall()
+		if handRight.heldItem.id == Util.itemBird.id:
+			handRight.anim.play("squawk_bird")
+		
 func onExitPoison(poisonGas) -> void:
 	poisonGasses.erase(poisonGas)
 	var newPoisonStrength : int = -1

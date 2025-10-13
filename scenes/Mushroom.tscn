@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bugfr2tjauw4b"]
+[gd_scene load_steps=13 format=3 uid="uid://bugfr2tjauw4b"]
 
 [ext_resource type="PackedScene" uid="uid://bp4t5unyuuarj" path="res://scenes/AnimatedSprite3DBacklit.tscn" id="1_4iinw"]
 [ext_resource type="Script" uid="uid://qnggf20xqqoh" path="res://scripts/Mushroom.gd" id="1_cbtdp"]
 [ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/spirte_3d_backlit.gdshader" id="2_cbtdp"]
 [ext_resource type="Texture2D" uid="uid://b1b0mnp4xvech" path="res://art/world/mushroom.png" id="3_hqq58"]
+[ext_resource type="Script" uid="uid://dwktcwlfg8iw6" path="res://scripts/OmniSens.gd" id="5_hqq58"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4iinw"]
 
@@ -66,4 +67,5 @@ autoplay = "dance"
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(0.5882353, 0.5882353, 1, 1)
 light_energy = 0.5
-omni_range = 2.0
+omni_range = 10.0
+script = ExtResource("5_hqq58")

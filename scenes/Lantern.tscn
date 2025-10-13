@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://boej4cinmodov"]
+[gd_scene load_steps=16 format=3 uid="uid://boej4cinmodov"]
 
 [ext_resource type="PackedScene" uid="uid://bp4t5unyuuarj" path="res://scenes/AnimatedSprite3DBacklit.tscn" id="1_17mgv"]
 [ext_resource type="Script" uid="uid://kkexufyje2r2" path="res://scripts/Lantern.gd" id="1_yyvv0"]
 [ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/spirte_3d_backlit.gdshader" id="2_yyvv0"]
 [ext_resource type="Texture2D" uid="uid://7kqglpwomn6v" path="res://art/world/lantern.png" id="3_awi08"]
 [ext_resource type="Texture2D" uid="uid://uhiacptx6yrn" path="res://art/world/lantern_off.png" id="4_vmnej"]
+[ext_resource type="Script" uid="uid://dwktcwlfg8iw6" path="res://scripts/OmniSens.gd" id="6_awi08"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yyvv0"]
 resource_local_to_scene = true
@@ -85,3 +86,4 @@ animation = &"unlit"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(1, 1, 0.7058824, 1)
+script = ExtResource("6_awi08")

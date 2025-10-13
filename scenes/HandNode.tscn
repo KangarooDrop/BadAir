@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cqjf73acq8rjo"]
+[gd_scene load_steps=44 format=3 uid="uid://cqjf73acq8rjo"]
 
 [ext_resource type="Texture2D" uid="uid://wmobc41a2so" path="res://art/hands/hand_still1.png" id="1_entil"]
 [ext_resource type="Script" uid="uid://33f8ps6tkday" path="res://scripts/HandNode.gd" id="1_f4mcy"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://qn7k3xguqo10" path="res://art/hands/hand_lighter.png" id="7_ktsgm"]
 [ext_resource type="Texture2D" uid="uid://b00bfi16owbge" path="res://art/hands/hand_mushroom.png" id="8_i0d21"]
 [ext_resource type="Texture2D" uid="uid://co7trgqh4u8y1" path="res://art/hands/hand_rat.png" id="9_uhru2"]
+[ext_resource type="Texture2D" uid="uid://ixxrsgjnyblc" path="res://art/hands/bird.png" id="10_i0d21"]
 [ext_resource type="Texture2D" uid="uid://ct725xrj4k4m7" path="res://art/hands/hand_bird.png" id="10_ktsgm"]
+[ext_resource type="Script" uid="uid://dwktcwlfg8iw6" path="res://scripts/OmniSens.gd" id="11_i0d21"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktsgm"]
 atlas = ExtResource("2_ptei0")
@@ -68,6 +70,10 @@ region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25gpd"]
 atlas = ExtResource("9_uhru2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki7sr"]
+atlas = ExtResource("10_i0d21")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2j80"]
@@ -219,6 +225,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ki7sr")
+}],
+"loop": false,
+"name": &"squawk_bird",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_j2j80")
 }, {
 "duration": 1.0,
@@ -229,7 +243,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"squeeze_bird",
-"speed": 6.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -292,12 +306,13 @@ offset = Vector2(32, 32)
 shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mdl7e")
-animation = &"idle_bird"
+animation = &"squawk_bird"
 autoplay = "idle_empty"
 
 [node name="LighterLight" type="OmniLight3D" parent="AnimatedSprite3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0.49243796, 0.71234703, 0.033575296)
 visible = false
-light_energy = 0.5
+omni_range = 10.0
+script = ExtResource("11_i0d21")
 
 [connection signal="animation_finished" from="AnimatedSprite3D" to="." method="onAnimFinished"]

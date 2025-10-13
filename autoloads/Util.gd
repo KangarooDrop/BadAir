@@ -14,6 +14,7 @@ var playerScene : PackedScene = load("res://scenes/Player.tscn")
 var thrownItem : PackedScene = load("res://scenes/ThrownItem.tscn")
 var trackMover : PackedScene = load("res://scenes/TrackMover.tscn")
 var ratPacked : PackedScene = load("res://scenes/Rat.tscn")
+var audioAccScene : PackedScene = load("res://scenes/AccSquawk.tscn")
 
 var itemEmpty : Item = load("res://scripts/items/ItemEmpty.tres")
 var itemLighter : Item = load("res://scripts/items/ItemLighter.tres")
@@ -30,6 +31,15 @@ const levelPaths : Array = \
 	"res://scenes/levels/LevelTest.tscn",
 	
 ]
+
+var envResource : Environment = load("res://scenes/Env.tres")
+func _ready() -> void:
+	Settings.settingsChange.connect(self.onSettingsChange)
+	onSettingsChange(Settings.brightnessKey)
+func onSettingsChange(settingsKey : String) -> void:
+	if settingsKey == Settings.brightnessKey:
+		envResource.ambient_light_energy = lerp(0.0, 6.0, Settings.settingsVals[settingsKey])
+
 
 func getGasStrengthToDec(gasStrength : int) -> float:
 	match gasStrength:

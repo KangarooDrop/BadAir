@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cg7rox51rfkw6" path="res://scripts/MainMenu.gd" id="1_826wr"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_l72w3"]
+[ext_resource type="Environment" uid="uid://bbrmnee68asy" path="res://scenes/Env.tres" id="2_8vx4p"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_826wr"]
-[ext_resource type="PackedScene" uid="uid://bsy45qy3bbqjd" path="res://scenes/GameEnvironment.tscn" id="2_ucygd"]
 [ext_resource type="Material" uid="uid://bo4vex1yqkxj8" path="res://textures/world/wood1.tres" id="5_8vx4p"]
 [ext_resource type="Material" uid="uid://dx6mfybeth3fm" path="res://textures/world/wood_h.tres" id="6_tdapf"]
 [ext_resource type="PackedScene" uid="uid://boej4cinmodov" path="res://scenes/Lantern.tscn" id="7_v41fp"]
@@ -515,7 +515,8 @@ _surfaces = [{
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_826wr")
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("2_ucygd")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_8vx4p")
 
 [node name="FuncGodotMap" type="Node3D" parent="."]
 script = ExtResource("1_l72w3")

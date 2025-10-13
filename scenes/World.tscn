@@ -1,13 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://bg53a66fvc2no"]
 
 [ext_resource type="Script" uid="uid://b6pxcc5v4rxvv" path="res://scripts/World.gd" id="1_d1c63"]
-[ext_resource type="PackedScene" uid="uid://bsy45qy3bbqjd" path="res://scenes/GameEnvironment.tscn" id="2_1lgw5"]
+[ext_resource type="Environment" uid="uid://bbrmnee68asy" path="res://scenes/Env.tres" id="2_7g83o"]
 [ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="6_hlk0d"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_d1c63")
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("2_1lgw5")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_7g83o")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2

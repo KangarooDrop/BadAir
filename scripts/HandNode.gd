@@ -117,3 +117,5 @@ func _process(delta: float) -> void:
 func onAnimFinished() -> void:
 	if anim.animation == "squeeze_bird":
 		anim.play("idle_bird")
+	elif anim.animation == "squawk_bird":
+		anim.play("idle_bird")
