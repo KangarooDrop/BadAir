@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c84b5q1wnk1p3"]
+
+[ext_resource type="Texture2D" uid="uid://cu7hajv0rpl11" path="res://art/world/rock_still.png" id="1_d2bvy"]
+[ext_resource type="Script" uid="uid://bsvj5pm528noq" path="res://scripts/items/Item.gd" id="2_w0sy0"]
+
+[resource]
+script = ExtResource("2_w0sy0")
+id = 6
+animName = "rock"
+groundTexture = ExtResource("1_d2bvy")
+canThrow = true
+canDamage = true
+metadata/_custom_type_script = "uid://bsvj5pm528noq"

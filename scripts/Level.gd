@@ -15,6 +15,7 @@ func _ready() -> void:
 
 func createRat(ratGlobalPos : Vector3, ratVel : Vector3, ratItem : Item) -> Object:
 	var rat = Util.ratPacked.instantiate()
+	ratItem.currentLife = ratItem.lifetime
 	rat.item = ratItem
 	map.add_child(rat)
 	rat.global_position = ratGlobalPos

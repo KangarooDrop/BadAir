@@ -5,6 +5,7 @@ class_name Item
 @export var animName : String = ""
 @export var groundTexture : Texture = preload("res://art/hands/bird.png")
 @export var canThrow : bool = false
+@export var canDamage : bool = false
 
 @export var lifetime : float = -1.0:
 	set(val):

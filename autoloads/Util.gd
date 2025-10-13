@@ -21,11 +21,12 @@ var corpseScene : PackedScene = load("res://scenes/Corpse.tscn")
 var mushroomScene : PackedScene = load("res://scenes/Mushroom.tscn")
 
 var itemEmpty : Item = load("res://scripts/items/ItemEmpty.tres")
-var itemLighter : Item = load("res://scripts/items/ItemLighter.tres")
 var itemBird : Item = load("res://scripts/items/ItemBird.tres")
+var itemLighter : Item = load("res://scripts/items/ItemLighter.tres")
+var itemMushroom : Item = load("res://scripts/items/ItemMushroom.tres")
 var itemKey : Item = load("res://scripts/items/ItemKey.tres")
 var itemRat : Item = load("res://scripts/items/ItemRat.tres")
-var itemMushroom : Item = load("res://scripts/items/ItemMushroom.tres")
+var itemRock : Item = load("res://scripts/items/ItemRock.tres")
 
 var levelIndex : int = 0
 const levelPaths : Array = \

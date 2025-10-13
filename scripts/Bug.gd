@@ -90,15 +90,15 @@ func _physics_process(delta: float) -> void:
 			velocity.z = lerp(velocity.z, wanderDir.z, TRAC_WANDER)
 		else:
 			attacking = false
-		
-		var thrownItems: Array = get_tree().get_nodes_in_group(Util.GROUP_PICKUP)
-		for thing in thrownItems:
-			#add rock into if statment for hurting bug
-			if thing.item.id == Util.itemKey.id:
-				var dp : Vector3 = global_position - thing.global_position
-				var dist = dp.length()
-				if dist < 1.0 and thing.linear_velocity.length() > 0.5:
-					health = -999
+	
+	var thrownItems: Array = get_tree().get_nodes_in_group(Util.GROUP_PICKUP)
+	for thing in thrownItems:
+		#add rock into if statment for hurting bug
+		if thing.item.canDamage:
+			var dp : Vector3 = global_position - thing.global_position
+			var dist = dp.length()
+			if dist < 1.0 and thing.linear_velocity.length() > 0.5:
+				health = -999
 				
 	playAnim()
 	
@@ -136,7 +136,7 @@ func playAnim() -> void:
 			anim.play("right")
 			
 func knockBack():
-	#wanderAngle += PI
+	wanderAngle += PI
 	var v2 = Vector2.UP.rotated(wanderAngle + PI/2) * JUMP_FORCE
 	velocity = Vector3(v2.x,-JUMP_FORCE + KNOCKBACK_DIFF,v2.y)
 	position.y += .3

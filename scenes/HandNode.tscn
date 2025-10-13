@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cqjf73acq8rjo"]
+[gd_scene load_steps=50 format=3 uid="uid://cqjf73acq8rjo"]
 
 [ext_resource type="Texture2D" uid="uid://wmobc41a2so" path="res://art/hands/hand_still1.png" id="1_entil"]
 [ext_resource type="Script" uid="uid://33f8ps6tkday" path="res://scripts/HandNode.gd" id="1_f4mcy"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://co7trgqh4u8y1" path="res://art/hands/hand_rat.png" id="9_uhru2"]
 [ext_resource type="Texture2D" uid="uid://ixxrsgjnyblc" path="res://art/hands/bird.png" id="10_i0d21"]
 [ext_resource type="Texture2D" uid="uid://ct725xrj4k4m7" path="res://art/hands/hand_bird.png" id="10_ktsgm"]
+[ext_resource type="Texture2D" uid="uid://c1bfm3ijfsmoa" path="res://art/hands/hand_rock.png" id="10_uhru2"]
 [ext_resource type="Script" uid="uid://dwktcwlfg8iw6" path="res://scripts/OmniSens.gd" id="11_i0d21"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktsgm"]
@@ -70,6 +71,10 @@ region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25gpd"]
 atlas = ExtResource("9_uhru2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kal8g"]
+atlas = ExtResource("10_uhru2")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ki7sr"]
@@ -134,6 +139,22 @@ region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tr0hq"]
 atlas = ExtResource("9_uhru2")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vmg1"]
+atlas = ExtResource("10_uhru2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mjwv"]
+atlas = ExtResource("10_uhru2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qetdu"]
+atlas = ExtResource("10_uhru2")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjr5d"]
+atlas = ExtResource("10_uhru2")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mdl7e"]
@@ -225,6 +246,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_kal8g")
+}],
+"loop": true,
+"name": &"idle_rock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ki7sr")
 }],
 "loop": false,
@@ -295,6 +324,23 @@ animations = [{
 "loop": false,
 "name": &"throw_rat",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vmg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mjwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qetdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjr5d")
+}],
+"loop": true,
+"name": &"throw_rock",
+"speed": 5.0
 }]
 
 [node name="HandNode" type="Node3D"]
@@ -306,7 +352,7 @@ offset = Vector2(32, 32)
 shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mdl7e")
-animation = &"squawk_bird"
+animation = &"throw_rock"
 autoplay = "idle_empty"
 
 [node name="LighterLight" type="OmniLight3D" parent="AnimatedSprite3D"]

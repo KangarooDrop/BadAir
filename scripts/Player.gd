@@ -96,11 +96,11 @@ func onHandExpire(handNode : HandNode) -> void:
 		handNode.heldItem.on_death.emit()
 		swapToBaseItem(handNode)
 	elif handNode.heldItem.id == Util.itemRat.id:
-		swapToBaseItem(handNode)
-		handNode.swapTimer = HandNode.SWAP_MAX_TIME/2.0
 		var dv2 : Vector2 = Vector2.UP.rotated(-head.rotation.y)
 		var dropVel : Vector3 = Vector3(dv2.x, 1.0, dv2.y).normalized() * DROP_MAX_VEL
-		Util.getWorld().getLevel().createRat(global_position, dropVel)
+		Util.getWorld().getLevel().createRat(global_position, dropVel, handNode.heldItem)
+		swapToBaseItem(handNode)
+		handNode.swapTimer = HandNode.SWAP_MAX_TIME/2.0
 
 func _input(event: InputEvent) -> void:
 	if not canControl:
@@ -131,6 +131,9 @@ func _input(event: InputEvent) -> void:
 			canExplode = false
 		if event.keycode == KEY_6:
 			handLeft.swapHolding(Util.itemRat.duplicate())
+			canExplode = false
+		if event.keycode == KEY_7:
+			handLeft.swapHolding(Util.itemRock.duplicate())
 			canExplode = false
 	
 			"""

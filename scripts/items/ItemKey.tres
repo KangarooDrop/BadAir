@@ -9,4 +9,5 @@ id = 4
 animName = "key"
 groundTexture = ExtResource("1_ls0v1")
 canThrow = true
+canDamage = true
 metadata/_custom_type_script = "uid://bsvj5pm528noq"

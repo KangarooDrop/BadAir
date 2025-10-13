@@ -65,6 +65,15 @@ func _physics_process(delta: float) -> void:
 			velocity.x = lerp(velocity.x, wanderDir.x, TRAC_WANDER)
 			velocity.z = lerp(velocity.z, wanderDir.z, TRAC_WANDER)
 	
+	var thrownItems: Array = get_tree().get_nodes_in_group(Util.GROUP_PICKUP)
+	for thing in thrownItems:
+		#add rock into if statment for hurting bug
+		if thing.item.canDamage:
+			var dp : Vector3 = global_position - thing.global_position
+			var dist = dp.length()
+			if dist < 1.0 and thing.linear_velocity.length() > 0.5:
+				health = -999
+	
 	playAnim()
 	
 	move_and_slide()
