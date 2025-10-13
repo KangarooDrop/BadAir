@@ -74,6 +74,7 @@ script = ExtResource("1_n5u6b")
 shape = SubResource("SphereShape3D_1r2ik")
 
 [node name="AnimatedSprite3dShader" parent="." instance=ExtResource("2_xrh22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 material_override = SubResource("ShaderMaterial_4kca7")
 sprite_frames = SubResource("SpriteFrames_4pjnh")
 animation = &"back"

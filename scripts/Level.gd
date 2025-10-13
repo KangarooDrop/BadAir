@@ -21,12 +21,21 @@ func createRat(ratGlobalPos : Vector3, ratVel : Vector3, ratItem : Item = null) 
 	rat.velocity = ratVel
 	return rat
 
-func createThrownItem(tiGlobalPos : Vector3, throwVel : Vector3, item : Item):
+func createThrownItem(tiGlobalPos : Vector3, throwVel : Vector3, item : Item) -> Object:
 	var thrownItem : ThrownItem = Util.thrownItem.instantiate()
 	map.add_child(thrownItem)
 	thrownItem.global_position = tiGlobalPos
 	thrownItem.setItem(item)
 	thrownItem.linear_velocity = throwVel
+	return thrownItem
+
+func createCorpse(corpseGlobalPos : Vector3, corspeVel : Vector3, corpseTexture : Texture) -> Object:
+	var corpse = Util.corpseScene.instantiate()
+	map.add_child(corpse)
+	corpse.global_position = corpseGlobalPos
+	corpse.setTexture(corpseTexture)
+	corpse.linear_velocity = corspeVel
+	return corpse
 
 func onTriggerEnter(_body : Node3D, trigger : Trigger):
 	if trigger.targetname == "LevelEnd":

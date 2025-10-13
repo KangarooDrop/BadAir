@@ -23,7 +23,7 @@ var onFloorLastFrame : bool = false
 @onready var anim : AnimatedSprite3D = $AnimatedSprite3dShader
 
 func _ready() -> void:
-	pass
+	add_to_group(Util.GROUP_BUGGIE)
 
 func _physics_process(delta: float) -> void:
 	if health <= 0.0:
@@ -68,7 +68,8 @@ func _physics_process(delta: float) -> void:
 				target = i
 				
 		if nearestDist < 1.0:
-			target.getBit(DAMAGE)
+			if target.has_method("getBit"):
+				target.getBit(DAMAGE)
 			knockBack()
 			attacking = true
 		if nearestDist < DETECT_RANGE and (not afraid or tDist < nearestDist):
@@ -84,7 +85,7 @@ func _physics_process(delta: float) -> void:
 		elif not attacking:
 			wanderAngle += (randf()*2.0-1.0) * PI/8.0
 			wanderAngle = fmod(wanderAngle + PI*2.0, PI*2.0)
-			var wd2 : Vector2 = Vector2.UP.rotated(wanderAngle)
+			var wd2 : Vector2 = Vector2.RIGHT.rotated(wanderAngle)
 			var wanderDir : Vector3 = Vector3(wd2.x, 0.0, wd2.y)
 			velocity.x = lerp(velocity.x, wanderDir.x, TRAC_WANDER)
 			velocity.z = lerp(velocity.z, wanderDir.z, TRAC_WANDER)
@@ -114,7 +115,7 @@ func _physics_process(delta: float) -> void:
 			wanderAngle += PI
 	
 	if not is_on_floor() and onFloorLastFrame:
-		if not afraid:
+		if afraid:
 			velocity.y = JUMP_FORCE
 		else:
 			velocity = -velocity

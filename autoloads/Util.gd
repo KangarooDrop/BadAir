@@ -10,12 +10,14 @@ const GROUP_TARGET : String = "Target"
 const GROUP_PICKUP : String = "Pickup"
 const GROUP_INTERACT : String = "Interact"
 const GROUP_RAT : String = "Rat"
+const GROUP_BUGGIE : String = "Buggie"
 
 var playerScene : PackedScene = load("res://scenes/Player.tscn")
 var thrownItem : PackedScene = load("res://scenes/ThrownItem.tscn")
 var trackMover : PackedScene = load("res://scenes/TrackMover.tscn")
 var ratPacked : PackedScene = load("res://scenes/Rat.tscn")
 var audioAccScene : PackedScene = load("res://scenes/AccSquawk.tscn")
+var corpseScene : PackedScene = load("res://scenes/Corpse.tscn")
 
 var itemEmpty : Item = load("res://scripts/items/ItemEmpty.tres")
 var itemLighter : Item = load("res://scripts/items/ItemLighter.tres")

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dea1jdtcbegwr"]
+
+[ext_resource type="Script" uid="uid://cixbag0i2mkdh" path="res://scripts/Corpse.gd" id="1_p70o4"]
+[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/spirte_3d_backlit.gdshader" id="2_6n52u"]
+[ext_resource type="Texture2D" uid="uid://bxt0tv35w1es0" path="res://art/rat_dead.png" id="3_23ujd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5t5to"]
+radius = 0.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ww7y"]
+render_priority = 0
+shader = ExtResource("2_6n52u")
+shader_parameter/tex = ExtResource("3_23ujd")
+shader_parameter/scale = 1.5625
+
+[node name="Corpse" type="RigidBody3D"]
+collision_layer = 0
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_p70o4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5t5to")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+material_override = SubResource("ShaderMaterial_3ww7y")
+texture = ExtResource("3_23ujd")

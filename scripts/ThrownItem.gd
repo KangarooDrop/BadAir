@@ -38,5 +38,6 @@ func onExpire():
 		Util.getWorld().getLevel().createRat(global_position + Vector3.UP * 0.1, Vector3.UP * 4.0, item)
 		queue_free()
 		
-func getBit(damage) -> void:
-	pass
+func getBit(_damage) -> void:
+	Util.getWorld().getLevel().createCorpse(global_position, linear_velocity, Rat.CORPSE_TEX)
+	queue_free()

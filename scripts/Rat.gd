@@ -1,6 +1,7 @@
 extends CharacterBody3D
 class_name Rat
 
+const CORPSE_TEX : Texture2D = preload("res://art/rat_dead.png")
 const HEALTH_MAX : float = 30.0
 const HEALTH_REGEN : float = HEALTH_MAX/3.0
 const SPEED : float = 2.5
@@ -29,6 +30,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if health <= 0.0:
+		Util.getWorld().getLevel().createCorpse(global_position, velocity, CORPSE_TEX)
 		queue_free()
 		return
 	
@@ -42,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	
 	var afraid : bool = false
 	if is_on_floor() or jumpingOffWall:
-		var threats : Array = get_tree().get_nodes_in_group("Player")
+		var threats : Array = get_tree().get_nodes_in_group("Player") + get_tree().get_nodes_in_group(Util.GROUP_BUGGIE)
 		var tDist : float = 0.0
 		var runDir : Vector3 = Vector3.ZERO
 		for other : Node3D in threats:
