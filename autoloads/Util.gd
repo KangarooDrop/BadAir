@@ -9,6 +9,7 @@ const worldScenePath : String = "res://scenes/World.tscn"
 const GROUP_TARGET : String = "Target"
 const GROUP_PICKUP : String = "Pickup"
 const GROUP_INTERACT : String = "Interact"
+const GROUP_RAT : String = "RAT"
 
 var playerScene : PackedScene = load("res://scenes/Player.tscn")
 var thrownItem : PackedScene = load("res://scenes/ThrownItem.tscn")
