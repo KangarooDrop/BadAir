@@ -19,6 +19,7 @@ class_name Item
 var currentLife : float = -1.0
 
 signal on_expire()
+signal on_death()
 
 func _process(delta : float) -> void:
 	if lifetime != -1:

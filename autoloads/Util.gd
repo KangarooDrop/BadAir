@@ -18,6 +18,7 @@ var trackMover : PackedScene = load("res://scenes/TrackMover.tscn")
 var ratPacked : PackedScene = load("res://scenes/Rat.tscn")
 var audioAccScene : PackedScene = load("res://scenes/AccSquawk.tscn")
 var corpseScene : PackedScene = load("res://scenes/Corpse.tscn")
+var mushroomScene : PackedScene = load("res://scenes/Mushroom.tscn")
 
 var itemEmpty : Item = load("res://scripts/items/ItemEmpty.tres")
 var itemLighter : Item = load("res://scripts/items/ItemLighter.tres")

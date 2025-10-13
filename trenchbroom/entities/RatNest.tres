@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dnyyq12yh6job"]
+
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_8jytu"]
+[ext_resource type="PackedScene" uid="uid://psvyolg4s4fi" path="res://scenes/RatNest.tscn" id="1_ch8fv"]
+
+[resource]
+script = ExtResource("1_8jytu")
+scene_file = ExtResource("1_ch8fv")
+classname = "RatNest"
+meta_properties = {
+"color": Color(0.8, 0.5254902, 0.43137255, 1),
+"size": AABB(-32, -32, -32, 32, 32, 32)
+}
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

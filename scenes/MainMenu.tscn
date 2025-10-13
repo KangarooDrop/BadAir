@@ -710,6 +710,20 @@ theme_override_fonts/font = ExtResource("17_8vx4p")
 theme_override_font_sizes/font_size = 32
 text = "Play"
 
+[node name="ContinueButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_8vx4p")
+theme_override_font_sizes/font_size = 32
+text = "Continue"
+
+[node name="NewButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_8vx4p")
+theme_override_font_sizes/font_size = 32
+text = "New"
+
 [node name="SettingsButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("17_8vx4p")
@@ -729,6 +743,8 @@ theme_override_font_sizes/font_size = 32
 text = "Quit"
 
 [connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/PlayButton" to="." method="onPlayPressed"]
+[connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/ContinueButton" to="." method="onContinuePressed"]
+[connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/NewButton" to="." method="onNewPressed"]
 [connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/SettingsButton" to="." method="onSettingsPressed"]
 [connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/CreditsButton" to="." method="onCreditsPressed"]
 [connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/QuitButton" to="." method="onQuitPressed"]

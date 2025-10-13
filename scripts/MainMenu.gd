@@ -13,6 +13,10 @@ var camTimer : float = 0.0
 @onready var rotator : Node3D = $CamRot
 @onready var cam : Camera3D = $CamRot/Camera3D
 
+@onready var playButton : Button = $CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/PlayButton
+@onready var continueButton : Button = $CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/ContinueButton
+@onready var newButton : Button = $CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/NewButton
+
 func _ready() -> void:
 	cam.position.y = CAM_HEIGHT
 	cam.position.z = CAM_OFFSET
@@ -22,6 +26,10 @@ func _ready() -> void:
 	
 	Util.showMouse()
 	MusicManager.playMainMenu()
+	
+	playButton.visible = (Util.levelIndex == 0)
+	continueButton.visible = not playButton.visible
+	newButton.visible = continueButton.visible
 
 func _process(delta: float) -> void:
 	camTimer += delta
@@ -46,6 +54,13 @@ func _process(delta: float) -> void:
 
 func onPlayPressed() -> void:
 	get_tree().change_scene_to_file(Util.worldScenePath)
+
+func onNewPressed() -> void:
+	Util.levelIndex = 0
+	onPlayPressed()
+
+func onContinuePressed() -> void:
+	onPlayPressed()
 
 func onSettingsPressed() -> void:
 	Settings.show()

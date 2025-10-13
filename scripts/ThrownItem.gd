@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 
 func onExpire():
 	if item.id == Util.itemMushroom.id:
-		queue_free()
+		die()
 	elif item.id == Util.itemRat.id:
 		item.currentLife = item.lifetime
 		Util.getWorld().getLevel().createRat(global_position + Vector3.UP * 0.1, Vector3.UP * 4.0, item)
@@ -40,4 +40,8 @@ func onExpire():
 		
 func getBit(_damage) -> void:
 	Util.getWorld().getLevel().createCorpse(global_position, linear_velocity, Rat.CORPSE_TEX)
+	die()
+
+func die():
+	item.on_death.emit()
 	queue_free()

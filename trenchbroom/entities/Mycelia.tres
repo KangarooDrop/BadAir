@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://bhhsp5s07pvjt"]
+
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_21jop"]
+[ext_resource type="PackedScene" uid="uid://chskd2q5nnayu" path="res://scenes/Mycelia.tscn" id="1_qatrv"]
+
+[resource]
+script = ExtResource("1_21jop")
+scene_file = ExtResource("1_qatrv")
+classname = "Mycelia"
+meta_properties = {
+"color": Color(0.78431374, 0.60784316, 1, 1),
+"size": AABB(-32, -32, -4, 32, 32, 4)
+}
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

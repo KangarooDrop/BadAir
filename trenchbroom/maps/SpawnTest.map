@@ -915,11 +915,16 @@
 }
 // entity 38
 {
-"classname" "Rat"
-"origin" "-32 32 32"
+"classname" "bug"
+"origin" "-224 32 32"
 }
 // entity 39
 {
-"classname" "bug"
-"origin" "-224 32 32"
+"classname" "RatNest"
+"origin" "480 224 32"
+}
+// entity 40
+{
+"classname" "Mycelia"
+"origin" "-288 224 4"
 }

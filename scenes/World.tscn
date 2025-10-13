@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg53a66fvc2no"]
+[gd_scene load_steps=5 format=3 uid="uid://bg53a66fvc2no"]
 
 [ext_resource type="Script" uid="uid://b6pxcc5v4rxvv" path="res://scripts/World.gd" id="1_d1c63"]
 [ext_resource type="Environment" uid="uid://bbrmnee68asy" path="res://scenes/Env.tres" id="2_7g83o"]
 [ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="6_hlk0d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7g83o"]
+size = Vector3(1000, 100, 1000)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_d1c63")
@@ -12,7 +15,6 @@ environment = ExtResource("2_7g83o")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 
 [node name="ButtonHolder" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -32,9 +34,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -85.5
-offset_top = -66.0
+offset_top = -89.0
 offset_right = 85.5
-offset_bottom = 66.0
+offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 6
@@ -44,6 +46,12 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_hlk0d")
 theme_override_font_sizes/font_size = 32
 text = "Resume"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/ButtonHolder/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_hlk0d")
+theme_override_font_sizes/font_size = 32
+text = "Restart"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/ButtonHolder/VBoxContainer"]
 layout_mode = 2
@@ -57,6 +65,17 @@ theme_override_fonts/font = ExtResource("6_hlk0d")
 theme_override_font_sizes/font_size = 32
 text = "Main Menu"
 
+[node name="KillArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+shape = SubResource("BoxShape3D_7g83o")
+
 [connection signal="pressed" from="CanvasLayer/ButtonHolder/VBoxContainer/ResumeButton" to="." method="onResumePressed"]
+[connection signal="pressed" from="CanvasLayer/ButtonHolder/VBoxContainer/RestartButton" to="." method="onRestartPressed"]
 [connection signal="pressed" from="CanvasLayer/ButtonHolder/VBoxContainer/SettingsButton" to="." method="onSettingsPressed"]
 [connection signal="pressed" from="CanvasLayer/ButtonHolder/VBoxContainer/MainMenuButton" to="." method="onMainMenuPressed"]
+[connection signal="area_entered" from="KillArea" to="." method="onKillAreaEnter"]
+[connection signal="body_entered" from="KillArea" to="." method="onKillAreaEnter"]

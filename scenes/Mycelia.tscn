@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://chskd2q5nnayu"]
+
+[ext_resource type="Script" uid="uid://cprljx10pwdjl" path="res://scripts/Mycelia.gd" id="1_ichp7"]
+[ext_resource type="Texture2D" uid="uid://ca4lo554cen15" path="res://textures/world/moss_splatter.png" id="1_ihfxo"]
+[ext_resource type="Script" uid="uid://dwktcwlfg8iw6" path="res://scripts/OmniSens.gd" id="3_8gopy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb2yb"]
+transparency = 1
+albedo_texture = ExtResource("1_ihfxo")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ichp7"]
+
+[node name="Mycelia" type="Node3D"]
+script = ExtResource("1_ichp7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.016, 0)
+material_override = SubResource("StandardMaterial3D_sb2yb")
+mesh = SubResource("QuadMesh_ichp7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35695094, 0)
+light_color = Color(0.5882353, 0.5882353, 1, 1)
+light_energy = 0.25
+omni_range = 15.0
+script = ExtResource("3_8gopy")

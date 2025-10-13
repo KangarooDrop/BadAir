@@ -32,6 +32,11 @@ func onResumePressed() -> void:
 	Util.hideMouse()
 	player.canControl = true
 
+func onRestartPressed() -> void:
+	onResumePressed()
+	player.free()
+	reset()
+
 func onSettingsPressed() -> void:
 	Settings.show()
 
@@ -75,3 +80,11 @@ func addPlayerAndLevel():
 
 func getLevel():
 	return currentLevel
+
+func onKillAreaEnter(other : Node) -> void:
+	if other.is_in_group("Player"):
+		other.health = -999.0
+	elif other.has_method("die"):
+		other.die()
+	else:
+		other.queue_free()

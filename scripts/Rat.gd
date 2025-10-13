@@ -9,7 +9,6 @@ const TRAC_RUN : float = 0.5
 const TRAC_WANDER : float = 0.05
 const JUMP_FORCE : float = 4.2
 const DETECT_RANGE : float = 5.0
-const KILL_PLANE : float = -300.0
 
 var grav : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var health : float = HEALTH_MAX
@@ -31,7 +30,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if health <= 0.0:
 		Util.getWorld().getLevel().createCorpse(global_position, velocity, CORPSE_TEX)
-		queue_free()
+		die()
 		return
 	
 	if poisonGasses.size() > 0:
@@ -87,9 +86,6 @@ func _physics_process(delta: float) -> void:
 			global_position += velocity * delta
 			wanderAngle += PI
 	onFloorLastFrame = is_on_floor()
-	
-	if position.y < KILL_PLANE:
-		health = -999.0
 
 func playAnim() -> void:
 	var dirIndex : int = Util.getCameraRotIndex(Vector2(velocity.x, velocity.z))
@@ -119,3 +115,7 @@ func onExitPoison(poisonGas) -> void:
 	
 func getBit(damage) -> void:
 	health -= damage
+
+func die():
+	item.on_death.emit()
+	queue_free()

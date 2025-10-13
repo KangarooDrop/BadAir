@@ -18,7 +18,6 @@ const UNCON_TRAC_AIR : float = 0.017
 const SENS_MIN : float = PI * 0.5/480.0
 const SENS_MAX : float = PI * 1.5/480.0
 
-const KILL_PLANE : float = -300.0
 const KILL_VEL : float = -20.0
 
 ####################################################################################################
@@ -94,6 +93,7 @@ func onHandThrowEnd(item, handNode : HandNode):
 
 func onHandExpire(handNode : HandNode) -> void:
 	if handNode.heldItem.id == Util.itemMushroom.id:
+		handNode.heldItem.on_death.emit()
 		swapToBaseItem(handNode)
 	elif handNode.heldItem.id == Util.itemRat.id:
 		swapToBaseItem(handNode)
@@ -287,8 +287,6 @@ func _physics_process(delta: float) -> void:
 	if velocity.y == 0.0 and lastVelocity.y < 0.0:
 		if lastVelocity.y <= KILL_VEL:
 			health = -999.0
-	if position.y < KILL_PLANE:
-		health = -999.0
 
 ####################################################################################################
 

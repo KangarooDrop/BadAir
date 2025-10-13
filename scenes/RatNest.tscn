@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://psvyolg4s4fi"]
+
+[ext_resource type="Script" uid="uid://b4llqnbthw7j5" path="res://scripts/RatNest.gd" id="1_h0u3g"]
+[ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/spirte_3d_backlit.gdshader" id="2_nfkyp"]
+[ext_resource type="Texture2D" uid="uid://ccc1veee1fifh" path="res://art/world/rat_nest.png" id="3_3whjo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ylmj"]
+render_priority = 0
+shader = ExtResource("2_nfkyp")
+shader_parameter/tex = ExtResource("3_3whjo")
+shader_parameter/scale = 1.5625
+
+[node name="RatNest" type="Node3D"]
+script = ExtResource("1_h0u3g")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+material_override = SubResource("ShaderMaterial_2ylmj")
+texture = ExtResource("3_3whjo")

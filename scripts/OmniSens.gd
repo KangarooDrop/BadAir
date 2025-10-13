@@ -1,4 +1,5 @@
 extends OmniLight3D
+class_name OmniSens
 
 @onready var baseRange : float = self.omni_range
 

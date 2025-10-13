@@ -13,13 +13,20 @@ func _ready() -> void:
 	player.global_position = spawnNode.global_position
 	player.head.rotation.y = spawnNode.rotation.y
 
-func createRat(ratGlobalPos : Vector3, ratVel : Vector3, ratItem : Item = null) -> Object:
+func createRat(ratGlobalPos : Vector3, ratVel : Vector3, ratItem : Item) -> Object:
 	var rat = Util.ratPacked.instantiate()
 	rat.item = ratItem
 	map.add_child(rat)
 	rat.global_position = ratGlobalPos
 	rat.velocity = ratVel
 	return rat
+
+func createMushroom(mushroomGlobalPos : Vector3, mushroomItem : Item) -> Object:
+	var mushi = Util.mushroomScene.instantiate()
+	mushi.item = mushroomItem
+	map.add_child(mushi)
+	mushi.global_position = mushroomGlobalPos
+	return mushi
 
 func createThrownItem(tiGlobalPos : Vector3, throwVel : Vector3, item : Item) -> Object:
 	var thrownItem : ThrownItem = Util.thrownItem.instantiate()

@@ -8,7 +8,6 @@ const TRAC_RUN : float = 0.5
 const TRAC_WANDER : float = 0.05
 const JUMP_FORCE : float = 4.2
 const DETECT_RANGE : float = 5.0
-const KILL_PLANE : float = -300.0
 const DAMAGE : float = 60.0
 const KNOCKBACK_DIFF : float = 2.5
 
@@ -123,9 +122,6 @@ func _physics_process(delta: float) -> void:
 			wanderAngle += PI
 			
 	onFloorLastFrame = is_on_floor()
-	
-	if position.y < KILL_PLANE:
-		health = -999.0
 
 func playAnim() -> void:
 	var dirIndex : int = Util.getCameraRotIndex(Vector2(velocity.x, velocity.z))
