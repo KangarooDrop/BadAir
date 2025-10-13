@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bv2cwvspfohka" path="res://textures/BadAir/art/fence.png" id="1_iovyl"]
 
 [resource]
+transparency = 1
 albedo_texture = ExtResource("1_iovyl")
 metallic_specular = 0.0
 texture_filter = 2
