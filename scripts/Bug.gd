@@ -1,5 +1,5 @@
 extends CharacterBody3D
-class_name Rat
+class_name Bug
 
 const HEALTH_MAX : float = 30.0
 const HEALTH_REGEN : float = HEALTH_MAX/3.0
@@ -21,11 +21,7 @@ var onFloorLastFrame : bool = false
 @onready var anim : AnimatedSprite3D = $AnimatedSprite3dShader
 
 func _ready() -> void:
-	if item == null:
-		item = Util.itemRat.duplicate()
-	item.currentLife = item.lifetime
-	add_to_group(Util.GROUP_PICKUP)
-	add_to_group(Util.GROUP_RAT)
+	pass
 
 func _physics_process(delta: float) -> void:
 	if health <= 0.0:
@@ -51,7 +47,7 @@ func _physics_process(delta: float) -> void:
 			if dist < DETECT_RANGE and (not afraid or tDist < dist):
 				afraid = true
 				tDist = dist
-				runDir = Vector3(dp.x, 0.0, dp.z).normalized()
+				runDir = Vector3(-dp.x, 0.0, -dp.z).normalized()
 		if afraid:
 			velocity.x = lerp(velocity.x, runDir.x * SPEED, TRAC_RUN)
 			velocity.z = lerp(velocity.z, runDir.z * SPEED, TRAC_RUN)
@@ -78,7 +74,7 @@ func _physics_process(delta: float) -> void:
 			wanderAngle += PI
 	
 	if not is_on_floor() and onFloorLastFrame:
-		if afraid:
+		if not afraid:
 			velocity.y = JUMP_FORCE
 		else:
 			velocity = -velocity

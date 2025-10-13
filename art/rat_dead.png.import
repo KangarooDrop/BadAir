@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boh6ts0qaiy37"
-path="res://.godot/imported/bug_butt.png-333d0a1a1097fa8eb812d8dadb182c6a.ctex"
+uid="uid://bxt0tv35w1es0"
+path="res://.godot/imported/rat_dead.png-475578fcf4b6069de8d61214dc634a33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/bug_butt.png"
-dest_files=["res://.godot/imported/bug_butt.png-333d0a1a1097fa8eb812d8dadb182c6a.ctex"]
+source_file="res://art/rat_dead.png"
+dest_files=["res://.godot/imported/rat_dead.png-475578fcf4b6069de8d61214dc634a33.ctex"]
 
 [params]
 

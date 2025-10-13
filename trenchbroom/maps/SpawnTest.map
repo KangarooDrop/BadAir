@@ -918,3 +918,8 @@
 "classname" "Rat"
 "origin" "-32 32 32"
 }
+// entity 39
+{
+"classname" "bug"
+"origin" "-224 32 32"
+}

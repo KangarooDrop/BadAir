@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dddyr1rrprkgv"
-path="res://.godot/imported/bug_front.png-1afd9199e379e101f5330959974b43bd.ctex"
+uid="uid://bdcee0vc6x7pi"
+path="res://.godot/imported/smooth_rock_light.png-4d20a10db4757e8515aa6118d183a132.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/bug_front.png"
-dest_files=["res://.godot/imported/bug_front.png-1afd9199e379e101f5330959974b43bd.ctex"]
+source_file="res://textures/world/smooth_rock_light.png"
+dest_files=["res://.godot/imported/smooth_rock_light.png-4d20a10db4757e8515aa6118d183a132.ctex"]
 
 [params]
 
