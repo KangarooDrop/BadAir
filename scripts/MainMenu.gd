@@ -21,6 +21,7 @@ func _ready() -> void:
 	cam.rotation.y = CAM_ROT_Y
 	
 	Util.showMouse()
+	MusicManager.playMainMenu()
 
 func _process(delta: float) -> void:
 	camTimer += delta

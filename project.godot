@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 Settings="*res://autoloads/Settings.tscn"
 Util="*res://autoloads/Util.gd"
 Credits="*res://autoloads/Credits.tscn"
+MusicManager="*res://autoloads/MusicManager.gd"
+SoundManager="*res://autoloads/SoundManager.gd"
 
 [display]
 

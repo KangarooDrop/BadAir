@@ -232,8 +232,9 @@ func _physics_process(delta: float) -> void:
 						currentHand.setLit(not currentHand.light.visible)
 						canExplode = currentHand.light.visible
 					else:
-						currentHand.anim.play("squeeze_bird")
-						call_deferred("makeBirdCall")
+						if not squawking:
+							currentHand.anim.play("squeeze_bird")
+							call_deferred("makeBirdCall")
 				else:
 					var canPickUp : bool = not((pickup == Util.itemLighter and currentHand == handRight) or \
 											(pickup == Util.itemBird and currentHand == handLeft))
@@ -347,20 +348,33 @@ func onExplode() -> void:
 	health = -999.0
 
 var squawking : bool = false
-func makeBirdCall():
+var squawkBuffer : int = -1
+func makeBirdCall(buffered : bool = false):
 	if not checkForItem(Util.itemBird.id):
 		return
+	
+	var squakStrength : int = currentPoisonStrength + 1
 	if squawking:
+		squawkBuffer = squakStrength
 		return
+	if squawkBuffer != -1:
+		squakStrength = squawkBuffer
 	
 	squawking = true
-	var numSquaks : int = currentPoisonStrength + 1
-	for i in range(numSquaks):
+	var asp = SoundManager.playBirdSound(squakStrength)
+	asp.finished.connect(self.onSquawkFinished)
+	
+	for i in range(squakStrength):
 		if audioAccessHolder.visible:
 			var squakNode = Util.audioAccScene.instantiate()
 			audioAccessHolder.add_child(squakNode)
 		await get_tree().create_timer(0.15).timeout
+
+func onSquawkFinished():
 	squawking = false
+	if squawkBuffer != -1:
+		makeBirdCall()
+		squawkBuffer = -1
 
 var poisonGasses : Array = []
 var currentPoisonStrength : int = -1
@@ -368,7 +382,7 @@ func onEnterPoison(poisonGas) -> void:
 	poisonGasses.append(poisonGas)
 	if poisonGas.strength > currentPoisonStrength:
 		currentPoisonStrength = poisonGas.strength
-		makeBirdCall()
+		makeBirdCall(true)
 		if handRight.heldItem.id == Util.itemBird.id:
 			handRight.anim.play("squawk_bird")
 		
