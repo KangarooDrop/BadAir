@@ -114,3 +114,6 @@ func onExitPoison(poisonGas) -> void:
 		if pg.strength > newPoisonStrength:
 			newPoisonStrength = pg.strength
 	currentPoisonStrength = newPoisonStrength
+	
+func getBit(damage) -> void:
+	health -= damage

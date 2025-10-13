@@ -37,3 +37,6 @@ func onExpire():
 		item.currentLife = item.lifetime
 		Util.getWorld().getLevel().createRat(global_position + Vector3.UP * 0.1, Vector3.UP * 4.0, item)
 		queue_free()
+		
+func getBit(damage) -> void:
+	pass

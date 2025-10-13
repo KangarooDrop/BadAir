@@ -316,10 +316,12 @@ func _process(delta: float) -> void:
 			strength = max(strength, pg.strength)
 		healthChange = -Util.getGasStrengthToDec(strength)
 		#health -= Util.getGasStrengthToDec(strength) * delta
+		
 	elif health < HEALTH_MAX:
 		healthChange = HEALTH_REGEN
 		#health = min(health + HEALTH_REGEN * delta, HEALTH_MAX)
 	
+			
 	if healthChange != 0.0:
 		health = min(HEALTH_MAX, max(0.0, health + healthChange * delta))
 	
@@ -377,3 +379,7 @@ func onExitPoison(poisonGas) -> void:
 		if pg.strength > newPoisonStrength:
 			newPoisonStrength = pg.strength
 	currentPoisonStrength = newPoisonStrength
+
+
+func getBit(damage) -> void:
+	health -= damage
