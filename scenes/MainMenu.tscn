@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://dfvk4qus52i0q"]
+[gd_scene load_steps=49 format=4 uid="uid://dfvk4qus52i0q"]
 
 [ext_resource type="Script" uid="uid://cg7rox51rfkw6" path="res://scripts/MainMenu.gd" id="1_826wr"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_l72w3"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="15_i7r3k"]
 [ext_resource type="PackedScene" uid="uid://dlachb7bj2ch8" path="res://scenes/BirdCage.tscn" id="16_os5dr"]
 [ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="17_8vx4p"]
+[ext_resource type="Texture2D" uid="uid://6jca0evujm4q" path="res://art/ui/title.png" id="17_tdapf"]
+[ext_resource type="Shader" uid="uid://vpih1kfmsut4" path="res://shaders/wave.gdshader" id="17_v41fp"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_duata"]
 _surfaces = [{
@@ -512,6 +514,12 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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cPs0PgAAwL6wa56+GsQHPwAAwL6A9jQ97EPiPgAAwL4wxgc+GsAHPwAAwL4ANjU9cPs0PgAAwL6wW56+wAW1PQAAwL7APmK+7EPiPgAAgL4wxgc+wAW1PQAAgL7APmK+cPs0PgAAgL6wW56+GsAHPwAAgL4ANjU9NEDiPgAAwL6QzQc+4Na0PQAAwL5gR2K+4Na0PQAAgL5gR2K+NEDiPgAAgL6QzQc+fEHiPgAAgL4gwQc+3MIHPwAAgL6A4jQ93MIHPwAAwL6A4jQ9fEHiPgAAwL4gwQc+AAD/v/9/AIAAAP+//38AgAAA/7//fwCAAAD/v/9/AID///+//38AgP///7//fwCA////v/9/AID///+//38AgP9/AAD/v/+//38AAP+//7//fwAA/7//v/9/AAD/v/+//3///wAA/5//f///AAD/n/9///8AAP+f/3///wAA/5//P/9//3////8//3//f////z//f/9/////P/9//3////+//3//f////7//f/9/////v/9//3////+//3//f///AAD/v/9/AIAAAP+//38AgAAA/7//fwCAAAD/v/9/AID///+//38AgP///7//fwCA////v/9/AID///+//38AgP9/AAD/v/+//38AAP+//7//fwAA/7//v/9/AAD/v/+//3///wAA/5//f///AAD/n/9///8AAP+f/3///wAA/5//P/9//3////8//3//f////z//f/9/////P/9//3////+//3//f////7//f/9/////v/9//3////+//3//f///AAD/v/9/AIAAAP+//38AgAAA/7//fwCAAAD/v/9/AID///+//38AgP///7//fwCA////v/9/AID///+//38AgP9/AAD/v/+//38AAP+//7//fwAA/7//v/9/AAD/v/+//3///wAA/5//f///AAD/n/9///8AAP+f/3///wAA/5//P/9//3////8//3//f////z//f/9/////P/9//3////+//3//f////7//f/9/////v/9//3////+//3//f///AAD/v/9/AIAAAP+//38AgAAA/7//fwCAAAD/v/9/AID///+//38AgP///7//fwCA////v/9/AID///+//38AgP9/AAD/v/+//38AAP+//7//fwAA/7//v/9/AAD/v/+//3///wAA/5//f///AAD/n/9///8AAP+f/3///wAA/5//P/9//3////8//3//f////z//f/9/////P/9//3////+//3//f////7//f/9/////v/9//3////+//3//f///AAD/v/9/AIAAAP+//38AgAAA/7//fwCAAAD/v/9/AID///+//38AgP///7//fwCA////v/9/AID///+//38AgP9/AAD/v/+//38AAP+//7//fwAA/7//v/9/AAD/v/+//3///wAA/5//f///AAD/n/9///8AAP+f/3///wAA/5//P/9//3////8//3//f////z//f/9/////P/9//3////+//3//f////7//f/9/////v/9//3////+//3//f///AAD/v/9/AIAAAP+//38AgAAA/7//fwCAAAD/v/9/AID///+//38AgP///7//fwCA////v/9/AID///+//38AgP9/AAD/v/+//38AAP+//7//fwAA/7//v/9/AAD/v/+//3///wAA/5//f///AAD/n/9///8AAP+f/3///wAA/5//v/9//3////+//3//f////7//f/9/////v/9//3////8//3//f////z//f/9/////P/9//3////8//3//f///AAD/v/9/AIAAAP+//38AgAAA/7//fwCAAAD/v/9/AID///+//38AgP///7//fwCA////v/9/AID///+//38AgP9/AAD/v/+//38AAP+//7//fwAA/7//v/9/AAD/v/+//3///wAA/5//f///AAD/n/9///8AAP+f/3///wAA/5//P/9//3////8//3//f////z//f/9/////P/9//3////+//3//f////7//f/9/////v/9//3////+//3//f///")
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7shrw"]
+shader = ExtResource("17_v41fp")
+shader_parameter/size = Vector2(160, 96)
+shader_parameter/offset = 16.0
+shader_parameter/alpha = 0.645
+
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_826wr")
 
@@ -676,6 +684,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TitleHolder" type="Control" parent="CanvasLayer/ScreenBounds"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -128.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scaler" type="Sprite2D" parent="CanvasLayer/ScreenBounds/TitleHolder"]
+scale = Vector2(2, 2)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ScreenBounds/TitleHolder/Scaler"]
+material = SubResource("ShaderMaterial_7shrw")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -20.0
+offset_right = 32.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_tdapf")
 
 [node name="ButtonHolder" type="Control" parent="CanvasLayer/ScreenBounds"]
 layout_mode = 1

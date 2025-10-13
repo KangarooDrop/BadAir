@@ -6,9 +6,13 @@ const CAM_ROT_X : float = -PI * 1.0/4.0
 const CAM_ROT_Y : float = PI
 const CAM_TURN_PERIOD : float = 30.0
 
+const TITLE_MAX_TIME : float = 2.5
+const TITLE_MAX_ALPHA : float = 0.8
+
 var hasPanned : bool = false
 
 var camTimer : float = 0.0
+var titleTimer : float = 0.0
 
 @onready var rotator : Node3D = $CamRot
 @onready var cam : Camera3D = $CamRot/Camera3D
@@ -16,6 +20,7 @@ var camTimer : float = 0.0
 @onready var playButton : Button = $CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/PlayButton
 @onready var continueButton : Button = $CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/ContinueButton
 @onready var newButton : Button = $CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/NewButton
+@onready var titleRect : TextureRect = $CanvasLayer/ScreenBounds/TitleHolder/Scaler/TextureRect
 
 func _ready() -> void:
 	cam.position.y = CAM_HEIGHT
@@ -45,6 +50,10 @@ func _process(delta: float) -> void:
 	var newRotation : float = t * 2.0 * PI
 	rotator.rotation.y = newRotation
 	#cam.position.z = sin(camTimer / 3.0 * 2.0 * PI) * CAM_OFFSET
+	
+	if titleTimer < TITLE_MAX_TIME:
+		titleTimer = min(TITLE_MAX_TIME, titleTimer + delta)
+		titleRect.material.set_shader_parameter("alpha", TITLE_MAX_ALPHA * titleTimer/TITLE_MAX_TIME)
 	
 	if Input.is_action_just_pressed("escape"):
 		if Settings.visible:
