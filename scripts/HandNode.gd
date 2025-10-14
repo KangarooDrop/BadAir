@@ -84,9 +84,13 @@ func _process(delta: float) -> void:
 		anim.position.x = lerp(0.0, SWAP_OFFSET.x, v)
 		anim.position.y = lerp(0.0, SWAP_OFFSET.y, v)
 		if t > 0.5 and not changedAnim:
+			#Taking out sounds
 			if heldItem.id == Util.itemLighter.id:
 				SoundManager.playLighterOpen()
-			elif Util.itemLighter.animName in anim.animation:
+			elif heldItem.id == Util.itemRat.id:
+				SoundManager.playRatHand()
+			#Putting away sounds
+			if Util.itemLighter.animName in anim.animation:
 				SoundManager.playLighterClose()
 			anim.play("idle_" + heldItem.animName)
 			changedAnim = true

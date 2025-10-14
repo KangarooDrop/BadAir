@@ -1,17 +1,4 @@
 Sounds needed:
-Menu/Button sounds
-
-Explosion
-Ear ring
-Unlock
-Door creak
-
-Player footsteps
 Cough/choking
 Heartbeat
 
-Lighter flick/light
-Bird chirp/squawk
-Rank squeak/death
-Mushroom pick (plucking a live mushroom)
-landing sound when throwing items (splat for mushroom, rat squeak, key [metal pipe])

@@ -2,6 +2,9 @@ extends Node
 
 class_name AudioManager
 
+#Gigachade Based Sigma Moment
+var baseSigma : float = 0.125
+
 var streamPlayers : Array = []
 
 func _ready() -> void:
@@ -13,18 +16,19 @@ func onSettingsChange(settingsKey : String) -> void:
 
 func updateStreamPlayers():
 	var adjustedDB : float = getAudjustedDB()
-	for asp : AudioStreamPlayer in streamPlayers:
+	for asp in streamPlayers:
 		asp.volume_db = adjustedDB
 
 func getAudjustedDB(mult : float = 1.0) -> float:
 	return linear_to_db(Settings.settingsVals[Settings.volumeKey] * mult)
 
 func createAudioStreamPlayer(audioStream : AudioStream, pitch : float = 1.0, sigma : float = 0.0) -> AudioStreamPlayer:
-	var asp : AudioStreamPlayer = AudioStreamPlayer.new()
+	var asp = AudioStreamPlayer.new()
 	asp.finished.connect(self.onPlayerFinished.bind(asp))
 	asp.stream = audioStream
 	asp.volume_db = getAudjustedDB()
 	
+	sigma += baseSigma
 	asp.pitch_scale = pitch + randf_range(-sigma, sigma)
 	
 	add_child(asp)
@@ -34,10 +38,27 @@ func createAudioStreamPlayer(audioStream : AudioStream, pitch : float = 1.0, sig
 	
 	return asp
 
-func onPlayerFinished(asp : AudioStreamPlayer) -> void:
+func createAudioStreamPlayerAtPoint(audioStream : AudioStream, globalPos : Vector3, volumeMul : float = 1.0, pitch : float = 1.0, sigma : float = 0.0) -> AudioStreamPlayer3D:
+	var asp = AudioStreamPlayer3D.new()
+	asp.finished.connect(self.onPlayerFinished.bind(asp))
+	asp.stream = audioStream
+	asp.volume_db = getAudjustedDB(volumeMul)
+	
+	sigma += baseSigma
+	asp.pitch_scale = pitch + randf_range(-sigma, sigma)
+	
+	add_child(asp)
+	asp.global_position = globalPos
+	asp.play()
+	
+	streamPlayers.append(asp)
+	
+	return asp
+
+func onPlayerFinished(asp) -> void:
 	clearStreamPlayer(asp)
 
-func clearStreamPlayer(asp : AudioStreamPlayer):
+func clearStreamPlayer(asp):
 	streamPlayers.erase(asp)
 	asp.queue_free()
 

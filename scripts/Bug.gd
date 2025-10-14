@@ -22,9 +22,11 @@ var jumpingOffWall : bool = false
 var onFloorLastFrame : bool = false
 
 @onready var anim : AnimatedSprite3D = $AnimatedSprite3dShader
+@onready var walkPlayer : AudioStreamPlayer3D = SoundManager.playBugWalkSound(global_position)
 
 func _ready() -> void:
 	add_to_group(Util.GROUP_BUGGIE)
+	walkPlayer.unit_size = 30.0
 
 func _physics_process(delta: float) -> void:
 	if health <= 0.0:
@@ -50,7 +52,7 @@ func _physics_process(delta: float) -> void:
 			if thrownItem.item.id == Util.itemRat.id:
 				rats.append(thrownItem)
 		var target
-		var nearestDist : float = DETECT_RANGE * 2.0
+		var nearestDist : float = DETECT_RANGE * 1.5
 		for other in rats:
 			var dp : Vector3 = global_position - other.global_position
 			var dist : float = dp.length()
@@ -70,14 +72,17 @@ func _physics_process(delta: float) -> void:
 		if target != null and (global_position - target.global_position).length() < 1.0:
 			if target.has_method("getBit"):
 				if target.getBit(DAMAGE):
+					if target.health <= 0.0:
+						SoundManager.playCrunchSound(global_position)
 					var v2 = Vector2.UP.rotated(wanderAngle + 3.0*PI/2)
 					var v : Vector3 = Vector3(v2.x, 0.25, v2.y).normalized() * KNOCKBACK
 					velocity = v
+					global_position.y += 0.1
 					if "velocity" in target:
-						target.velocity = Vector3(-v.x, v.y*2.0, -v.z)*3.0
+						target.velocity = Vector3(-v.x, v.y, -v.z)*3.0
 						target.position.y += 0.1
 				
-			attacking = true
+					attacking = true
 		if target != null and (not afraid or tDist < nearestDist):
 			afraid = true
 			tDist = nearestDist
@@ -85,6 +90,8 @@ func _physics_process(delta: float) -> void:
 			runDir = Vector3(-dp.x, 0.0, -dp.z).normalized()
 			
 		if afraid and not attacking:
+			if nearestDist <= 0.1:
+				runDir = Vector3.ZERO
 			velocity.x = lerp(velocity.x, runDir.x * SPEED, TRAC_RUN)
 			velocity.z = lerp(velocity.z, runDir.z * SPEED, TRAC_RUN)
 			wanderAngle = Vector2(velocity.x, velocity.z).angle()
@@ -100,15 +107,21 @@ func _physics_process(delta: float) -> void:
 	
 	var thrownItems: Array = get_tree().get_nodes_in_group(Util.GROUP_PICKUP)
 	for thing in thrownItems:
-		#add rock into if statment for hurting bug
 		if thing.item.canDamage:
 			var dp : Vector3 = global_position - thing.global_position
 			var dist = dp.length()
 			if dist < 1.0 and thing.linear_velocity.length() > KILL_VEL:
 				self.velocity = thing.linear_velocity
 				health = -999
-				
+	
 	playAnim()
+	
+	var walkSoundMul : float = 0.0
+	if is_on_floor():
+		walkSoundMul = min(1.0, velocity.length()/SPEED)
+	walkPlayer.volume_db = SoundManager.getAudjustedDB(1.00 * walkSoundMul)
+	walkPlayer.pitch_scale = lerp(1.0, 2.0, walkSoundMul)
+	walkPlayer.global_position = global_position
 	
 	move_and_slide()
 	
@@ -130,6 +143,9 @@ func _physics_process(delta: float) -> void:
 			wanderAngle += PI
 			
 	onFloorLastFrame = is_on_floor()
+
+func _exit_tree() -> void:
+	walkPlayer.finished.emit()
 
 func playAnim() -> void:
 	var dirIndex : int = Util.getCameraRotIndex(Vector2(velocity.x, velocity.z))

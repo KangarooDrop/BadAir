@@ -23,4 +23,5 @@ func onRatDeath() -> void:
 func createItem() -> void:
 	mushroomItem = Util.itemMushroom.duplicate()
 	mushroomItem.on_death.connect(self.onRatDeath)
+	SoundManager.playMushroomGrow(global_position)
 	Util.getWorld().getLevel().createMushroom(global_position + Vector3.UP*0.5, mushroomItem)

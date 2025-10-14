@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cc7xpf4rjiqji"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://cc7xpf4rjiqji"]
 
 [ext_resource type="Texture2D" uid="uid://be0wsv3k2c20l" path="res://art/world/key.png" id="1_ls0v1"]
+[ext_resource type="AudioStream" uid="uid://dnwbc44u4yddt" path="res://audio/sound/metalHit.ogg" id="2_d4rvs"]
 [ext_resource type="Script" uid="uid://bsvj5pm528noq" path="res://scripts/items/Item.gd" id="2_x7rwf"]
 
 [resource]
@@ -8,6 +9,7 @@ script = ExtResource("2_x7rwf")
 id = 4
 animName = "key"
 groundTexture = ExtResource("1_ls0v1")
+landingSound = ExtResource("2_d4rvs")
 canThrow = true
 canDamage = true
 metadata/_custom_type_script = "uid://bsvj5pm528noq"

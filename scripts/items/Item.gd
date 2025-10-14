@@ -4,6 +4,7 @@ class_name Item
 @export var id : int = -1
 @export var animName : String = ""
 @export var groundTexture : Texture = preload("res://art/hands/bird.png")
+@export var landingSound : AudioStream
 @export var canThrow : bool = false
 @export var canDamage : bool = false
 

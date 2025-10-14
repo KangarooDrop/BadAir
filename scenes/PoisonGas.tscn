@@ -31,5 +31,7 @@ mesh = SubResource("SphereMesh_figkc")
 
 [node name="TrackMover" parent="." instance=ExtResource("2_figkc")]
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
 [connection signal="body_entered" from="Area3D" to="." method="onBodyEnter"]
 [connection signal="body_exited" from="Area3D" to="." method="onBodyExit"]

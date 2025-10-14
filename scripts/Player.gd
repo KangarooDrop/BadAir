@@ -20,6 +20,9 @@ const SENS_MAX : float = PI * 1.5/480.0
 
 const KILL_VEL : float = -20.0
 
+const WALK_DIST_TO_SOUND : float = 2.0
+var walkTracker : float = 0.0
+
 ####################################################################################################
 
 var grav : float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -89,6 +92,7 @@ func onLevelEnd() -> void:
 			handRight.swapHolding(Util.itemBird)
 
 func onHandThrowEnd(item, handNode : HandNode):
+	SoundManager.playWoosh()
 	var throwVel : Vector3 = head.global_basis * Vector3.FORWARD * handToThrowTime[handNode]/THROW_MAX_TIME * THROW_MAX_VEL
 	Util.getWorld().getLevel().createThrownItem(handNode.global_position, throwVel, item)
 	handToThrowTime.erase(handNode)
@@ -231,6 +235,7 @@ func _physics_process(delta: float) -> void:
 					pickup = col.item
 				if pickup == null:
 					if currentHand.heldItem.id == Util.itemEmpty.id:
+						get_tree().create_timer(0.4).timeout.connect(SoundManager.playWoosh)
 						currentHand.grabHolding()
 						
 					elif baseID == Util.itemLighter.id:
@@ -248,6 +253,8 @@ func _physics_process(delta: float) -> void:
 					var canPickUp : bool = not((pickup == Util.itemLighter and currentHand == handRight) or \
 											(pickup == Util.itemBird and currentHand == handLeft))
 					if canPickUp:
+						if col.has_method("onPickup"):
+							col.onPickup()
 						col.queue_free()
 						currentHand.swapHolding(pickup)
 						if pickup.id == Util.itemLighter.id:
@@ -263,8 +270,17 @@ func _physics_process(delta: float) -> void:
 		
 		#Jumping
 		if is_on_floor():
+			if velocity.length() <= 0.05:
+				walkTracker = WALK_DIST_TO_SOUND
+				velocity = Vector3.ZERO
+			walkTracker += velocity.length() * delta
+			if walkTracker > WALK_DIST_TO_SOUND:
+				walkTracker -= WALK_DIST_TO_SOUND
+				SoundManager.playWalkSound()
+			
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = JUMP_FORCE
+				SoundManager.playJump()
 		
 		#WASD Movement
 		var inputDir : Vector2 = Input.get_vector("left", "right", "forward", "backward")
@@ -294,6 +310,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if velocity.y == 0.0 and lastVelocity.y < 0.0:
+		if abs(lastVelocity.y) > 3.0:
+			var landingVolumeMul : float = min(1.0, -lastVelocity.y/20.0)
+			SoundManager.playLandingSound(global_position + Vector3.DOWN, landingVolumeMul)
 		if lastVelocity.y <= KILL_VEL:
 			health = -999.0
 

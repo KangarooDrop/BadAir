@@ -4,17 +4,22 @@ class_name Rat
 const CORPSE_TEX : Texture2D = preload("res://art/rat_dead.png")
 const HEALTH_MAX : float = 30.0
 const HEALTH_REGEN : float = HEALTH_MAX/3.0
-const SPEED : float = 2.5
+const SPEED : float = 1.75
 const TRAC_RUN : float = 0.5
 const TRAC_WANDER : float = 0.05
 const JUMP_FORCE : float = 4.2
 const DETECT_RANGE : float = 5.0
+const KILL_VEL : float = 6.0
+const CHIRP_MAX_TIME : float = 15.0
+const CHIRP_MIN_TIME : float = 6.0
 
+var chirpTimer : float = CHIRP_MIN_TIME
 var grav : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var health : float = HEALTH_MAX
 var item : Item
 var wanderAngle : float = 0.0
 var jumpingOffWall : bool = false
+var wasAfraid : bool = false
 
 var onFloorLastFrame : bool = false
 
@@ -27,8 +32,15 @@ func _ready() -> void:
 	add_to_group(Util.GROUP_PICKUP)
 	add_to_group(Util.GROUP_RAT)
 
+func _process(delta: float) -> void:
+	chirpTimer -= delta
+	if chirpTimer <= 0.0:
+		SoundManager.playRatSqueak(global_position, 0.75)
+		chirpTimer = lerp(CHIRP_MIN_TIME, CHIRP_MAX_TIME, randf())
+
 func _physics_process(delta: float) -> void:
 	if health <= 0.0:
+		SoundManager.playRatDeath(global_position)
 		Util.getWorld().getLevel().createCorpse(global_position, velocity, CORPSE_TEX)
 		die()
 		return
@@ -65,13 +77,17 @@ func _physics_process(delta: float) -> void:
 			velocity.x = lerp(velocity.x, wanderDir.x, TRAC_WANDER)
 			velocity.z = lerp(velocity.z, wanderDir.z, TRAC_WANDER)
 	
+	if not wasAfraid and afraid:
+		SoundManager.playRatSqueak(global_position)
+	wasAfraid = afraid
+	
 	var thrownItems: Array = get_tree().get_nodes_in_group(Util.GROUP_PICKUP)
 	for thing in thrownItems:
 		#add rock into if statment for hurting bug
 		if thing.item.canDamage:
 			var dp : Vector3 = global_position - thing.global_position
 			var dist = dp.length()
-			if dist < 1.0 and thing.linear_velocity.length() > 0.5:
+			if dist < 1.0 and thing.linear_velocity.length() > KILL_VEL:
 				health = -999
 	
 	playAnim()

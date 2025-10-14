@@ -15,6 +15,16 @@ const stateToMusicGroups : Dictionary = {
 
 @onready var musicPlayer : AudioStreamPlayer = createAudioStreamPlayer(null)
 
+func _ready() -> void:
+	super._ready()
+	baseSigma = 0.0
+	updateStreamPlayers()
+
+func updateStreamPlayers():
+	var adjustedDB : float = getAudjustedDB(0.5)
+	for asp in streamPlayers:
+		asp.volume_db = adjustedDB
+
 func playMusicStream(audioStream : AudioStream) -> void:
 	if musicPlayer.stream == audioStream and musicPlayer.playing:
 		return

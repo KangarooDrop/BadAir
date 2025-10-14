@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 const MAX_TIME : float = 10.0
 
@@ -18,3 +18,6 @@ func _process(delta: float) -> void:
 	if growTimer < GROW_MAX_TIME:
 		growTimer = min(1.0, growTimer+delta)
 	anim.position.y = lerp(GROW_OFFSET, 0.0, growTimer)
+
+func onPickup() -> void:
+	SoundManager.playMushroomPickup(global_position)
