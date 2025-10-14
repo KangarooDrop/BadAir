@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=4 uid="uid://cwm43rof5dxfo"]
+
+[ext_resource type="PackedScene" uid="uid://b2d4yk3oe4ap2" path="res://scenes/levels/LevelBase.tscn" id="1_pigja"]
+[ext_resource type="Material" uid="uid://xo4w13uric4e" path="res://textures/world/rock1.tres" id="2_yw4vs"]
+[ext_resource type="PackedScene" uid="uid://fjg3atx3lj85" path="res://scenes/PlayerSpawn.tscn" id="3_40hgu"]
+[ext_resource type="PackedScene" uid="uid://ku7vawf2en3l" path="res://scenes/ThrownItem.tscn" id="4_nvxxn"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1b5il"]
+_surfaces = [{
+"aabb": AABB(-8, 0, -16, 16, 1, 32),
+"attribute_data": PackedByteArray("AAAAwQAAQL8AAABBAABAvwAAAEEAAIA+AAAAwQAAgD4AAIBBAACAPgAAgMEAAIA+AACAwQAAQL8AAIBBAABAvwAAgMEAAABBAACAwQAAAMEAAIBBAAAAwQAAgEEAAABBAACAQQAAAEEAAIDBAAAAQQAAgMEAAADBAACAQQAAAMEAAIDBAABAvwAAgEEAAEC/AACAQQAAgD4AAIDBAACAPgAAAEEAAIA+AAAAwQAAgD4AAADBAABAvwAAAEEAAEC/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": ExtResource("2_yw4vs"),
+"name": "world/rock1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAQQAAgD8AAIDBAAAAwQAAgD8AAIDBAAAAwQAAAAAAAIDBAAAAQQAAAAAAAIDBAAAAwQAAAAAAAIBBAAAAwQAAAAAAAIDBAAAAwQAAgD8AAIDBAAAAwQAAgD8AAIBBAAAAwQAAAAAAAIBBAAAAQQAAAAAAAIBBAAAAQQAAAAAAAIDBAAAAwQAAAAAAAIDBAAAAwQAAgD8AAIBBAAAAwQAAgD8AAIDBAAAAQQAAgD8AAIDBAAAAQQAAgD8AAIBBAAAAQQAAgD8AAIBBAAAAQQAAgD8AAIDBAAAAQQAAAAAAAIDBAAAAQQAAAAAAAIBBAAAAQQAAAAAAAIBBAAAAwQAAAAAAAIBBAAAAwQAAgD8AAIBBAAAAQQAAgD8AAIBB/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1dq2j"]
+points = PackedVector3Array(8, 1, 16, 8, 0, 16, -8, 1, 16, -8, 0, 16, 8, 1, -16, 8, 0, -16, -8, 1, -16, -8, 0, -16)
+
+[node name="LevelBase" instance=ExtResource("1_pigja")]
+
+[node name="FuncGodotMap" parent="." index="0"]
+local_map_file = "uid://bb5ctdxikxvn1"
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" index="0"]
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" index="0"]
+mesh = SubResource("ArrayMesh_1b5il")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" index="1"]
+shape = SubResource("ConvexPolygonShape3D_1dq2j")
+
+[node name="entity_1_PlayerSpawn" parent="FuncGodotMap" index="1" instance=ExtResource("3_40hgu")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.5, 2, -13.5)
+
+[node name="entity_2_ThrownItem" parent="FuncGodotMap" index="2" instance=ExtResource("4_nvxxn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.5, 1.5, 13.5)
+spawn_item = "key"

@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bb5ctdxikxvn1"
+path="res://.godot/imported/LevelKeyHole.map-79c6644e7b6f2e66811a24128b4e8d60.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/LevelKeyHole.map"
+dest_files=["res://.godot/imported/LevelKeyHole.map-79c6644e7b6f2e66811a24128b4e8d60.tres"]
+
+[params]
+
