@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bud8gt1jeba3c"]
+[gd_scene load_steps=10 format=3 uid="uid://bud8gt1jeba3c"]
 
 [ext_resource type="Script" uid="uid://ben5j4ry83iwp" path="res://autoloads/Settings.gd" id="1_k133r"]
 [ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="2_4jsmj"]
 [ext_resource type="Shader" uid="uid://bwefevylbufc0" path="res://shaders/fader.gdshader" id="2_62qcs"]
+[ext_resource type="StyleBox" uid="uid://5wbv7lvxywt7" path="res://art/ui/ButtonNormal.tres" id="4_rmopc"]
+[ext_resource type="StyleBox" uid="uid://c6b3vfqkht7ve" path="res://art/ui/ButtonPressed.tres" id="5_gb255"]
+[ext_resource type="StyleBox" uid="uid://dxmmcmd5v0wr2" path="res://art/ui/ButtonHover.tres" id="6_7gdtt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_45jbo"]
 shader = ExtResource("2_62qcs")
@@ -12,6 +15,8 @@ shader_parameter/posterization = 8
 shader_parameter/offset = Vector2(0, -64)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62qcs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_45il5"]
 
 [node name="Settings" type="CanvasLayer"]
 layer = 3
@@ -65,6 +70,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("2_4jsmj")
 theme_override_font_sizes/font_size = 16
 text = "Brightness: 100%"
@@ -79,6 +85,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("2_4jsmj")
 theme_override_font_sizes/font_size = 16
 text = "Mouse Sensitivity: 100%"
@@ -93,6 +100,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("2_4jsmj")
 theme_override_font_sizes/font_size = 16
 text = "Volume: 100%"
@@ -107,6 +115,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("2_4jsmj")
 theme_override_font_sizes/font_size = 16
 text = "Audio Accessibility: Off"
@@ -201,14 +210,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -41.0
+offset_left = -50.0
 offset_top = 108.0
-offset_right = 41.0
+offset_right = 50.0
 offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_focus_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_hover_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("2_4jsmj")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("4_rmopc")
+theme_override_styles/pressed = ExtResource("5_gb255")
+theme_override_styles/hover = ExtResource("6_7gdtt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_45il5")
 text = "Close"
 
 [connection signal="value_changed" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/BrightnessHolder/BrightnessSlider" to="." method="onBrightnessChange"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcqxypo81mg51"]
+[gd_scene load_steps=9 format=3 uid="uid://bcqxypo81mg51"]
 
 [ext_resource type="Script" uid="uid://et8gtk2dglbb" path="res://autoloads/Credits.gd" id="1_kg3g1"]
 [ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="3_a4ls6"]
 [ext_resource type="Shader" uid="uid://bwefevylbufc0" path="res://shaders/fader.gdshader" id="3_ressk"]
+[ext_resource type="StyleBox" uid="uid://5wbv7lvxywt7" path="res://art/ui/ButtonNormal.tres" id="4_mtudu"]
+[ext_resource type="StyleBox" uid="uid://c6b3vfqkht7ve" path="res://art/ui/ButtonPressed.tres" id="5_r6mqm"]
+[ext_resource type="StyleBox" uid="uid://dxmmcmd5v0wr2" path="res://art/ui/ButtonHover.tres" id="6_gto53"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h4tq5"]
 shader = ExtResource("3_ressk")
@@ -10,6 +13,8 @@ shader_parameter/texSize = Vector2(640, 480)
 shader_parameter/pixSize = 16.0
 shader_parameter/posterization = 4
 shader_parameter/offset = Vector2(0, -64)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xtn3e"]
 
 [node name="Credits" type="CanvasLayer"]
 layer = 3
@@ -52,6 +57,7 @@ grow_vertical = 2
 
 [node name="LabelDevsTitle" type="Label" parent="ColorRect/TextHolder/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("3_a4ls6")
 theme_override_font_sizes/font_size = 48
 text = "Developers"
@@ -59,6 +65,7 @@ horizontal_alignment = 1
 
 [node name="LabelDevsBody" type="Label" parent="ColorRect/TextHolder/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("3_a4ls6")
 theme_override_font_sizes/font_size = 32
 text = "Kevin Masse
@@ -71,6 +78,7 @@ layout_mode = 2
 
 [node name="LabelSpecTitle" type="Label" parent="ColorRect/TextHolder/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("3_a4ls6")
 theme_override_font_sizes/font_size = 32
 text = "Special Thanks"
@@ -78,6 +86,7 @@ horizontal_alignment = 1
 
 [node name="LabelSpecBody" type="Label" parent="ColorRect/TextHolder/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("3_a4ls6")
 theme_override_font_sizes/font_size = 16
 text = "Scream Jam Organizers
@@ -91,14 +100,22 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -79.0
-offset_right = 25.0
+offset_left = -50.0
+offset_top = -88.0
+offset_right = 50.0
 offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_focus_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_hover_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("3_a4ls6")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("4_mtudu")
+theme_override_styles/pressed = ExtResource("5_r6mqm")
+theme_override_styles/hover = ExtResource("6_gto53")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xtn3e")
 text = "Close"
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="hide"]

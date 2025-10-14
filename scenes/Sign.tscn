@@ -85,7 +85,7 @@ shape = SubResource("ConvexPolygonShape3D_0aj6h")
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2646469, 0.1267752)
 texture_filter = 0
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0.09019608, 0.07450981, 0.09411765, 1)
 text = "Gas Level:
 Low"
 font = ExtResource("5_gvwxr")

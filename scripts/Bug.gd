@@ -11,6 +11,7 @@ const JUMP_FORCE : float = 4.2
 const DETECT_RANGE : float = 10.0
 const DAMAGE : float = 60.0
 const KNOCKBACK : float = 1.75
+const KILL_VEL : float = 6.0
 
 var grav : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var health : float = HEALTH_MAX
@@ -103,7 +104,9 @@ func _physics_process(delta: float) -> void:
 		if thing.item.canDamage:
 			var dp : Vector3 = global_position - thing.global_position
 			var dist = dp.length()
-			if dist < 1.0 and thing.linear_velocity.length() > 0.5:
+			if dist < 1.0 and thing.linear_velocity.length() > KILL_VEL:
+				self.velocity = thing.linear_velocity
+				print(thing.linear_velocity.length())
 				health = -999
 				
 	playAnim()

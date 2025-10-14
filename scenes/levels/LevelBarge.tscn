@@ -1259,8 +1259,8 @@ shape = SubResource("ConvexPolygonShape3D_tl5bc")
 shape = SubResource("ConvexPolygonShape3D_qhn4a")
 
 [node name="entity_1_PlayerSpawn" parent="FuncGodotMap" index="1" instance=ExtResource("4_if4wq")]
-transform = Transform3D(1.3907092e-07, 0, 1, 0, 1, 0, -1, 0, 1.3907092e-07, -12.5, 1, -0.5)
-angle = 270
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -12.5, 1, -0.5)
+angle = 90
 
 [node name="entity_2_Doors_BrushDoor" type="StaticBody3D" parent="FuncGodotMap" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49996948, 0)

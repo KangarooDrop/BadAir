@@ -44,6 +44,7 @@ script = ExtResource("1_a7r7k")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 billboard = 2
+shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_veyav")
 autoplay = "default"

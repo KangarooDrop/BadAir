@@ -3,7 +3,7 @@ class_name Player
 
 ####################################################################################################
 
-const SPEED : float = 5.0
+const SPEED : float = 4.0
 const JUMP_FORCE : float = 4.2
 
 const STEP_DIST : float = 32.0/64.0

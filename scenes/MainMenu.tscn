@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://dfvk4qus52i0q"]
+[gd_scene load_steps=54 format=4 uid="uid://dfvk4qus52i0q"]
 
 [ext_resource type="Script" uid="uid://cg7rox51rfkw6" path="res://scripts/MainMenu.gd" id="1_826wr"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_l72w3"]
@@ -19,6 +19,9 @@
 [ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="17_8vx4p"]
 [ext_resource type="Texture2D" uid="uid://6jca0evujm4q" path="res://art/ui/title.png" id="17_tdapf"]
 [ext_resource type="Shader" uid="uid://vpih1kfmsut4" path="res://shaders/wave.gdshader" id="17_v41fp"]
+[ext_resource type="StyleBox" uid="uid://5wbv7lvxywt7" path="res://art/ui/ButtonNormal.tres" id="20_1n6yq"]
+[ext_resource type="StyleBox" uid="uid://dxmmcmd5v0wr2" path="res://art/ui/ButtonHover.tres" id="22_2axsc"]
+[ext_resource type="StyleBox" uid="uid://c6b3vfqkht7ve" path="res://art/ui/ButtonPressed.tres" id="23_yovvs"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_duata"]
 _surfaces = [{
@@ -520,6 +523,10 @@ shader_parameter/size = Vector2(160, 96)
 shader_parameter/offset = 16.0
 shader_parameter/alpha = 0.645
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1n6yq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2axsc"]
+
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_826wr")
 
@@ -744,40 +751,88 @@ theme_override_constants/separation = 6
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_focus_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_hover_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("17_8vx4p")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("20_1n6yq")
+theme_override_styles/pressed = ExtResource("23_yovvs")
+theme_override_styles/hover = ExtResource("22_2axsc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1n6yq")
 text = "Play"
 
 [node name="ContinueButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_focus_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_hover_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("17_8vx4p")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("20_1n6yq")
+theme_override_styles/pressed = ExtResource("23_yovvs")
+theme_override_styles/hover = ExtResource("22_2axsc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2axsc")
 text = "Continue"
 
 [node name="NewButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_focus_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_hover_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("17_8vx4p")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("20_1n6yq")
+theme_override_styles/pressed = ExtResource("23_yovvs")
+theme_override_styles/hover = ExtResource("22_2axsc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2axsc")
 text = "New"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_focus_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_hover_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("17_8vx4p")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("20_1n6yq")
+theme_override_styles/pressed = ExtResource("23_yovvs")
+theme_override_styles/hover = ExtResource("22_2axsc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2axsc")
 text = "Settings"
 
 [node name="CreditsButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_focus_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_hover_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("17_8vx4p")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("20_1n6yq")
+theme_override_styles/pressed = ExtResource("23_yovvs")
+theme_override_styles/hover = ExtResource("22_2axsc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2axsc")
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_focus_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_colors/font_hover_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("17_8vx4p")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("20_1n6yq")
+theme_override_styles/pressed = ExtResource("23_yovvs")
+theme_override_styles/hover = ExtResource("22_2axsc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2axsc")
 text = "Quit"
 
 [connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/PlayButton" to="." method="onPlayPressed"]

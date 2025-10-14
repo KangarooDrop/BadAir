@@ -34,7 +34,7 @@ const levelPaths : Array = \
 
 	"res://scenes/levels/LevelStart_TEST.tscn",
 	"res://scenes/levels/LevelTunnelMaze.tscn",
-	"res://scenes/levels/LevelBarge.tscn"
+	"res://scenes/levels/LevelBarge.tscn",
 ]
 
 var envResource : Environment = load("res://scenes/Env.tres")
