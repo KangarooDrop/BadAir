@@ -11,6 +11,8 @@ const birdSounds : Array = [birdSafe, birdLow, birdMed, birdHigh]
 const explosionSound : AudioStream = preload("res://audio/sound/explosion.ogg")
 const earRingingSound : AudioStream = preload("res://audio/sound/ear_ringing.ogg")
 
+const impactSound : AudioStream = preload("res://audio/sound/impact.mp3")
+
 func playBirdSound(index : int) -> AudioStreamPlayer:
 	if index < 0 or index >= birdSounds.size():
 		index = 0
@@ -22,3 +24,5 @@ func playExplosion() -> AudioStreamPlayer:
 
 func playEarRinging() -> AudioStreamPlayer:
 	return createAudioStreamPlayer(earRingingSound)
+	
+func playImpact() -> AudioStreamPlayer: return createAudioStreamPlayer(impactSound)

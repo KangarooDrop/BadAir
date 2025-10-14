@@ -1,13 +1,14 @@
 extends CharacterBody3D
 class_name Bug
 
+const CORPSE_TEX : Texture2D = preload("res://art/world/dead_bug.png")
 const HEALTH_MAX : float = 30.0
 const HEALTH_REGEN : float = HEALTH_MAX/3.0
 const SPEED : float = 2.5
 const TRAC_RUN : float = 0.5
 const TRAC_WANDER : float = 0.05
 const JUMP_FORCE : float = 4.2
-const DETECT_RANGE : float = 5.0
+const DETECT_RANGE : float = 10.0
 const DAMAGE : float = 60.0
 const KNOCKBACK : float = 1.75
 
@@ -26,7 +27,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if health <= 0.0:
-		queue_free()
+		Util.getWorld().getLevel().createCorpse(global_position, velocity, CORPSE_TEX)
+		die()
 		return
 	
 	if poisonGasses.size() > 0:
@@ -152,3 +154,7 @@ func onExitPoison(poisonGas) -> void:
 		if pg.strength > newPoisonStrength:
 			newPoisonStrength = pg.strength
 	currentPoisonStrength = newPoisonStrength
+
+func die():
+	#item.on_death.emit()
+	queue_free()
