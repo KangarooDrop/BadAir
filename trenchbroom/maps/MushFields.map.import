@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://v416glv1mqfa"
+path="res://.godot/imported/MushFields.map-4bb3d27f71b369e8ca0d4c05e8ad942a.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/MushFields.map"
+dest_files=["res://.godot/imported/MushFields.map-4bb3d27f71b369e8ca0d4c05e8ad942a.tres"]
+
+[params]
+
