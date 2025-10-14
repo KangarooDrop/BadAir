@@ -25538,3 +25538,13 @@
 ( -3640 1136 192 ) ( -3640 1136 160 ) ( -3640 1120 176 ) world/wood_h [ 0 -1 0 31.999878 ] [ 0 0 -1 -32 ] 180 1 1
 }
 }
+// entity 299
+{
+"classname" "ExplosiveGas"
+"origin" "-576 -2528 192"
+}
+// entity 300
+{
+"classname" "ExplosiveGas"
+"origin" "-3648 1728 192"
+}

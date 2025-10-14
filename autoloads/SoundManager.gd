@@ -19,6 +19,13 @@ const buttonSounds : Array = [buttonSound0, buttonSound1, buttonSound2, buttonSo
 
 const impactSound : AudioStream = preload("res://audio/sound/impact.mp3")
 
+const unlockSound : AudioStream = preload("res://audio/sound/unlock.ogg")
+
+const lighterOpenSound : AudioStream = preload("res://audio/sound/lighterOpen.ogg")
+const lighterStrikeSound : AudioStream = preload("res://audio/sound/lighterFlick.ogg")
+const lighterSnuffSound : AudioStream = preload("res://audio/sound/lighterSnuff.ogg")
+const lighterCloseSound : AudioStream = preload("res://audio/sound/lighterClose.ogg")
+
 func playBirdSound(index : int) -> AudioStreamPlayer:
 	if index < 0 or index >= birdSounds.size():
 		index = 0
@@ -42,3 +49,18 @@ func playButtonHover() -> AudioStreamPlayer:
 	var asp : AudioStreamPlayer = playButtonPressed()
 	asp.volume_db = getAudjustedDB(0.5)
 	return asp
+	
+func playUnlock() -> AudioStreamPlayer:
+	return createAudioStreamPlayer(unlockSound)
+	
+func playLighterOpen() -> AudioStreamPlayer:
+	return createAudioStreamPlayer(lighterOpenSound)
+	
+func playLighterStrike() -> AudioStreamPlayer:
+	return createAudioStreamPlayer(lighterStrikeSound)
+	
+func playLighterSnuff() -> AudioStreamPlayer:
+	return createAudioStreamPlayer(lighterSnuffSound)
+	
+func playLighterClose() -> AudioStreamPlayer:
+	return createAudioStreamPlayer(lighterCloseSound)

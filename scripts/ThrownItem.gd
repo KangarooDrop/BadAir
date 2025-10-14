@@ -39,6 +39,12 @@ func _process(delta: float) -> void:
 	item._process(delta)
 	light.light_energy = item.getLightEnergy()
 
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	for i in range(state.get_contact_count()):
+		var normal : Vector3 = state.get_contact_local_normal(i)
+		if normal.dot(Vector3.UP) > 0.5:
+			linear_damp = 3.0
+
 func onExpire():
 	if item.id == Util.itemMushroom.id:
 		die()

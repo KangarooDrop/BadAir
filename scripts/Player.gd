@@ -236,6 +236,10 @@ func _physics_process(delta: float) -> void:
 					elif baseID == Util.itemLighter.id:
 						currentHand.setLit(not currentHand.light.visible)
 						canExplode = currentHand.light.visible
+						if canExplode:
+							SoundManager.playLighterStrike()
+						else:
+							SoundManager.playLighterSnuff()
 					else:
 						if not squawking:
 							currentHand.anim.play("squeeze_bird")

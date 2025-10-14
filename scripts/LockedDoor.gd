@@ -29,6 +29,7 @@ func close() -> void:
 func unlock() -> void:
 	lock.visible = false
 	lock2.visible = false
+	SoundManager.playUnlock()
 	open()
 
 func _process(delta: float) -> void:
