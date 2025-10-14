@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://dfvk4qus52i0q"]
+[gd_scene load_steps=55 format=4 uid="uid://dfvk4qus52i0q"]
 
 [ext_resource type="Script" uid="uid://cg7rox51rfkw6" path="res://scripts/MainMenu.gd" id="1_826wr"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_l72w3"]
@@ -21,6 +21,7 @@
 [ext_resource type="Shader" uid="uid://vpih1kfmsut4" path="res://shaders/wave.gdshader" id="17_v41fp"]
 [ext_resource type="StyleBox" uid="uid://5wbv7lvxywt7" path="res://art/ui/ButtonNormal.tres" id="20_1n6yq"]
 [ext_resource type="StyleBox" uid="uid://dxmmcmd5v0wr2" path="res://art/ui/ButtonHover.tres" id="22_2axsc"]
+[ext_resource type="Script" uid="uid://cq2prajqxej7m" path="res://scripts/GameButton.gd" id="23_2axsc"]
 [ext_resource type="StyleBox" uid="uid://c6b3vfqkht7ve" path="res://art/ui/ButtonPressed.tres" id="23_yovvs"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_duata"]
@@ -762,6 +763,7 @@ theme_override_styles/pressed = ExtResource("23_yovvs")
 theme_override_styles/hover = ExtResource("22_2axsc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1n6yq")
 text = "Play"
+script = ExtResource("23_2axsc")
 
 [node name="ContinueButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 visible = false
@@ -777,6 +779,7 @@ theme_override_styles/pressed = ExtResource("23_yovvs")
 theme_override_styles/hover = ExtResource("22_2axsc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2axsc")
 text = "Continue"
+script = ExtResource("23_2axsc")
 
 [node name="NewButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 visible = false
@@ -792,6 +795,7 @@ theme_override_styles/pressed = ExtResource("23_yovvs")
 theme_override_styles/hover = ExtResource("22_2axsc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2axsc")
 text = "New"
+script = ExtResource("23_2axsc")
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 layout_mode = 2
@@ -806,6 +810,7 @@ theme_override_styles/pressed = ExtResource("23_yovvs")
 theme_override_styles/hover = ExtResource("22_2axsc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2axsc")
 text = "Settings"
+script = ExtResource("23_2axsc")
 
 [node name="CreditsButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 layout_mode = 2
@@ -820,6 +825,7 @@ theme_override_styles/pressed = ExtResource("23_yovvs")
 theme_override_styles/hover = ExtResource("22_2axsc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2axsc")
 text = "Credits"
+script = ExtResource("23_2axsc")
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer"]
 layout_mode = 2
@@ -834,6 +840,7 @@ theme_override_styles/pressed = ExtResource("23_yovvs")
 theme_override_styles/hover = ExtResource("22_2axsc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2axsc")
 text = "Quit"
+script = ExtResource("23_2axsc")
 
 [connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/PlayButton" to="." method="onPlayPressed"]
 [connection signal="pressed" from="CanvasLayer/ScreenBounds/ButtonHolder/VBoxContainer/ContinueButton" to="." method="onContinuePressed"]

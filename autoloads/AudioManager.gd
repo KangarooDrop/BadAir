@@ -16,8 +16,8 @@ func updateStreamPlayers():
 	for asp : AudioStreamPlayer in streamPlayers:
 		asp.volume_db = adjustedDB
 
-func getAudjustedDB() -> float:
-	return linear_to_db(Settings.settingsVals[Settings.volumeKey])
+func getAudjustedDB(mult : float = 1.0) -> float:
+	return linear_to_db(Settings.settingsVals[Settings.volumeKey] * mult)
 
 func createAudioStreamPlayer(audioStream : AudioStream, pitch : float = 1.0, sigma : float = 0.0) -> AudioStreamPlayer:
 	var asp : AudioStreamPlayer = AudioStreamPlayer.new()

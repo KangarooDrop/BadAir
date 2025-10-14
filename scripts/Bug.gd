@@ -106,7 +106,6 @@ func _physics_process(delta: float) -> void:
 			var dist = dp.length()
 			if dist < 1.0 and thing.linear_velocity.length() > KILL_VEL:
 				self.velocity = thing.linear_velocity
-				print(thing.linear_velocity.length())
 				health = -999
 				
 	playAnim()

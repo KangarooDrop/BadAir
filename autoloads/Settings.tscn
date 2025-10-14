@@ -1,11 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://bud8gt1jeba3c"]
+[gd_scene load_steps=22 format=3 uid="uid://bud8gt1jeba3c"]
 
 [ext_resource type="Script" uid="uid://ben5j4ry83iwp" path="res://autoloads/Settings.gd" id="1_k133r"]
 [ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="2_4jsmj"]
 [ext_resource type="Shader" uid="uid://bwefevylbufc0" path="res://shaders/fader.gdshader" id="2_62qcs"]
+[ext_resource type="Texture2D" uid="uid://dnrsbeujci5h" path="res://art/ui/slider_grabber_med.png" id="4_nwibq"]
 [ext_resource type="StyleBox" uid="uid://5wbv7lvxywt7" path="res://art/ui/ButtonNormal.tres" id="4_rmopc"]
+[ext_resource type="Texture2D" uid="uid://xb8fvd4uec6i" path="res://art/ui/slider_grabber_light.png" id="5_7gxak"]
 [ext_resource type="StyleBox" uid="uid://c6b3vfqkht7ve" path="res://art/ui/ButtonPressed.tres" id="5_gb255"]
 [ext_resource type="StyleBox" uid="uid://dxmmcmd5v0wr2" path="res://art/ui/ButtonHover.tres" id="6_7gdtt"]
+[ext_resource type="Texture2D" uid="uid://ytia1xqu0phh" path="res://art/ui/slider_grabber_dark.png" id="6_e1u6d"]
+[ext_resource type="Script" uid="uid://cq2prajqxej7m" path="res://scripts/GameButton.gd" id="7_gb255"]
+[ext_resource type="Texture2D" uid="uid://cm1uwdxek1kh0" path="res://art/ui/slider_slider.png" id="7_p18yn"]
+[ext_resource type="Texture2D" uid="uid://c6sfqtxgl6mxd" path="res://art/ui/check_light.png" id="8_e1u6d"]
+[ext_resource type="Texture2D" uid="uid://nxjne40n60vq" path="res://art/ui/check_dark.png" id="9_p18yn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_45jbo"]
 shader = ExtResource("2_62qcs")
@@ -13,6 +20,21 @@ shader_parameter/texSize = Vector2(640, 480)
 shader_parameter/pixSize = 16.0
 shader_parameter/posterization = 8
 shader_parameter/offset = Vector2(0, -64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0dw70"]
+texture = ExtResource("7_p18yn")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nwibq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7gxak"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_44gta"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfdru"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62qcs"]
 
@@ -142,6 +164,12 @@ offset_right = 64.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_icons/grabber = ExtResource("4_nwibq")
+theme_override_icons/grabber_highlight = ExtResource("5_7gxak")
+theme_override_icons/grabber_disabled = ExtResource("6_e1u6d")
+theme_override_styles/slider = SubResource("StyleBoxTexture_0dw70")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_nwibq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_7gxak")
 max_value = 1.0
 step = 0.05
 
@@ -162,6 +190,12 @@ offset_right = 64.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_icons/grabber = ExtResource("4_nwibq")
+theme_override_icons/grabber_highlight = ExtResource("5_7gxak")
+theme_override_icons/grabber_disabled = ExtResource("6_e1u6d")
+theme_override_styles/slider = SubResource("StyleBoxTexture_0dw70")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_nwibq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_7gxak")
 max_value = 1.0
 step = 0.05
 
@@ -182,6 +216,12 @@ offset_right = 64.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_icons/grabber = ExtResource("4_nwibq")
+theme_override_icons/grabber_highlight = ExtResource("5_7gxak")
+theme_override_icons/grabber_disabled = ExtResource("6_e1u6d")
+theme_override_styles/slider = SubResource("StyleBoxTexture_0dw70")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_44gta")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_qfdru")
 max_value = 1.0
 step = 0.05
 
@@ -202,6 +242,8 @@ offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_62qcs")
+theme_override_icons/checked = ExtResource("8_e1u6d")
+theme_override_icons/unchecked = ExtResource("9_p18yn")
 
 [node name="CloseButton" type="Button" parent="ColorRect/ButtonHolder"]
 layout_mode = 1
@@ -227,9 +269,17 @@ theme_override_styles/pressed = ExtResource("5_gb255")
 theme_override_styles/hover = ExtResource("6_7gdtt")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_45il5")
 text = "Close"
+script = ExtResource("7_gb255")
 
+[connection signal="drag_ended" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/BrightnessHolder/BrightnessSlider" to="." method="sliderChangeEnded"]
+[connection signal="drag_started" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/BrightnessHolder/BrightnessSlider" to="." method="sliderChangeEnded"]
 [connection signal="value_changed" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/BrightnessHolder/BrightnessSlider" to="." method="onBrightnessChange"]
+[connection signal="drag_ended" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/SensHolder/SensSlider" to="." method="sliderChangeEnded"]
+[connection signal="drag_started" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/SensHolder/SensSlider" to="." method="sliderChangeEnded"]
 [connection signal="value_changed" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/SensHolder/SensSlider" to="." method="onSensChange"]
+[connection signal="drag_ended" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/VolumeHolder/VolumeSlider" to="." method="sliderChangeEnded"]
+[connection signal="drag_started" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/VolumeHolder/VolumeSlider" to="." method="sliderChangeEnded"]
 [connection signal="value_changed" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/VolumeHolder/VolumeSlider" to="." method="onVolumeChange"]
+[connection signal="pressed" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/AudioAccessHolder/AudioAccessButton" to="." method="sliderChangeEnded"]
 [connection signal="toggled" from="ColorRect/ButtonHolder/HBoxContainer/OptionsVBox/AudioAccessHolder/AudioAccessButton" to="." method="onAudioAccessChange"]
 [connection signal="pressed" from="ColorRect/ButtonHolder/CloseButton" to="." method="onClosePressed"]

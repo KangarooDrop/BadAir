@@ -64,3 +64,6 @@ func onAudioAccessChange(val : bool) -> void:
 
 func onClosePressed() -> void:
 	hide()
+
+func sliderChangeEnded(_val = null) -> void:
+	SoundManager.playButtonHover()
