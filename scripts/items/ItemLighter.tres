@@ -9,6 +9,6 @@ id = 2
 animName = "lighter"
 groundTexture = ExtResource("1_txbqe")
 isLit = true
-lightEnergy = 0.5
+lightRange = 15.0
 lightColor = Color(1, 1, 0.49803922, 1)
 metadata/_custom_type_script = "uid://bsvj5pm528noq"

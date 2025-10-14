@@ -122,8 +122,9 @@ func onExitPoison(poisonGas) -> void:
 			newPoisonStrength = pg.strength
 	currentPoisonStrength = newPoisonStrength
 	
-func getBit(damage) -> void:
+func getBit(damage) -> bool:
 	health -= damage
+	return true
 
 func die():
 	item.on_death.emit()

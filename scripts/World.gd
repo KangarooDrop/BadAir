@@ -56,6 +56,8 @@ func nextLevel() -> void:
 		Util.levelIndex = 0
 
 func reset() -> void:
+	if pauseScreen.visible:
+		onResumePressed()
 	if is_instance_valid(currentLevel):
 		currentLevel.queue_free()
 	if is_instance_valid(player):

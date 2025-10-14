@@ -1,6 +1,8 @@
 extends RigidBody3D
 class_name ThrownItem
 
+@export var spawn_item : String = ""
+
 @onready var sprite : Sprite3D = $Sprite3D
 @onready var light : OmniLight3D = $OmniLight3D
 
@@ -8,6 +10,13 @@ var item : Item = null
 
 func _ready() -> void:
 	add_to_group(Util.GROUP_PICKUP)
+	var itemToSpawn = null
+	if spawn_item.to_lower() == "rock":
+		itemToSpawn = Util.itemRock.duplicate()
+	if spawn_item.to_lower() == "key":
+		itemToSpawn = Util.itemKey.duplicate()
+	if itemToSpawn != null:
+		setItem(itemToSpawn)
 
 func setItem(newItem : Item) -> void:
 	if item != null:
@@ -38,9 +47,10 @@ func onExpire():
 		Util.getWorld().getLevel().createRat(global_position + Vector3.UP * 0.1, Vector3.UP * 4.0, item)
 		queue_free()
 		
-func getBit(_damage) -> void:
-	Util.getWorld().getLevel().createCorpse(global_position, linear_velocity, Rat.CORPSE_TEX)
-	die()
+func getBit(_damage) -> bool:
+	return false
+	#Util.getWorld().getLevel().createCorpse(global_position, linear_velocity, Rat.CORPSE_TEX)
+	#die()
 
 func die():
 	item.on_death.emit()

@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://i4x2wlrbeou2"]
+
+[ext_resource type="Script" uid="uid://jfi32d0mueru" path="res://scripts/RatSpin.gd" id="1_a7r7k"]
+[ext_resource type="Texture2D" uid="uid://d00le0165sk17" path="res://art/world/rat_sheet.png" id="2_dic78"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ue4q"]
+atlas = ExtResource("2_dic78")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgr6q"]
+atlas = ExtResource("2_dic78")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfcmq"]
+atlas = ExtResource("2_dic78")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2ckt"]
+atlas = ExtResource("2_dic78")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_veyav"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ue4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgr6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfcmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2ckt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="RatSpin" type="Node3D"]
+script = ExtResource("1_a7r7k")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_veyav")
+autoplay = "default"
+frame_progress = 0.04843803

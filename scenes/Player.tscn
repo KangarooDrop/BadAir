@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1n23rgtxea8g"]
+[gd_scene load_steps=11 format=3 uid="uid://1n23rgtxea8g"]
 
 [ext_resource type="Script" uid="uid://b1dns6fbwoqm3" path="res://scripts/Player.gd" id="1_p0vlq"]
 [ext_resource type="PackedScene" uid="uid://cqjf73acq8rjo" path="res://scenes/HandNode.tscn" id="2_qu4a1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cj7axrpxip1f5" path="res://art/ui/crosshair.png" id="4_mdl7e"]
 [ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="5_70d11"]
 [ext_resource type="Shader" uid="uid://dnk8ob25jra7g" path="res://shaders/vignette.gdshader" id="5_qu4a1"]
+[ext_resource type="Script" uid="uid://dwktcwlfg8iw6" path="res://scripts/OmniSens.gd" id="7_cw2d6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p0vlq"]
 radius = 0.4
@@ -92,6 +93,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_cw2d6")
 
 [node name="Label" type="Label" parent="Head/Camera3D/HUD/ScreenRect/Center/Scaler"]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -111,6 +113,7 @@ to Pick Up"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Head/Camera3D/HUD/ScreenRect/Center/Scaler"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -147,6 +150,13 @@ offset_top = 20.0
 offset_right = -30.0
 offset_bottom = 20.0
 grow_horizontal = 0
+
+[node name="CloseLight" type="OmniLight3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
+light_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
+omni_range = 20.0
+script = ExtResource("7_cw2d6")
+metadata/_custom_type_script = "uid://dwktcwlfg8iw6"
 
 [node name="RayCast3D" type="RayCast3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)

@@ -31,9 +31,11 @@ var itemRock : Item = load("res://scripts/items/ItemRock.tres")
 var levelIndex : int = 0
 const levelPaths : Array = \
 [
+	"res://scenes/levels/LevelTest.tscn",
+	"res://scenes/levels/LevelStart_TEST.tscn",
+	"res://scenes/levels/LevelBarge.tscn",
 	"res://scenes/levels/LevelDummy.tscn",
 	"res://scenes/levels/LevelDummy2.tscn",
-	"res://scenes/levels/LevelTest.tscn",
 	
 ]
 
@@ -42,8 +44,9 @@ func _ready() -> void:
 	Settings.settingsChange.connect(self.onSettingsChange)
 	onSettingsChange(Settings.brightnessKey)
 func onSettingsChange(settingsKey : String) -> void:
-	if settingsKey == Settings.brightnessKey:
-		envResource.ambient_light_energy = lerp(0.0, 6.0, Settings.settingsVals[settingsKey])
+	pass
+	#if settingsKey == Settings.brightnessKey:
+	#	envResource.ambient_light_energy = lerp(0.0, 6.0, Settings.settingsVals[settingsKey])
 
 
 func getGasStrengthToDec(gasStrength : int) -> float:
@@ -77,6 +80,13 @@ func findByType(parent : Node, type) -> Node:
 		if is_instance_of(c, type):
 			return c
 	return null
+
+func findAllByType(parent : Node, type) -> Array:
+	var rtn : Array = []
+	for c in parent.get_children():
+		if is_instance_of(c, type):
+			rtn.append(c)
+	return rtn
 
 func getWorld() -> World:
 	return get_tree().root.get_node_or_null("World")

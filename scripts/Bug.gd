@@ -9,7 +9,7 @@ const TRAC_WANDER : float = 0.05
 const JUMP_FORCE : float = 4.2
 const DETECT_RANGE : float = 5.0
 const DAMAGE : float = 60.0
-const KNOCKBACK_DIFF : float = 2.5
+const KNOCKBACK : float = 1.75
 
 var grav : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var health : float = HEALTH_MAX
@@ -40,38 +40,42 @@ func _physics_process(delta: float) -> void:
 	var afraid : bool = false
 	var attacking : bool = false
 	if is_on_floor() or jumpingOffWall:
-		var threats : Array 
+		var rats : Array 
 		for rat in get_tree().get_nodes_in_group(Util.GROUP_RAT):
-			threats.append(rat)
+			rats.append(rat)
 		for thrownItem in get_tree().get_nodes_in_group(Util.GROUP_PICKUP):
 			if thrownItem.item.id == Util.itemRat.id:
-				threats.append(thrownItem)
-			
-		var tDist : float = 0.0
-		var runDir : Vector3 = Vector3.ZERO
-		
+				rats.append(thrownItem)
 		var target
-		var nearestDist : float = 999
-		for other : Node3D in threats:
+		var nearestDist : float = DETECT_RANGE * 2.0
+		for other in rats:
 			var dp : Vector3 = global_position - other.global_position
 			var dist : float = dp.length()
 			if dist < nearestDist:
 				target = other
 				nearestDist = dist
-				
-		if nearestDist > DETECT_RANGE:
-			var targets : Array  = get_tree().get_nodes_in_group("Player")
-			for i in targets:
-				var dp : Vector3 = global_position - i.global_position
-				nearestDist = dp.length()
-				target = i
-				
-		if nearestDist < 1.0:
+		if target == null:
+			for p in get_tree().get_nodes_in_group("Player"):
+				if (global_position - p.global_position).length() < DETECT_RANGE:
+					target = p
+		
+		
+		
+		var tDist : float = 0.0
+		var runDir : Vector3 = Vector3.ZERO
+		
+		if target != null and (global_position - target.global_position).length() < 1.0:
 			if target.has_method("getBit"):
-				target.getBit(DAMAGE)
-			knockBack()
+				if target.getBit(DAMAGE):
+					var v2 = Vector2.UP.rotated(wanderAngle + 3.0*PI/2)
+					var v : Vector3 = Vector3(v2.x, 0.25, v2.y).normalized() * KNOCKBACK
+					velocity = v
+					if "velocity" in target:
+						target.velocity = Vector3(-v.x, v.y*2.0, -v.z)*3.0
+						target.position.y += 0.1
+				
 			attacking = true
-		if nearestDist < DETECT_RANGE and (not afraid or tDist < nearestDist):
+		if target != null and (not afraid or tDist < nearestDist):
 			afraid = true
 			tDist = nearestDist
 			var dp : Vector3 = global_position - target.global_position
@@ -134,12 +138,6 @@ func playAnim() -> void:
 			anim.play("back")
 		3:
 			anim.play("right")
-			
-func knockBack():
-	wanderAngle += PI
-	var v2 = Vector2.UP.rotated(wanderAngle + PI/2) * JUMP_FORCE
-	velocity = Vector3(v2.x,-JUMP_FORCE + KNOCKBACK_DIFF,v2.y)
-	position.y += .3
 
 var poisonGasses : Array = []
 var currentPoisonStrength : int = -1

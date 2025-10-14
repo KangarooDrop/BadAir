@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dt6dt18wa4iyi"
+path="res://.godot/imported/LevelBarge.map-4a90c149a60fbb84b5948bc375d438d8.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/LevelBarge.map"
+dest_files=["res://.godot/imported/LevelBarge.map-4a90c149a60fbb84b5948bc375d438d8.tres"]
+
+[params]
+

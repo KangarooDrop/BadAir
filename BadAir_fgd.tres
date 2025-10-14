@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=20 format=3 uid="uid://bxkmjweujos71"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=22 format=3 uid="uid://bxkmjweujos71"]
 
 [ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_b16p7"]
 [ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_lhqqf"]
@@ -19,10 +19,12 @@
 [ext_resource type="Resource" uid="uid://b3unnvoajoi2x" path="res://trenchbroom/entities/Bug.tres" id="16_7t1uu"]
 [ext_resource type="Resource" uid="uid://dnyyq12yh6job" path="res://trenchbroom/entities/RatNest.tres" id="17_wxt2l"]
 [ext_resource type="Resource" uid="uid://bhhsp5s07pvjt" path="res://trenchbroom/entities/Mycelia.tres" id="18_oc765"]
+[ext_resource type="Resource" uid="uid://bo2lp6oamhien" path="res://trenchbroom/entities/Secret0.tres" id="19_3rn8o"]
+[ext_resource type="Resource" uid="uid://d37rjarbeae5r" path="res://trenchbroom/entities/ThrownItem.tres" id="20_v3lyd"]
 
 [resource]
 script = ExtResource("1_lhqqf")
 fgd_name = "BadAir"
 base_fgd_files = Array[Resource]([ExtResource("1_b16p7")])
-entity_definitions = Array[Resource]([ExtResource("2_6su5s"), ExtResource("3_lywgn"), ExtResource("4_5bcow"), ExtResource("5_iou0a"), ExtResource("6_tl6hm"), ExtResource("7_sr330"), ExtResource("8_sg12h"), ExtResource("9_cehe8"), ExtResource("10_1l064"), ExtResource("11_cudks"), ExtResource("12_cn2ck"), ExtResource("13_cn2ck"), ExtResource("14_8fbsb"), ExtResource("15_mcdms"), ExtResource("16_7t1uu"), ExtResource("17_wxt2l"), ExtResource("18_oc765")])
+entity_definitions = Array[Resource]([ExtResource("2_6su5s"), ExtResource("3_lywgn"), ExtResource("4_5bcow"), ExtResource("5_iou0a"), ExtResource("6_tl6hm"), ExtResource("7_sr330"), ExtResource("8_sg12h"), ExtResource("9_cehe8"), ExtResource("10_1l064"), ExtResource("11_cudks"), ExtResource("12_cn2ck"), ExtResource("13_cn2ck"), ExtResource("14_8fbsb"), ExtResource("15_mcdms"), ExtResource("16_7t1uu"), ExtResource("17_wxt2l"), ExtResource("18_oc765"), ExtResource("19_3rn8o"), ExtResource("20_v3lyd")])
 metadata/_custom_type_script = "uid://drlmgulwbjwqu"

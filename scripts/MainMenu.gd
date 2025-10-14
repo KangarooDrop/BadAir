@@ -62,6 +62,9 @@ func _process(delta: float) -> void:
 			Credits.hide()
 
 func onPlayPressed() -> void:
+	#if Util.levelIndex == 0:
+	#	SoundManager.playExplosion()
+	#	SoundManager.playEarRinging()
 	get_tree().change_scene_to_file(Util.worldScenePath)
 
 func onNewPressed() -> void:

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ckeimr4x37x4" path="res://textures/world/metal2.png" id="2_ihhgf"]
 [ext_resource type="Shader" uid="uid://n4loymrvisyh" path="res://shaders/spirte_3d_backlit.gdshader" id="3_te3xo"]
 [ext_resource type="Texture2D" uid="uid://cuyynjhwx4pbx" path="res://art/world/mushroom_picked.png" id="4_uvnxn"]
-[ext_resource type="Script" path="res://scripts/OmniSens.gd" id="5_uvnxn"]
+[ext_resource type="Script" uid="uid://dwktcwlfg8iw6" path="res://scripts/OmniSens.gd" id="5_uvnxn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kj143"]
 radius = 0.35

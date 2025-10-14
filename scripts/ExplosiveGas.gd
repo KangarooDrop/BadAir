@@ -21,13 +21,15 @@ func onBodyEnter(body: Node3D) -> void:
 		touching.append(body)
 
 func _process(delta: float) -> void:
-	for body in touching:
+	for i in range(touching.size()-1, -1, -1):
+		var body = touching[i]
 		if body.canExplode:
 			explode()
 			body.onExplode()
+			touching.remove_at(i)
 
 func explode() -> void:
-	pass
+	SoundManager.playExplosion()
 
 func onBodyExit(body: Node3D) -> void:
 	touching.erase(body)

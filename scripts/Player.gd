@@ -13,7 +13,7 @@ const CLIMB_VEL : float = 16.0/64.0 * 8.0
 const CON_TRAC_GROUND : float = 0.5
 const CON_TRAC_AIR : float = 0.125
 const UNCON_TRAC_GROUND : float = 0.125
-const UNCON_TRAC_AIR : float = 0.017
+const UNCON_TRAC_AIR : float = 0.01
 
 const SENS_MIN : float = PI * 0.5/480.0
 const SENS_MAX : float = PI * 1.5/480.0
@@ -25,6 +25,8 @@ const KILL_VEL : float = -20.0
 var grav : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 const HEALTH_MAX : float = 100.0
+const BITE_MAX_TIME : float = 0.25
+var biteTimer : float = 0.0
 const TIME_TO_DEATH : float = 2.0
 const HEALTH_TO_VISUAL : float = 20.0
 const HEALTH_REGEN : float = HEALTH_MAX/3.0
@@ -299,6 +301,7 @@ func onSettingsChange(settingsKey : String) -> void:
 
 func _process(delta: float) -> void:
 	if dying:
+		position.y = 999.0
 		canControl = false
 		return
 	
@@ -327,14 +330,19 @@ func _process(delta: float) -> void:
 	if healthChange != 0.0:
 		health = min(HEALTH_MAX, max(0.0, health + healthChange * delta))
 	
+	if biteTimer > 0.0:
+		biteTimer -= delta
+	
 	vignette.material.set_shader_parameter("t", 0.0)
 	if healthChange != 0.0:
 		var timeLeft : float = TIME_TO_DEATH - (health + healthChange * TIME_TO_DEATH)/healthChange
 		var timeVal : float = max(0.0, 1.0 - timeLeft/TIME_TO_DEATH)
 		if timeVal > 1.0:
 			timeVal = 0.0
+		var bitVal : float = biteTimer/BITE_MAX_TIME * 0.25
 		var hpVal : float = max(0.0, (HEALTH_TO_VISUAL-health)/HEALTH_TO_VISUAL)
-		vignette.material.set_shader_parameter("t", max(timeVal, hpVal))
+		var v : float = max(bitVal, max(timeVal, hpVal))
+		vignette.material.set_shader_parameter("t", v)
 	
 	if Input.is_action_pressed("mouse_left") and handToThrowTime.has(handLeft):
 		handToThrowTime[handLeft] += delta
@@ -396,5 +404,7 @@ func onExitPoison(poisonGas) -> void:
 	currentPoisonStrength = newPoisonStrength
 
 
-func getBit(damage) -> void:
+func getBit(damage) -> bool:
 	health -= damage
+	biteTimer = BITE_MAX_TIME
+	return true

@@ -15,15 +15,14 @@ var closing : bool = false
 
 var grabOffset : float = 0.2
 var lastVelocity : Vector3 = Vector3.ZERO
-var touching : Array = []
+var touchingCounter : Dictionary = {}
 
 func _ready() -> void:
 	add_to_group(Util.GROUP_TARGET)
 	initMoveArea()
 
 func initMoveArea() -> void:
-	var col : CollisionShape3D = Util.findByType(self, CollisionShape3D)
-	if col != null:
+	for col in Util.findAllByType(self, CollisionShape3D):
 		var area : Area3D = Area3D.new()
 		var newCol : CollisionShape3D = col.duplicate()
 		area.set_collision_layer_value(1, false)
@@ -37,11 +36,17 @@ func initMoveArea() -> void:
 		area.body_exited.connect(self.onBodyExit)
 
 func onBodyEnter(body) -> void:
-	touching.append(body)
+	if not touchingCounter.has(body):
+		touchingCounter[body] = 1
+	else:
+		touchingCounter[body] += 1
 
 func onBodyExit(body) -> void:
-	touching.erase(body)
-	addLastVelocity(body)
+	if touchingCounter.has(body):
+		touchingCounter[body] -= 1
+		if touchingCounter[body] <= 0:
+			touchingCounter.erase(body)
+			addLastVelocity(body)
 
 func addLastVelocity(body) -> void:
 	if "velocity" in body:
@@ -81,7 +86,7 @@ func _physics_process(delta: float) -> void:
 			closing = false
 	
 	move_and_collide(mv * delta)
-	for t in touching:
-		t.global_position += mv * delta
+	for body in touchingCounter.keys():
+		body.global_position += mv * delta
 	
 	lastVelocity = mv
