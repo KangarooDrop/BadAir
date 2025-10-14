@@ -1,7 +1,17 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=2 format=3 uid="uid://b2sw4qj7u4mhd"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://b2sw4qj7u4mhd"]
 
+[ext_resource type="PackedScene" uid="uid://c3oh8ynn4ol6t" path="res://scenes/Sign.tscn" id="1_hui0m"]
 [ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_y2oam"]
 
 [resource]
 script = ExtResource("1_y2oam")
+scene_file = ExtResource("1_hui0m")
+classname = "Sign"
+class_properties = {
+"text": ""
+}
+meta_properties = {
+"color": Color(0.49803922, 0.34901962, 0.28235295, 1),
+"size": AABB(-32, -32, -32, 32, 32, 32)
+}
 metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

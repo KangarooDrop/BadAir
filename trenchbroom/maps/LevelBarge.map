@@ -569,6 +569,7 @@
 {
 "classname" "PlayerSpawn"
 "origin" "-32 -800 64"
+"angle" "270"
 }
 // entity 2
 {
@@ -24005,4 +24006,11 @@
 "classname" "PoisonGas"
 "origin" "-96 5792 96"
 "strength" "2"
+}
+// entity 95
+{
+"classname" "Sign"
+"origin" "-352 -416 32"
+"text" "Remember\nYour \nHardhat"
+"angle" "105"
 }
