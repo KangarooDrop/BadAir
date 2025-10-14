@@ -31,6 +31,7 @@ var itemRock : Item = load("res://scripts/items/ItemRock.tres")
 var levelIndex : int = 0
 const levelPaths : Array = \
 [
+	"res://scenes/levels/LevelTunnelMaze.tscn",
 	"res://scenes/levels/LevelBarge.tscn",
 	"res://scenes/levels/LevelTest.tscn",
 	"res://scenes/levels/LevelStart_TEST.tscn",
@@ -56,7 +57,7 @@ func getGasStrengthToDec(gasStrength : int) -> float:
 		1:
 			return 100.0/10.0
 		2:
-			return 100.0/3.0
+			return 100.0/5.0
 	return 0.0
 
 func initTarget(object : Node) -> void:

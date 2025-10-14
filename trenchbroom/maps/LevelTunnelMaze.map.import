@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dlc2bnv5ax4yh"
+path="res://.godot/imported/LevelTunnelMaze.map-960009beeed0b3ae519fb8e086844dbc.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/LevelTunnelMaze.map"
+dest_files=["res://.godot/imported/LevelTunnelMaze.map-960009beeed0b3ae519fb8e086844dbc.tres"]
+
+[params]
+

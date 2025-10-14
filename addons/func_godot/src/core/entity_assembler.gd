@@ -359,7 +359,7 @@ func apply_entity_properties(node: Node, data: _EntityData) -> void:
 				if prop == "classname" or prop == "origin" or prop == "_tb_group":
 					continue
 				if not prop in node:
-					printerr("ERROR: Entity does not have to provided property: ", prop)
+					printerr("ERROR: Entity " + properties["classname"] + " does not have to provided property: ", prop)
 					continue
 				node[prop] = properties[prop]
 	
