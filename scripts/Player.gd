@@ -405,6 +405,7 @@ func onExitPoison(poisonGas) -> void:
 
 
 func getBit(damage) -> bool:
+	SoundManager.playImpact()
 	health -= damage
 	biteTimer = BITE_MAX_TIME
 	return true

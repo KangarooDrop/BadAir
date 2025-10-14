@@ -31,9 +31,10 @@ var itemRock : Item = load("res://scripts/items/ItemRock.tres")
 var levelIndex : int = 0
 const levelPaths : Array = \
 [
-	"res://scenes/levels/LevelBarge.tscn",
-	"res://scenes/levels/LevelTest.tscn",
 	"res://scenes/levels/LevelStart_TEST.tscn",
+	"res://scenes/levels/LevelTest.tscn",
+	
+	"res://scenes/levels/LevelBarge.tscn",
 	"res://scenes/levels/LevelDummy.tscn",
 	"res://scenes/levels/LevelDummy2.tscn",
 	
