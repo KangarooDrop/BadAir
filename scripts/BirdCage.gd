@@ -17,7 +17,9 @@ func _process(delta: float) -> void:
 		chirpTimer = lerp(CHIRP_MIN_TIME, CHIRP_MAX_TIME, randf())
 
 func _exit_tree() -> void:
-	if Util.getWorld() != null:
-		SoundManager.playBirdSound(0)
 	if chirpPlayer != null:
 		chirpPlayer.finished.emit()
+
+func onPickup():
+	if Util.getWorld() != null:
+		SoundManager.playBirdSound(0)

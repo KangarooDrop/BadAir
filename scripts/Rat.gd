@@ -31,6 +31,8 @@ func _ready() -> void:
 	item.currentLife = item.lifetime
 	add_to_group(Util.GROUP_PICKUP)
 	add_to_group(Util.GROUP_RAT)
+	
+	health = lerp(HEALTH_MAX/2.0, HEALTH_MAX, randf())
 
 func _process(delta: float) -> void:
 	chirpTimer -= delta

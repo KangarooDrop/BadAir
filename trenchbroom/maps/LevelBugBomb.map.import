@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://blcygu3o0ttjf"
+path="res://.godot/imported/LevelBugBomb.map-1e4b395dc22344b20436fffd432a7f55.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/LevelBugBomb.map"
+dest_files=["res://.godot/imported/LevelBugBomb.map-1e4b395dc22344b20436fffd432a7f55.tres"]
+
+[params]
+

@@ -82,14 +82,14 @@ func _ready() -> void:
 	Settings.settingsChange.connect(self.onSettingsChange)
 
 func onLevelEnd() -> void:
-	if not unlockedLighter:
-		unlockedLighter = true
-		if handLeft.heldItem.id == Util.itemEmpty.id:
-			handLeft.swapHolding(Util.itemLighter)
 	if not unlockedBird:
 		unlockedBird = true
 		if handRight.heldItem.id == Util.itemEmpty.id:
 			handRight.swapHolding(Util.itemBird)
+	if not unlockedLighter and Util.levelIndex > 1:
+		unlockedLighter = true
+		if handLeft.heldItem.id == Util.itemEmpty.id:
+			handLeft.swapHolding(Util.itemLighter)
 
 func onHandThrowEnd(item, handNode : HandNode):
 	SoundManager.playWoosh()
