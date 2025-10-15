@@ -8,6 +8,7 @@ script = ExtResource("1_y2oam")
 scene_file = ExtResource("1_hui0m")
 classname = "Sign"
 class_properties = {
+"font_size": 32,
 "text": ""
 }
 meta_properties = {

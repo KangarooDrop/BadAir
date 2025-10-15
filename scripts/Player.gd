@@ -44,6 +44,7 @@ var climbingLastFrame : bool = false
 
 const THROW_MAX_TIME : float = 0.5
 const THROW_MAX_VEL : float = 15.0
+const THROW_MIN_VEL : float = 2.5
 const DROP_MAX_VEL : float = 5.0
 
 var unlockedBird : bool = Util.levelIndex > 0
@@ -93,7 +94,7 @@ func onLevelEnd() -> void:
 
 func onHandThrowEnd(item, handNode : HandNode):
 	SoundManager.playWoosh()
-	var throwVel : Vector3 = head.global_basis * Vector3.FORWARD * handToThrowTime[handNode]/THROW_MAX_TIME * THROW_MAX_VEL
+	var throwVel : Vector3 = head.global_basis * Vector3.FORWARD * lerp(THROW_MIN_VEL, THROW_MAX_VEL, handToThrowTime[handNode]/THROW_MAX_TIME)
 	Util.getWorld().getLevel().createThrownItem(handNode.global_position, throwVel, item)
 	handToThrowTime.erase(handNode)
 

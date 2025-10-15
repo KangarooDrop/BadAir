@@ -86,4 +86,5 @@ animation = &"unlit"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(1, 1, 0.7058824, 1)
+omni_range = 10.0
 script = ExtResource("6_awi08")
