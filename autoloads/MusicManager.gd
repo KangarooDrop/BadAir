@@ -1,7 +1,7 @@
 extends AudioManager
 
 const musicMainMenu : AudioStream = preload("res://audio/ambiance/InMotionAudio-EerieBoilerRoom.wav")
-const musicInGame : AudioStream = preload("res://audio/ambiance/InMotionAudio-EerieBoilerRoom.wav")
+const musicInGame : AudioStream = preload("res://audio/ambiance/cave.ogg")
 const musicFallback : AudioStream = musicMainMenu
 
 enum MUSIC_GROUPS {MAIN_MENU, AMBIANCE}

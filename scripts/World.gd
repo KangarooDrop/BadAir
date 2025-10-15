@@ -9,6 +9,7 @@ var currentLevel = null
 func _ready() -> void:
 	pauseScreen.hide()
 	Util.hideMouse()
+	MusicManager.playAmbiance()
 	
 	reset()
 
