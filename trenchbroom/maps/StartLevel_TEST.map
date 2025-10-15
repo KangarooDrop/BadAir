@@ -7565,3 +7565,17 @@
 "classname" "Lantern"
 "origin" "152 288 32"
 }
+// entity 266
+{
+"classname" "Sign"
+"origin" "160 480 32"
+"angle" "75"
+"text" "Canary\nKnows\nBest"
+}
+// entity 267
+{
+"classname" "Sign"
+"origin" "32 480 32"
+"angle" "90"
+"text" "Notice:\nGas Leaks\nLately"
+}

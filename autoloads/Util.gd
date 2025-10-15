@@ -36,6 +36,7 @@ const levelPaths : Array = \
 	"res://scenes/levels/LevelLighter.tscn",
 	"res://scenes/levels/LevelMushFields.tscn",
 	"res://scenes/levels/LevelKeyHole.tscn",
+	"res://scenes/levels/LevelBugBomb.tscn",
 	"res://scenes/levels/LevelTunnelMaze.tscn",
 	"res://scenes/levels/LevelBarge.tscn",
 ]

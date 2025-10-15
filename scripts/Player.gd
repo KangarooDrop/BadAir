@@ -46,8 +46,8 @@ const THROW_MAX_TIME : float = 0.5
 const THROW_MAX_VEL : float = 15.0
 const DROP_MAX_VEL : float = 5.0
 
-var unlockedLighter : bool = Util.levelIndex > 0
 var unlockedBird : bool = Util.levelIndex > 0
+var unlockedLighter : bool = Util.levelIndex > 1
 
 ####################################################################################################
 
