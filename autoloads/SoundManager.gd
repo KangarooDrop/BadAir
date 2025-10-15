@@ -59,6 +59,8 @@ const mushroomGrowSound : AudioStream = preload("res://audio/sound/soundSquish.o
 
 const wooshSound : AudioStream = preload("res://audio/sound/woosh.ogg")
 
+const motorSound : AudioStream = preload("res://audio/sound/motor.ogg")
+
 func playStreamAtPoint(streamData, globalPos : Vector3) -> AudioStreamPlayer3D:
 	var stream : AudioStream = streamData
 	if typeof(streamData) == TYPE_STRING:
@@ -154,3 +156,6 @@ func playMushroomGrow(globalPos : Vector3) -> AudioStreamPlayer3D:
 
 func playWoosh() -> AudioStreamPlayer:
 	return createAudioStreamPlayer(wooshSound)
+
+func playMotor(globalPos : Vector3) -> AudioStreamPlayer3D:
+	return createAudioStreamPlayerAtPoint(motorSound, globalPos)
