@@ -8283,7 +8283,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.338379, 1.75, 25.653095)
 mesh = SubResource("ArrayMesh_4a4nc")
 
 [node name="entity_60_PlayerSpawn" parent="FuncGodotMap" index="60" instance=ExtResource("18_wik24")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10.5, 2, 2.875)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10.5, 2.125, -1.625)
 
 [node name="entity_61_func_geo" type="StaticBody3D" parent="FuncGodotMap" index="61"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 3, 35)
@@ -8710,7 +8710,7 @@ transform = Transform3D(-0.86602545, 0, 0.49999988, 0, 1, 0, -0.49999988, 0, -0.
 text = "To Mines"
 
 [node name="entity_95_Sign" parent="FuncGodotMap" index="95" instance=ExtResource("9_w8ipr")]
-transform = Transform3D(-0.9659258, 0, -0.25881907, 0, 1, 0, 0.25881907, 0, -0.9659258, -9.5, 1.5, 63.75)
+transform = Transform3D(-0.9659258, 0, -0.25881907, 0, 1, 0, 0.25881907, 0, -0.9659258, -9.5, 1.5, 57.75)
 text = "Beware \\n Collapse!"
 
 [node name="entity_96_Sign" parent="FuncGodotMap" index="96" instance=ExtResource("9_w8ipr")]
@@ -8855,16 +8855,20 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -37.
 
 [node name="entity_109_PoisonGas" parent="FuncGodotMap" index="109" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8.25, -20.75, 43.5)
+strength = 1
 
 [node name="entity_110_PoisonGas" parent="FuncGodotMap" index="110" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.5, -20.75, 39.75)
+strength = 1
 
 [node name="entity_111_PoisonGas" parent="FuncGodotMap" index="111" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.75, -20.75, 37.5)
+strength = 1
 
 [node name="entity_112_PoisonGas" parent="FuncGodotMap" index="112" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5, -20.75, 37)
 radius = 6.0
+strength = 1
 
 [node name="entity_113_PoisonGas" parent="FuncGodotMap" index="113" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.25, -20.75, 37)
@@ -8879,107 +8883,111 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.
 radius = 6.0
 
 [node name="entity_116_PoisonGas" parent="FuncGodotMap" index="116" instance=ExtResource("21_6f2wn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.75, -20.75, 33)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.75, -20.75, 34)
 radius = 6.0
 
 [node name="entity_117_PoisonGas" parent="FuncGodotMap" index="117" instance=ExtResource("21_6f2wn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.75, -20.75, 28)
-radius = 6.0
-
-[node name="entity_118_PoisonGas" parent="FuncGodotMap" index="118" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.5, -20.75, 48.25)
 radius = 6.0
 
-[node name="entity_119_PoisonGas" parent="FuncGodotMap" index="119" instance=ExtResource("21_6f2wn")]
+[node name="entity_118_PoisonGas" parent="FuncGodotMap" index="118" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.75, -20.75, 53.75)
 radius = 6.0
 
-[node name="entity_120_PoisonGas" parent="FuncGodotMap" index="120" instance=ExtResource("21_6f2wn")]
+[node name="entity_119_PoisonGas" parent="FuncGodotMap" index="119" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9, -20.75, 55.25)
 radius = 6.0
 
-[node name="entity_121_PoisonGas" parent="FuncGodotMap" index="121" instance=ExtResource("21_6f2wn")]
+[node name="entity_120_PoisonGas" parent="FuncGodotMap" index="120" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.25, -20.75, 58.5)
 radius = 6.0
 
-[node name="entity_122_PoisonGas" parent="FuncGodotMap" index="122" instance=ExtResource("21_6f2wn")]
+[node name="entity_121_PoisonGas" parent="FuncGodotMap" index="121" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.5, -20.75, 64)
 radius = 6.0
 
-[node name="entity_123_PoisonGas" parent="FuncGodotMap" index="123" instance=ExtResource("21_6f2wn")]
+[node name="entity_122_PoisonGas" parent="FuncGodotMap" index="122" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.5, -20.75, 69)
 radius = 6.0
 
-[node name="entity_124_PoisonGas" parent="FuncGodotMap" index="124" instance=ExtResource("21_6f2wn")]
+[node name="entity_123_PoisonGas" parent="FuncGodotMap" index="123" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -12, -20.75, 72.5)
 radius = 6.0
 
+[node name="entity_124_PoisonGas" parent="FuncGodotMap" index="124" instance=ExtResource("21_6f2wn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.75, -20.75, 72.75)
+strength = 1
+
 [node name="entity_125_PoisonGas" parent="FuncGodotMap" index="125" instance=ExtResource("21_6f2wn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6.75, -20.75, 72.75)
-radius = 6.0
-
-[node name="entity_126_PoisonGas" parent="FuncGodotMap" index="126" instance=ExtResource("21_6f2wn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6.75, -20.75, 72.75)
-radius = 6.0
-
-[node name="entity_127_PoisonGas" parent="FuncGodotMap" index="127" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -18, -20.75, 73)
 radius = 6.0
 
-[node name="entity_128_PoisonGas" parent="FuncGodotMap" index="128" instance=ExtResource("21_6f2wn")]
+[node name="entity_126_PoisonGas" parent="FuncGodotMap" index="126" instance=ExtResource("21_6f2wn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -24.25, -20.75, 73)
 radius = 6.0
 
-[node name="entity_129_Lantern" parent="FuncGodotMap" index="129" instance=ExtResource("17_xctu7")]
+[node name="entity_127_Lantern" parent="FuncGodotMap" index="127" instance=ExtResource("17_xctu7")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -39.375, -26, 72.375)
 
-[node name="entity_130_Sign" parent="FuncGodotMap" index="130" instance=ExtResource("9_w8ipr")]
+[node name="entity_128_Sign" parent="FuncGodotMap" index="128" instance=ExtResource("9_w8ipr")]
 transform = Transform3D(-0.86602545, 0, 0.49999988, 0, 1, 0, -0.49999988, 0, -0.86602545, -39.25, -26, 76)
 text = "Beware! \\n BOOM GAS"
 
-[node name="entity_131_func_geo" type="StaticBody3D" parent="FuncGodotMap" index="131"]
+[node name="entity_129_func_geo" type="StaticBody3D" parent="FuncGodotMap" index="129"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, -14.875, 47)
 collision_mask = 0
 
-[node name="entity_131_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_131_func_geo" index="0"]
+[node name="entity_129_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_129_func_geo" index="0"]
 mesh = SubResource("ArrayMesh_x0pv5")
 
-[node name="entity_131_occluder_instance" type="OccluderInstance3D" parent="FuncGodotMap/entity_131_func_geo" index="1"]
+[node name="entity_129_occluder_instance" type="OccluderInstance3D" parent="FuncGodotMap/entity_129_func_geo" index="1"]
 occluder = SubResource("ArrayOccluder3D_qir8w")
 
-[node name="entity_131_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_131_func_geo" index="2"]
+[node name="entity_129_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_129_func_geo" index="2"]
 shape = SubResource("ConcavePolygonShape3D_pgco0")
 
-[node name="entity_132_func_detail_illusionary" type="Node3D" parent="FuncGodotMap" index="132"]
+[node name="entity_130_func_detail_illusionary" type="Node3D" parent="FuncGodotMap" index="130"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 2.5000153, -1.625)
 
-[node name="entity_132_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_132_func_detail_illusionary" index="0"]
+[node name="entity_130_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_130_func_detail_illusionary" index="0"]
 mesh = SubResource("ArrayMesh_vgqer")
 
-[node name="entity_133_func_detail_illusionary" type="Node3D" parent="FuncGodotMap" index="133"]
+[node name="entity_131_func_detail_illusionary" type="Node3D" parent="FuncGodotMap" index="131"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.00629, 6.5, -1.7500305)
 
-[node name="entity_133_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_133_func_detail_illusionary" index="0"]
+[node name="entity_131_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_131_func_detail_illusionary" index="0"]
 mesh = SubResource("ArrayMesh_vw8tl")
 
-[node name="entity_134_func_detail_illusionary" type="Node3D" parent="FuncGodotMap" index="134"]
+[node name="entity_132_func_detail_illusionary" type="Node3D" parent="FuncGodotMap" index="132"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.00629, 6.5, -1.25)
 
-[node name="entity_134_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_134_func_detail_illusionary" index="0"]
+[node name="entity_132_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_132_func_detail_illusionary" index="0"]
 mesh = SubResource("ArrayMesh_eme74")
 
-[node name="entity_135_func_detail_illusionary" type="Node3D" parent="FuncGodotMap" index="135"]
+[node name="entity_133_func_detail_illusionary" type="Node3D" parent="FuncGodotMap" index="133"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.75, -24.999985, 120.625)
 
-[node name="entity_135_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_135_func_detail_illusionary" index="0"]
+[node name="entity_133_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_133_func_detail_illusionary" index="0"]
 mesh = SubResource("ArrayMesh_msnkb")
 
-[node name="entity_136_triggers_Trigger" type="Area3D" parent="FuncGodotMap" index="136"]
+[node name="entity_134_triggers_Trigger" type="Area3D" parent="FuncGodotMap" index="134"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.75, -25.5, 120.625)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("8_2l0rh")
 targetname = "LevelEnd"
 
-[node name="entity_136_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_136_triggers_Trigger" index="0"]
+[node name="entity_134_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_134_triggers_Trigger" index="0"]
 shape = SubResource("ConvexPolygonShape3D_mdfsi")
+
+[node name="entity_135_ExplosiveGas" parent="FuncGodotMap" index="135" instance=ExtResource("20_peny6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.5, 1.5, 23.5)
+radius = 2.0
+
+[node name="entity_136_Sign" parent="FuncGodotMap" index="136" instance=ExtResource("9_w8ipr")]
+transform = Transform3D(0.70710665, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.70710665, -6.25, 1.5, 26.25)
+text = "NO FLAMES!"
+
+[node name="entity_137_ExplosiveGas" parent="FuncGodotMap" index="137" instance=ExtResource("20_peny6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.5, 1.5, 28.5)
+radius = 1.0

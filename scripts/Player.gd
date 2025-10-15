@@ -120,6 +120,8 @@ func _input(event: InputEvent) -> void:
 		head.rotation.x += dp.y * sensitivity
 		head.rotation.x = clampf(head.rotation.x, -PI/2.0, PI/2.0)
 	
+	
+	"""
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
 		if event.keycode == KEY_1:
 			handLeft.swapHolding(Util.itemEmpty)
@@ -142,31 +144,7 @@ func _input(event: InputEvent) -> void:
 		if event.keycode == KEY_7:
 			handLeft.swapHolding(Util.itemRock.duplicate())
 			canExplode = false
-	
-			"""
-	elif event is InputEventMouseButton and event.is_pressed():
-		if event.button_index != MOUSE_BUTTON_LEFT and event.button_index != MOUSE_BUTTON_RIGHT:
-			return
-		var currentHand : HandNode = handLeft if event.button_index == MOUSE_BUTTON_LEFT else handRight
-		if not currentHand.canChange():
-			return
-		var baseItem : int = Util.ITEM_LIGHTER if currentHand == handLeft else Util.ITEM_BIRD
-		if currentHand.holding == Util.ITEM_NONE:
-			var col : Node = raycast.get_collider()
-			var pickupType : int = baseItem
-			if col != null and col.is_in_group(Util.GROUP_PICKUP):
-				pickupType = Util.ITEM_MUSHROOM
-			if pickupType == baseItem:
-				currentHand.swapHolding(baseItem)
-			else:
-				currentHand.holding = pickupType
-				currentHand.grabHolding()
-		elif currentHand.holding == baseItem:
-			currentHand.swapHolding(Util.ITEM_NONE)
-		else:
-			currentHand.holding = Util.ITEM_NONE
-			currentHand.throwHolding()
-			"""
+	"""
 
 func checkAndRemoveItem(itemID : int) -> bool:
 	for hand in [handLeft, handRight]:
