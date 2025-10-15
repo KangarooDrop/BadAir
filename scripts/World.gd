@@ -56,6 +56,9 @@ func nextLevel() -> void:
 		Util.levelIndex = 0
 
 func reset() -> void:
+	await get_tree().process_frame
+	LoadingScreen.visible = true
+	
 	if pauseScreen.visible:
 		onResumePressed()
 	if is_instance_valid(currentLevel):
@@ -68,10 +71,10 @@ func reset() -> void:
 			player.velocity = Vector3.ZERO
 			player.position.y = 999
 	
-	await get_tree().process_frame
-	call_deferred("addPlayerAndLevel")
+	addPlayerAndLevel()
 
 func addPlayerAndLevel():
+	await get_tree().process_frame
 	print("Loading Level #", Util.levelIndex)
 	if not is_instance_valid(player):
 		player = Util.playerScene.instantiate()
@@ -79,6 +82,8 @@ func addPlayerAndLevel():
 	
 	currentLevel = load(Util.levelPaths[Util.levelIndex]).instantiate()
 	add_child(currentLevel)
+	
+	LoadingScreen.visible = false
 
 func getLevel():
 	return currentLevel

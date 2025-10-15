@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://c1sdf0q1r5de0"
+path="res://.godot/imported/FinalStaircase.map-7f5c3084160f06c58f670e24d6929b20.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/FinalStaircase.map"
+dest_files=["res://.godot/imported/FinalStaircase.map-7f5c3084160f06c58f670e24d6929b20.tres"]
+
+[params]
+

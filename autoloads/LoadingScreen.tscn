@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhxejfj83pcc7"]
+
+[ext_resource type="Texture2D" uid="uid://b04ipihps5788" path="res://art/world/bird_caged.png" id="1_dbslh"]
+[ext_resource type="FontFile" uid="uid://bylnhc01rb7kd" path="res://art/fonts/strife.ttf" id="2_wc142"]
+
+[node name="LoadingScreen" type="CanvasLayer"]
+layer = 99
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -96.0
+offset_right = -48.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("1_dbslh")
+
+[node name="Label" type="Label" parent="ColorRect/TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = -48.0
+offset_right = 55.0
+offset_bottom = -16.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.63529414, 0.6392157, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("2_wc142")
+theme_override_font_sizes/font_size = 32
+text = "Loading"
