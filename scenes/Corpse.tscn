@@ -8,13 +8,14 @@
 radius = 0.4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3ww7y"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_6n52u")
 shader_parameter/tex = ExtResource("3_23ujd")
 shader_parameter/scale = 1.5625
 
 [node name="Corpse" type="RigidBody3D"]
-collision_layer = 0
+collision_layer = 4
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true

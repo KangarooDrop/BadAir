@@ -15,21 +15,21 @@ func _ready() -> void:
 	particles.amount = getPartsPerUnit(radius)
 	(col.shape as SphereShape3D).radius = radius
 
-var touching : Array = []
+var exploderNodes : Array = []
 func onBodyEnter(body: Node3D) -> void:
 	if "canExplode" in body:
-		touching.append(body)
+		exploderNodes.append(body)
 
 func _process(delta: float) -> void:
-	for i in range(touching.size()-1, -1, -1):
-		var body = touching[i]
+	for i in range(exploderNodes.size()-1, -1, -1):
+		var body = exploderNodes[i]
 		if body.canExplode:
 			explode()
 			body.onExplode()
-			touching.remove_at(i)
+			exploderNodes.remove_at(i)
 
 func explode() -> void:
 	SoundManager.playExplosion()
 
 func onBodyExit(body: Node3D) -> void:
-	touching.erase(body)
+	exploderNodes.erase(body)

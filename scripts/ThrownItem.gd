@@ -43,6 +43,7 @@ func _process(delta: float) -> void:
 
 var lastVelocity : Vector3 = Vector3.ZERO
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	linear_damp = 0.0
 	var newContactCount : int = state.get_contact_count()
 	for i in range(newContactCount):
 		var normal : Vector3 = state.get_contact_local_normal(i)
