@@ -2884,7 +2884,6 @@ mesh = SubResource("ArrayMesh_iqiwg")
 
 [node name="entity_11_Lantern" parent="FuncGodotMap" index="11" instance=ExtResource("14_axjcm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.5, 2.375, 29)
-is_lit = false
 
 [node name="entity_12_Lantern" parent="FuncGodotMap" index="12" instance=ExtResource("14_axjcm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.5, 3.5, -11.375)
