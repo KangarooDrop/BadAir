@@ -79,6 +79,7 @@ func addPlayerAndLevel():
 	print("Loading Level #", Util.levelIndex)
 	if not is_instance_valid(player):
 		player = Util.playerScene.instantiate()
+		player.position.y = 999
 		add_child(player)
 	
 	currentLevel = load(Util.levelPaths[Util.levelIndex]).instantiate()
