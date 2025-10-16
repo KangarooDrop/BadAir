@@ -3114,7 +3114,7 @@
 {
 "classname" "Lantern"
 "origin" "1856 -32 152"
-"is_lit" "0"
+"is_lit" "1"
 }
 // entity 30
 {
