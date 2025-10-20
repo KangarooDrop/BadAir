@@ -1,6 +1,7 @@
 extends Node3D
 class_name World
 
+var hasReset : bool = false
 var player = null
 var currentLevel = null
 
@@ -57,6 +58,7 @@ func nextLevel() -> void:
 		Util.levelIndex = 0
 
 func reset() -> void:
+	hasReset = false
 	await get_tree().process_frame
 	LoadingScreen.visible = true
 	
@@ -86,6 +88,10 @@ func addPlayerAndLevel():
 	add_child(currentLevel)
 	
 	LoadingScreen.visible = false
+	
+	await get_tree().create_timer(0.1).timeout
+	await get_tree().physics_frame
+	hasReset = true
 
 func getLevel():
 	return currentLevel

@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 @export var target : String = ""
 @export var speed : float = 1.0
@@ -14,9 +14,13 @@ func _ready() -> void:
 	(debugMesh.mesh as SphereMesh).height = radius*2.0
 
 func onBodyEnter(body: Node3D) -> void:
+	if "Player" in body.name and not Util.getWorld().hasReset:
+		return
 	if body.has_method("onEnterPoison"):
 		body.onEnterPoison(self)
 
 func onBodyExit(body: Node3D) -> void:
-	if body.has_method("onExitPoison"):
+	if "Player" in body.name and not Util.getWorld().hasReset:
+		return
+	if Util.getWorld().hasReset and body.has_method("onExitPoison"):
 		body.onExitPoison(self)

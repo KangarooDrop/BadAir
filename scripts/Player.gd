@@ -396,6 +396,7 @@ func onEnterPoison(poisonGas) -> void:
 		makeBirdCall(true)
 		if handRight.heldItem.id == Util.itemBird.id:
 			handRight.anim.play("squawk_bird")
+			handRight.anim.frame = 0
 		
 func onExitPoison(poisonGas) -> void:
 	poisonGasses.erase(poisonGas)
@@ -403,8 +404,12 @@ func onExitPoison(poisonGas) -> void:
 	for pg in poisonGasses:
 		if pg.strength > newPoisonStrength:
 			newPoisonStrength = pg.strength
-	currentPoisonStrength = newPoisonStrength
-
+	if currentPoisonStrength != newPoisonStrength:
+		currentPoisonStrength = newPoisonStrength
+		makeBirdCall(true)
+		if handRight.heldItem.id == Util.itemBird.id:
+			handRight.anim.play("squawk_bird")
+			handRight.anim.frame = 0
 
 func getBit(damage) -> bool:
 	SoundManager.playImpact()

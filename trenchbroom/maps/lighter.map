@@ -11559,21 +11559,21 @@
 {
 "classname" "PoisonGas"
 "origin" "2784 528 -1328"
-"strength" "1"
+"strength" "0"
 "_tb_group" "393"
 }
 // entity 178
 {
 "classname" "PoisonGas"
 "origin" "2544 352 -1328"
-"strength" "1"
+"strength" "0"
 "_tb_group" "393"
 }
 // entity 179
 {
 "classname" "PoisonGas"
 "origin" "2400 176 -1328"
-"strength" "1"
+"strength" "0"
 "_tb_group" "393"
 }
 // entity 180
@@ -11581,7 +11581,7 @@
 "classname" "PoisonGas"
 "origin" "2368 -96 -1328"
 "radius" "6"
-"strength" "1"
+"strength" "0"
 "_tb_group" "393"
 }
 // entity 181
